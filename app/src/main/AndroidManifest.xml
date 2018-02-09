@@ -16,7 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".loginActivity"></activity>
+        <activity android:name=".loginActivity" />
+        <activity android:name=".selectTyleActivity" />
+        <activity android:name=".consumerREGActivity"></activity>
     </application>
 
 </manifest>
