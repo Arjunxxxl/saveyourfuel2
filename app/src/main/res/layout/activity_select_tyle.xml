@@ -6,23 +6,17 @@
     android:layout_height="match_parent"
     tools:context="com.saveyourfuel.saveyourfuel.selectTyleActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:text="Save Your Fuel" />
+    <include layout="@layout/toolbar_main"
+        android:id="@+id/toolbar"/>
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView"
+       android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="80dp"
-        android:text="Select Your Account Type" />
+        android:layout_marginTop="120dp"
+        android:text="Save Your Fuel" />
 
     <Button
         android:id="@+id/button"

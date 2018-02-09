@@ -30,7 +30,7 @@ public class selectTyleActivity extends AppCompatActivity implements View.OnClic
                 //selectTyleActivity.this.finish();
                 break;
             case R.id.button1 :
-                Intent mainIntent1 = new Intent(selectTyleActivity.this, loginActivity.class);
+                Intent mainIntent1 = new Intent(selectTyleActivity.this, transportREGActivity.class);
                 startActivity(mainIntent1);
                 //selectTyleActivity.this.finish();
                 break;

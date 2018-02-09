@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".loginActivity" />
         <activity android:name=".selectTyleActivity" />
-        <activity android:name=".consumerREGActivity"></activity>
+        <activity android:name=".consumerREGActivity" />
+        <activity android:name=".transportREGActivity"></activity>
     </application>
 
 </manifest>
