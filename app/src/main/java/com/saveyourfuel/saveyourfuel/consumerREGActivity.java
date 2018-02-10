@@ -11,6 +11,7 @@ import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toolbar;
 
 import com.android.volley.toolbox.StringRequest;
 
@@ -22,11 +23,17 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
     TextInputEditText name, dob,address, phone,email,password,repass;
     TextInputLayout nameL,dobL,addressL,phoneL,emailL,passwordL,repassL;
 
+    android.support.v7.widget.Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consumer_reg);
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setTitle("Consumer Registration");
+
 
         setView();
         setListeners();

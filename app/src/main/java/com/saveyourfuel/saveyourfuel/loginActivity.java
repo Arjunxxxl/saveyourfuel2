@@ -5,6 +5,7 @@ import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -26,10 +27,19 @@ public class loginActivity extends AppCompatActivity implements  View.OnClickLis
     TextInputLayout temail;
     Button login;
     TextInputEditText email,password;
+
+    Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setTitle("User Login");
+        toolbar.setSubtitle("Save Your Fuel Pvt. Ltd.");
+
         temail = findViewById(R.id.editText4);
         email = findViewById(R.id.loginEmail);
         password = findViewById(R.id.loginPassword);
