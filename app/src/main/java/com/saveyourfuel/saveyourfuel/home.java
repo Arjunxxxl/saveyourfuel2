@@ -1,13 +1,13 @@
 package com.saveyourfuel.saveyourfuel;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 public class home extends AppCompatActivity {
 
@@ -19,10 +19,10 @@ public class home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         toolbar=findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
         toolbar.setTitle("Arjun Sankhala");
+        setSupportActionBar(toolbar);
         toolbar.setSubtitle("7728999684");
-
+        toolbar.setBackgroundColor(Color.parseColor("#80BDBDBD"));
     }
 
     @Override
@@ -44,6 +44,9 @@ public class home extends AppCompatActivity {
                 break;
             case R.id.money :
                 startActivity(new Intent(home.this,balanceActivity.class));
+                break;
+            case R.id.upload :
+                startActivity(new Intent(home.this,uploadActivity.class));
                 break;
         }
         return super.onOptionsItemSelected(item);

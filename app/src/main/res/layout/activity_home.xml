@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@mipmap/bgblueorange"
     tools:context="com.saveyourfuel.saveyourfuel.home">
 
     <include
@@ -11,40 +12,14 @@
         layout="@layout/toolbar_main" />
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
-        android:text="Upload your documents" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/button2"
-        android:layout_marginTop="5dp"
-        android:text="Document_Status"
-        android:textColor="#C2185B"
-        />
-
-    <CheckBox
-        android:id="@+id/checkBox3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/button2"
-        android:layout_toEndOf="@+id/button2"
-        android:layout_toRightOf="@+id/button2"
-        android:clickable="false"/>
-
-    <Button
         android:id="@+id/button4"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_alignTop="@+id/toolbar"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/round_button"
+        android:textColor="#ffffff"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="150dp"
         android:text="Sell"
         />
 

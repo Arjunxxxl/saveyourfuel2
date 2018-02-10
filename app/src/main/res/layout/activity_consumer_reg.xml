@@ -56,6 +56,8 @@
                     android:id="@+id/nameReg"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:lines="1"
+                    android:imeOptions="actionNext"
                     android:hint="Name" />
             </android.support.design.widget.TextInputLayout>
 
@@ -79,6 +81,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="DOB"
+                    android:lines="1"
+                    android:imeOptions="actionNext"
                     android:inputType="date" />
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
@@ -101,6 +105,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Postal Address"
+                    android:lines="1"
+                    android:imeOptions="actionNext"
                     android:inputType="textPostalAddress" />
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
@@ -122,6 +128,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Phone"
+                    android:lines="1"
+                    android:imeOptions="actionNext"
                     android:inputType="phone" />
             </android.support.design.widget.TextInputLayout>
 
@@ -144,6 +152,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="E-mail"
+                    android:lines="1"
+                    android:imeOptions="actionNext"
                     android:inputType="textEmailAddress" />
 
             </android.support.design.widget.TextInputLayout>
@@ -167,6 +177,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Password"
+                    android:lines="1"
+                    android:imeOptions="actionNext"
                     android:inputType="textPassword" />
 
             </android.support.design.widget.TextInputLayout>
@@ -189,6 +201,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Re-enter password"
+                    android:lines="1"
+                    android:imeOptions="actionDone"
                     android:inputType="textPassword" />
 
             </android.support.design.widget.TextInputLayout>

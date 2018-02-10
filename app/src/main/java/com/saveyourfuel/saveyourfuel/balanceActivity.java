@@ -1,11 +1,14 @@
 package com.saveyourfuel.saveyourfuel;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
@@ -22,10 +25,21 @@ public class balanceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_balance);
 
-        toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar1);
+        toolbar.setTitle(" ");
         setSupportActionBar(toolbar);
-        toolbar.setTitle("Your Balance");
-        toolbar.setSubtitle("Arjun Sankhala");
+        toolbar.setBackgroundColor(Color.parseColor("#80BDBDBD"));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_action_back));
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(balanceActivity.this,home.class);
+                startActivity(i);
+                balanceActivity.this.finish();
+            }
+        });
 
         aSwitch = findViewById(R.id.switch2);
         balance = findViewById(R.id.button6);

@@ -30,7 +30,8 @@
         </activity>
         <activity android:name=".aboutusActivity" />
         <activity android:name=".settingsActivity" />
-        <activity android:name=".balanceActivity"></activity>
+        <activity android:name=".balanceActivity" />
+        <activity android:name=".uploadActivity"></activity>
     </application>
 
 </manifest>
