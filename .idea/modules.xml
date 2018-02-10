@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/saveyourfuel.iml" filepath="$PROJECT_DIR$/saveyourfuel.iml" />
       <module fileurl="file://C:\Users\dell\AndroidStudioProjects\saveyourfuel2\.idea\saveyourfuel.iml" filepath="C:\Users\dell\AndroidStudioProjects\saveyourfuel2\.idea\saveyourfuel.iml" />
       <module fileurl="file://$PROJECT_DIR$/saveyourfuel2.iml" filepath="$PROJECT_DIR$/saveyourfuel2.iml" />
     </modules>

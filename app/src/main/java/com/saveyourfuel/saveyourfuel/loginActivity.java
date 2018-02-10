@@ -34,11 +34,11 @@ public class loginActivity extends AppCompatActivity implements  View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        toolbar.setTitle("User Login");
-        toolbar.setSubtitle("Save Your Fuel Pvt. Ltd.");
+//
+//        toolbar = findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+//        toolbar.setTitle("User Login");
+//        toolbar.setSubtitle("Save Your Fuel Pvt. Ltd.");
 
         temail = findViewById(R.id.editText4);
         email = findViewById(R.id.loginEmail);

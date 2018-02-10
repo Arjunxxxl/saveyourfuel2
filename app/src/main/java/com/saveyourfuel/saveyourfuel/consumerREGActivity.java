@@ -9,12 +9,21 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 public class consumerREGActivity extends AppCompatActivity implements View.OnClickListener{
@@ -29,10 +38,10 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consumer_reg);
-
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        toolbar.setTitle("Consumer Registration");
+//
+//        toolbar = findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+//        toolbar.setTitle("Consumer Registration");
 
 
         setView();
@@ -59,7 +68,7 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
         repassL = findViewById(R.id.repassRegL);
     }
 
-
+    boolean checkName=false,checkAddress=false, checkDob=false, checkEmail=false, checkPassword=false, checkPhone=false;
 
     void setListeners(){
         reg.setOnClickListener(this);
@@ -80,6 +89,7 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
                     nameL.setError("this field cannot be empty");
                 else{
                     nameL.setErrorEnabled(false);
+                    checkName = true;
                 }
 
             }
@@ -115,6 +125,7 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
                         }
                         else{
                             dobL.setErrorEnabled(false);
+                            checkDob=true;
                         }
 
 
@@ -143,8 +154,10 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
             public void afterTextChanged(Editable s) {
                 if(s.toString().isEmpty())
                     addressL.setError("this field cannot be empty");
-                else
+                else {
                     addressL.setErrorEnabled(false);
+                    checkAddress = true;
+                }
             }
         });
 
@@ -171,6 +184,7 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
                     try{
                         Long t = Long.parseLong(s.toString());
                         phoneL.setErrorEnabled(false);
+                        checkPhone = true;
 
                     }
                     catch (Exception e){
@@ -205,6 +219,7 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
                 }
                 else{
                     emailL.setErrorEnabled(false);
+                    checkEmail = true;
                 }
             }
         });
@@ -224,8 +239,11 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
             public void afterTextChanged(Editable s) {
                 if(s.toString().isEmpty())
                     passwordL.setError("password cannot be empty");
-                else
+                else{
                     passwordL.setErrorEnabled(false);
+                    checkPassword = true;
+                }
+
 
                 if(!s.toString().contentEquals(repass.getText().toString()))
                     repassL.setError("password doesn't match");
@@ -260,10 +278,74 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
         switch (view.getId())
         {
             case R.id.register:
-                Intent i = new Intent(consumerREGActivity.this,loginActivity.class);
-                consumerREGActivity.this.startActivity(i);
-                consumerREGActivity.this.finish();
+                postData();
                 break;
+        }
+    }
+
+
+    void postData(){
+
+        final String named, dobd, addressd, phoned,emaild,passwordd,repassd;
+        named = name.getText().toString();
+        dobd = dob.getText().toString();
+        addressd = address.getText().toString();
+        phoned = phone.getText().toString();
+        emaild = email.getText().toString();
+        passwordd = password.getText().toString();
+        repassd = repass.getText().toString();
+
+        final String dobSubstring[] = dobd.split(Pattern.quote("/"));
+
+        if(repassd.contentEquals(passwordd) && checkAddress&& checkEmail && checkName && checkDob && checkPassword && checkPhone){
+
+            RequestQueue queue= Volley.newRequestQueue(this);
+
+            String url = "http://139.59.29.124:3000/register";
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            try{
+                                int code = Integer.parseInt(response);
+                                if(code==1062){
+                                    Toast.makeText(getBaseContext(),"email or phone already exist",Toast.LENGTH_SHORT).show();
+                                    email.setText("");
+                                    phone.setText("");
+                                }
+                                if(code==900){
+                                    Toast.makeText(getBaseContext(),"SUCCESSFULLY REGISTERED",Toast.LENGTH_SHORT).show();
+                                    Intent i = new Intent(consumerREGActivity.this,loginActivity.class);
+                                    consumerREGActivity.this.startActivity(i);
+                                    consumerREGActivity.this.finish();
+                                }
+                            }
+                            catch (Exception e){
+                                Toast.makeText(getBaseContext(),"Unknown error",Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(getBaseContext(),"Check your connection..",Toast.LENGTH_SHORT).show();
+                }
+
+            }) {
+                //adding parameters to the request
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<>();
+                    params.put("name", named);
+                    params.put("email", emaild);
+                    params.put("dob", dobSubstring[2]+dobSubstring[1]+dobSubstring[0]);
+                    params.put("address", addressd);
+                    params.put("phone", phoned);
+                    params.put("password", passwordd);
+
+                    return params;
+                }
+            };
+            queue.add(stringRequest);
         }
     }
 }
