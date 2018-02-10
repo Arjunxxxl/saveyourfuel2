@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">saveyourfuel</string>
     <string name="regester"><u><b>New here, Register Now!</b></u></string>
+    <string name="about_us">About US</string>
 </resources>
