@@ -25,9 +25,10 @@ public class balanceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_balance);
 
-        toolbar = findViewById(R.id.toolbar1);
+        toolbar = findViewById(R.id.toolbarkok);
         toolbar.setTitle(" ");
         setSupportActionBar(toolbar);
+
         toolbar.setBackgroundColor(Color.parseColor("#80BDBDBD"));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
