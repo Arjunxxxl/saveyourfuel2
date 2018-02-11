@@ -1,27 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="#FAFAFA"
     android:layout_height="match_parent"
-    android:background="@mipmap/bgblueorange"
     tools:context="com.saveyourfuel.saveyourfuel.home">
 
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar_main" />
 
-    <Button
-        android:id="@+id/button4"
+    <!--<Button-->
+        <!--android:id="@+id/button4"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignTop="@+id/toolbar"-->
+        <!--android:layout_marginTop="60dp"-->
+        <!--android:background="@drawable/round_button"-->
+        <!--android:textColor="#ffffff"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:text="Sell"-->
+        <!--/>-->
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
+        android:scrollbars="vertical"
+        android:clipToPadding="false"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/toolbar"
-        android:layout_marginTop="60dp"
-        android:background="@drawable/round_button"
-        android:textColor="#ffffff"
-        android:layout_centerHorizontal="true"
-        android:text="Sell"
-        />
+        android:id="@+id/mainViewHolder">
+
+    </android.support.v7.widget.RecyclerView>
 
 
-</android.widget.RelativeLayout>
+</LinearLayout>

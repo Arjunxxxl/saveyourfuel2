@@ -2,6 +2,10 @@
 <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="60dp"
-    android:background="#00000000">
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:titleTextColor="#ffffff"
+    app:subtitleTextColor="#ffffff"
+    android:background="#6A1B9A">
 
 </android.support.v7.widget.Toolbar>

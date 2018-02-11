@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:id="@+id/card_view"
+        android:layout_margin="5dp"
+
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            android:background="#ffffff"
+            android:gravity="center_vertical"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/icon_for_recycle"
+                android:src="@mipmap/buybag"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:textSize="20dp"
+                    android:id="@+id/title"
+                    android:layout_height="wrap_content"
+                    android:text="Title"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:id="@+id/description"
+                    android:layout_height="wrap_content"
+                    android:text="Description"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+</LinearLayout>

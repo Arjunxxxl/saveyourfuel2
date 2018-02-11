@@ -4,9 +4,12 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="android:actionMenuTextColor">#ffffff</item>
+        <item name="android:textColorSecondary">#ffffff</item>
         <item name="colorPrimaryDark">#212121</item>
         <item name="colorAccent">#01579B</item>
     </style>
+
 
     <style name="MyAppearance" parent="TextAppearance.AppCompat">
         <item name="android:textColor">?attr/colorPrimary</item>
