@@ -1,24 +1,47 @@
 package com.saveyourfuel.saveyourfuel;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Debug;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
 import org.w3c.dom.Text;
+
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 public class uploadActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -94,35 +117,67 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
                 startActivityForResult(i4, Pick_image4);
                 break;
             case R.id.finalupload:
+                uploadFilesToServer();
                 break;
         }
     }
 
+    Bitmap adharCard, license, insurance, rc;
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK && requestCode == Pick_image1) {
             String path = getRealPathFromURI(data.getData());
-            Toast.makeText(getApplicationContext(), path, Toast.LENGTH_LONG).show();
-            t1.setText(path);
+            try {
+                adharCard = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
+                Toast.makeText(getApplicationContext(), path, Toast.LENGTH_LONG).show();
+                t1.setText(path);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                Toast.makeText(getApplicationContext(), "Error while selecting", Toast.LENGTH_LONG).show();
+            }
+
         }
 
         if (resultCode == RESULT_OK && requestCode == Pick_image2) {
             String path2 = getRealPathFromURI(data.getData());
-            Toast.makeText(getApplicationContext(), path2, Toast.LENGTH_LONG).show();
-            t2.setText(path2);
+            try {
+                license = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
+                Toast.makeText(getApplicationContext(), path2, Toast.LENGTH_LONG).show();
+                t2.setText(path2);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                Toast.makeText(getApplicationContext(), "Error while selecting", Toast.LENGTH_LONG).show();
+            }
         }
 
         if (resultCode == RESULT_OK && requestCode == Pick_image3) {
             String path3 = getRealPathFromURI(data.getData());
-            Toast.makeText(getApplicationContext(), path3, Toast.LENGTH_LONG).show();
-            t3.setText(path3);
+
+            try {
+                insurance = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
+                Toast.makeText(getApplicationContext(), path3, Toast.LENGTH_LONG).show();
+                t3.setText(path3);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                Toast.makeText(getApplicationContext(), "Error while selecting", Toast.LENGTH_LONG).show();
+            }
         }
 
         if (resultCode == RESULT_OK && requestCode == Pick_image4) {
             String path4 = getRealPathFromURI(data.getData());
-            Toast.makeText(getApplicationContext(), path4, Toast.LENGTH_LONG).show();
-            t4.setText(path4);
+            try {
+                adharCard = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
+                Toast.makeText(getApplicationContext(), path4, Toast.LENGTH_LONG).show();
+                t4.setText(path4);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                Toast.makeText(getApplicationContext(), "Error while selecting", Toast.LENGTH_LONG).show();
+            }
         }
     }
 
@@ -139,5 +194,61 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
             cursor.close();
         }
         return result;
+    }
+
+    void uploadFilesToServer(){
+        final ProgressDialog progressDialog = new ProgressDialog(uploadActivity.this);
+        progressDialog.setMessage("Uploading, please wait...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
+        //converting image to base64 string
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        adharCard.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] imageBytes = baos.toByteArray();
+        final String imageString = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        Log.d("size",imageBytes.length+"");
+
+        RequestQueue queue= Volley.newRequestQueue(this);
+
+        String url = "http://139.59.29.124:3000/upload_documents";
+
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try{
+                            progressDialog.cancel();
+
+                            Toast.makeText(getBaseContext(),"uploaded successfully",Toast.LENGTH_SHORT).show();
+                        }
+                        catch (Exception e){
+                            progressDialog.cancel();
+                            Toast.makeText(getBaseContext(),"cant upload",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                progressDialog.cancel();
+                Toast.makeText(getBaseContext(),"Check your connection..",Toast.LENGTH_SHORT).show();
+            }
+
+        }) {
+            //adding parameters to the request
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("image", imageString);
+                SharedPreferences preferences = getSharedPreferences("data",Context.MODE_PRIVATE);
+                params.put("id",preferences.getString("id",""));
+
+
+                return params;
+            }
+        };
+        queue.add(stringRequest);
     }
 }

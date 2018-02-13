@@ -29,6 +29,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class loginActivity extends AppCompatActivity implements View.OnClickListener {
 
     //    CheckBox cemail,cpass;
@@ -112,21 +115,31 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.d("response", "response " + response);
-                if (response.contentEquals("800")) {
-                    login.setEnabled(true);
+                try {
+                    JSONObject res = new JSONObject(response);
+                    Log.d("response", "response " + res);
+                    if (res.getString("code").contentEquals("800")) {
+                        login.setEnabled(true);
 
-                    sharedPref  = getSharedPreferences("data",Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPref .edit();
-                    editor.putString("username",emailText);
-                    editor.putString("password",passwordText);
-                    editor.commit();
+                        sharedPref  = getSharedPreferences("data",Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPref .edit();
+                        editor.putString("username",emailText);
+                        editor.putString("password",passwordText);
+                        editor.putString("id",res.getString("id"));
+                        editor.apply();
 
-                    startActivity(new Intent("com.saveyourfuel.saveyourfuel.home"));
-                } else {
-                    Toast.makeText(getBaseContext(), "WRONG CREDENTIALS!", Toast.LENGTH_SHORT).show();
-                    login.setEnabled(true);
+                        startActivity(new Intent("com.saveyourfuel.saveyourfuel.home"));
+                        loginActivity.this.finish();
+                    } else {
+                        Toast.makeText(getBaseContext(), "WRONG CREDENTIALS!", Toast.LENGTH_SHORT).show();
+                        login.setEnabled(true);
+                    }
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
+
             }
         }, new Response.ErrorListener() {
             @Override

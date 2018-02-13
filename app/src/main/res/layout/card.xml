@@ -7,7 +7,6 @@
         android:layout_width="match_parent"
         android:id="@+id/card_view"
         android:layout_margin="5dp"
-
         android:layout_height="wrap_content">
 
         <LinearLayout
@@ -18,10 +17,12 @@
             android:gravity="center_vertical"
             android:layout_height="wrap_content">
             <ImageView
+                android:padding="5dp"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
+                android:scaleType="fitCenter"
                 android:id="@+id/icon_for_recycle"
-                android:src="@mipmap/buybag"/>
+                android:src="@mipmap/creditcard"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:orientation="vertical"

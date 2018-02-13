@@ -16,6 +16,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class splashActivity extends AppCompatActivity {
 
     @Override
@@ -53,17 +56,25 @@ public class splashActivity extends AppCompatActivity {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.d("response", "response " + response);
-                if (response.contentEquals("800")) {
+                try {
+                    JSONObject res = new JSONObject(response);
+
+                    Log.d("response", "response " + res);
+                    if (res.getString("code").contentEquals("800")) {
 
 
-                    startActivity(new Intent("com.saveyourfuel.saveyourfuel.home"));
-                    splashActivity.this.finish();
-                } else {
-                    Toast.makeText(getBaseContext(), "Login Please!", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(splashActivity.this,loginActivity.class));
-                    splashActivity.this.finish();
+                        startActivity(new Intent("com.saveyourfuel.saveyourfuel.home"));
+                        splashActivity.this.finish();
+                    } else {
+                        Toast.makeText(getBaseContext(), "Login Please!", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(splashActivity.this,loginActivity.class));
+                        splashActivity.this.finish();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
+
             }
         }, new Response.ErrorListener() {
             @Override
