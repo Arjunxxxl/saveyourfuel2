@@ -31,17 +31,17 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
     Button reg;
     TextInputEditText name, dob,address, phone,email,password,repass;
     TextInputLayout nameL,dobL,addressL,phoneL,emailL,passwordL,repassL;
-
     android.support.v7.widget.Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consumer_reg);
-//
+
 //        toolbar = findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
-//        toolbar.setTitle("Consumer Registration");
+//        toolbar.setTitle("");
+
 
 
         setView();
@@ -319,6 +319,13 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(consumerREGActivity.this,selectTyleActivity.class);
+        startActivity(i);
+        this.finish();
+    }
 
     void postData(){
 
@@ -387,4 +394,6 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
             Toast.makeText(getBaseContext(),"fill valid entries",Toast.LENGTH_SHORT).show();
         }
     }
+
+
 }

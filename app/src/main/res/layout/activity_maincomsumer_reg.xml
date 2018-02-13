@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/city3"
+    android:layout_height="match_parent"
+    tools:context="com.saveyourfuel.saveyourfuel.maincomsumerREGActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/layout_round"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingBottom="10dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:paddingTop="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Coming Soon"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/actype"
+            android:text="Back"
+            android:textStyle="bold"
+            android:id="@+id/backbutton1"
+            android:layout_marginTop="30dp"/>
+    </LinearLayout>
+
+    <!--
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:paddingTop="20dp"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="30dp"
+            android:paddingBottom="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+
+            android:background="@drawable/login_bg"
+
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="15sp"
+                android:layout_marginBottom="10dp"
+                android:textColor="#01579B"
+                android:textStyle="bold"
+                android:text="Register here"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+
+                android:orientation="horizontal">
+
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/nameRegL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/nameReg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:lines="1"
+                        android:imeOptions="actionNext"
+                        android:hint="Name" />
+                </android.support.design.widget.TextInputLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/dobRegL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/dobReg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="DOB"
+                        android:lines="1"
+                        android:imeOptions="actionNext"
+                        android:inputType="date" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/addressRegL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/addressReg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Postal Address"
+                        android:lines="1"
+                        android:imeOptions="actionNext"
+                        android:inputType="textPostalAddress" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/phoneRegL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/phoneReg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Phone"
+                        android:lines="1"
+                        android:imeOptions="actionNext"
+                        android:inputType="phone" />
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/emailRegL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/emailReg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="E-mail"
+                        android:lines="1"
+                        android:imeOptions="actionNext"
+                        android:inputType="textEmailAddress" />
+
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/passRegL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/passReg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Password"
+                        android:lines="1"
+                        android:imeOptions="actionNext"
+                        android:inputType="textPassword" />
+
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/repassRegL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/repassReg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Re-enter password"
+                        android:lines="1"
+                        android:imeOptions="actionDone"
+                        android:inputType="textPassword" />
+
+                </android.support.design.widget.TextInputLayout>
+
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:textColor="#ffffff"
+                android:background="@drawable/round_button"
+                android:layout_marginTop="20dp"
+                android:text="create account" />
+
+        </LinearLayout>-->
+
+</ScrollView>
