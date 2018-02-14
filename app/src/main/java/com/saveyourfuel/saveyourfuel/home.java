@@ -122,11 +122,7 @@ public class home extends AppCompatActivity {
 
                 Toast.makeText(getApplicationContext(), "You have being logout", Toast.LENGTH_LONG).show();
                 SharedPreferences sharedPref = getSharedPreferences("data", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPref.edit();
-                editor.putString("username", " ");
-                editor.putString("password", " ");
-                //editor.commit();
-                editor.apply();
+                sharedPref.edit().clear().apply();
                 startActivity(new Intent(home.this, loginActivity.class));
                 this.finish();
                 break;

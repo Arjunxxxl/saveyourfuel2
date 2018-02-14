@@ -47,14 +47,15 @@ public class splashActivity extends AppCompatActivity {
         String passwordText, emailText;
 
         SharedPreferences sharedPref = getSharedPreferences("data", Context.MODE_PRIVATE);
-        String username = sharedPref.getString("username", " ");
-        String pass = sharedPref.getString("password", " ");
-        Log.d("usemane", username + " ");
-        Log.d("pass", pass + " ");
+        String username = sharedPref.getString("username", "");
+        String pass = sharedPref.getString("password", "");
+        Log.d("usemane", username + "");
+        Log.d("pass", pass + "");
         Log.d("QEQWRTYYENBF", "RGAHTSRYJRTHERWTAEREHTRYT");
-        if (username.equals(" ") && pass.equals(" ")) {
+        if (username.isEmpty() || pass.isEmpty()) {
             Intent i1 = new Intent(splashActivity.this, loginActivity.class);
             startActivity(i1);
+            splashActivity.this.finish();
         } else {
             passwordText = pass;
             emailText = username;
