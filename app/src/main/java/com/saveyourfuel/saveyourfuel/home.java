@@ -125,7 +125,8 @@ public class home extends AppCompatActivity {
                 SharedPreferences.Editor editor = sharedPref.edit();
                 editor.putString("username", " ");
                 editor.putString("password", " ");
-                editor.commit();
+                //editor.commit();
+                editor.apply();
                 startActivity(new Intent(home.this, loginActivity.class));
                 this.finish();
                 break;

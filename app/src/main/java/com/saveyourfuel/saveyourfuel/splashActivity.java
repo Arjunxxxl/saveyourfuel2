@@ -44,57 +44,62 @@ public class splashActivity extends AppCompatActivity {
 
     private void checkLogin() {
 
-        final String passwordText, emailText;
+        String passwordText, emailText;
 
-        SharedPreferences sharedPref = getSharedPreferences("data",Context.MODE_PRIVATE);
-        String username = sharedPref.getString("username","");
-        String pass = sharedPref.getString("password","");
-        Log.d("usemane",username+" ");
-        Log.d("pass",pass+" ");
-        Log.d("QEQWRTYYENBF","RGAHTSRYJRTHERWTAEREHTRYT");
-        passwordText = pass;
-        emailText = username;
-        RequestQueue queue = Volley.newRequestQueue(this);
+        SharedPreferences sharedPref = getSharedPreferences("data", Context.MODE_PRIVATE);
+        String username = sharedPref.getString("username", " ");
+        String pass = sharedPref.getString("password", " ");
+        Log.d("usemane", username + " ");
+        Log.d("pass", pass + " ");
+        Log.d("QEQWRTYYENBF", "RGAHTSRYJRTHERWTAEREHTRYT");
+        if (username.equals(" ") && pass.equals(" ")) {
+            Intent i1 = new Intent(splashActivity.this, loginActivity.class);
+            startActivity(i1);
+        } else {
+            passwordText = pass;
+            emailText = username;
+            RequestQueue queue = Volley.newRequestQueue(this);
 
-        String url = "http://139.59.29.124:3000/authentication?id=" + emailText + "&pwd=" + passwordText;
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject res = new JSONObject(response);
+            String url = "http://139.59.29.124:3000/authentication?id=" + emailText + "&pwd=" + passwordText;
+            StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    try {
+                        JSONObject res = new JSONObject(response);
 
-                    Log.d("response", "response " + res);
-                    if (res.getString("code").contentEquals("800")) {
+                        Log.d("response", "response " + res);
+                        if (res.getString("code").contentEquals("800")) {
 
 
-                        Intent i = new Intent(splashActivity.this,home.class);
-                        i.putExtra("Name",res.getString("name"));
-                        i.putExtra("ph",res.getString("phone"));
-                        profile_image = res.getString("profile");
-                        //i.putExtra("image",profile_image);
-                        startActivity(i);
-                        splashActivity.this.finish();
-                    } else {
-                        Toast.makeText(getBaseContext(), "Login Please!", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(splashActivity.this,loginActivity.class));
-                        splashActivity.this.finish();
+                            Intent i = new Intent(splashActivity.this, home.class);
+                            i.putExtra("Name", res.getString("name"));
+                            i.putExtra("ph", res.getString("phone"));
+                            profile_image = res.getString("profile");
+                            //i.putExtra("image",profile_image);
+                            startActivity(i);
+                            splashActivity.this.finish();
+                        } else {
+                            Toast.makeText(getBaseContext(), "Login Please!", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(splashActivity.this, loginActivity.class));
+                            splashActivity.this.finish();
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
                 }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.d("error", error.toString());
+                    Toast.makeText(getBaseContext(), "check your connection...", Toast.LENGTH_SHORT).show();
 
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d("error", error.toString());
-                Toast.makeText(getBaseContext(), "check your connection...", Toast.LENGTH_SHORT).show();
-
-            }
-        });
-        queue.add(stringRequest);
+                }
+            });
+            queue.add(stringRequest);
 //        StringRequest stringRequest = new Str
+        }
     }
 
 }
