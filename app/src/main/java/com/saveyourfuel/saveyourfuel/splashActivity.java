@@ -66,6 +66,7 @@ public class splashActivity extends AppCompatActivity {
                         Intent i = new Intent(splashActivity.this,home.class);
                         i.putExtra("Name",res.getString("name"));
                         i.putExtra("ph",res.getString("phone"));
+                        i.putExtra("image",res.getString("profile"));
                         startActivity(i);
                         splashActivity.this.finish();
                     } else {

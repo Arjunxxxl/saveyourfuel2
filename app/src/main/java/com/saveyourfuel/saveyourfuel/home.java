@@ -3,6 +3,8 @@ package com.saveyourfuel.saveyourfuel;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +13,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -30,7 +33,7 @@ public class home extends AppCompatActivity {
     RecyclerView recyclerView;
     String name,ph;
     TextView nameT,phT;
-
+    Bitmap profileImage=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +55,11 @@ public class home extends AppCompatActivity {
          Intent i = getIntent();
          name = i.getExtras().getString("Name", "");
          ph = i.getExtras().getString("ph", "");
+         String imageString = i.getExtras().getString("image", "");
+         if(!imageString.isEmpty()){
+             byte[] decodedString = Base64.decode(imageString, Base64.DEFAULT);
+             profileImage = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+         }
 
         toolbar.setTitle("Save Your Fuel");
         setSupportActionBar(toolbar);
