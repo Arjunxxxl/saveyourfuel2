@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -27,9 +27,11 @@
     <ImageView
         android:id="@+id/user_profile_pic"
         android:layout_width="120dp"
+        android:layout_below="@id/toolbar"
         android:layout_height="125dp"
         android:layout_gravity="center"
-        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
         android:scaleType="centerCrop"
         android:src="@drawable/city3"
 
@@ -37,6 +39,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_below="@id/user_profile_pic"
+        android:id="@+id/nameContainer"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
@@ -70,6 +74,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/nameContainer"
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="user_phone"
@@ -79,12 +85,14 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/mainViewHolder"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="50dp"
+        android:layout_height="240dp"
+
+        android:layout_alignParentBottom="true"
         android:clipToPadding="false"
+        android:overScrollMode="never"
         android:scrollbars="vertical">
 
     </android.support.v7.widget.RecyclerView>
 
 
-</LinearLayout>
+</RelativeLayout>
