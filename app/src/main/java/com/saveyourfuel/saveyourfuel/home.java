@@ -1,6 +1,8 @@
 package com.saveyourfuel.saveyourfuel;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +16,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.saveyourfuel.saveyourfuel.adapters.cardAdapter;
 import com.saveyourfuel.saveyourfuel.models.card;
@@ -24,28 +27,35 @@ public class home extends AppCompatActivity {
 
     Toolbar toolbar;
     RecyclerView recyclerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        toolbar=findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         recyclerView = findViewById(R.id.mainViewHolder);
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 1);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         ArrayList<card> cards = new ArrayList<>();
-        cards.add(new card("Buy","description",R.mipmap.buybag));
-        cards.add(new card("Card","description",R.mipmap.creditcard));
-        cards.add(new card("Upload","description",R.mipmap.uploaddoc));
+        cards.add(new card("Buy", "description", R.mipmap.buybag));
+        cards.add(new card("Card", "description", R.mipmap.creditcard));
+        cards.add(new card("Upload", "description", R.mipmap.uploaddoc));
 
         recyclerView.setAdapter(new cardAdapter(cards));
 
-        toolbar.setTitle("Arjun Sankhala");
+        Intent i = getIntent();
+
+        String name = i.getExtras().getString("Name", "");
+        String ph = i.getExtras().getString("ph", "");
+
+        toolbar.setTitle(name);
         setSupportActionBar(toolbar);
-        toolbar.setSubtitle("7728999684");
-//        toolbar.setBackgroundColor(Color.parseColor("#80BDBDBD"));
+        toolbar.setSubtitle(ph);
+
+        toolbar.setBackgroundColor(Color.parseColor("#00000000"));
     }
 
     @Override
@@ -57,19 +67,29 @@ public class home extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId())
-        {
-            case R.id.aboutus :
-               startActivity(new Intent(home.this,aboutusActivity.class));
+        switch (item.getItemId()) {
+            case R.id.aboutus:
+                startActivity(new Intent(home.this, aboutusActivity.class));
                 break;
-            case R.id.setting :
-                startActivity(new Intent(home.this,settingsActivity.class));
+            case R.id.setting:
+                startActivity(new Intent(home.this, settingsActivity.class));
                 break;
-            case R.id.money :
-                startActivity(new Intent(home.this,balanceActivity.class));
+            case R.id.money:
+                startActivity(new Intent(home.this, balanceActivity.class));
                 break;
-            case R.id.upload :
-                startActivity(new Intent(home.this,uploadActivity.class));
+            case R.id.upload:
+                startActivity(new Intent(home.this, uploadActivity.class));
+                break;
+
+            case R.id.logout:
+                startActivity(new Intent(home.this, loginActivity.class));
+                this.finish();
+                Toast.makeText(getApplicationContext(), "You have being logout", Toast.LENGTH_LONG).show();
+                SharedPreferences sharedPref = getSharedPreferences("data", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putString("username", " ");
+                editor.putString("password", " ");
+                editor.commit();
                 break;
         }
         return super.onOptionsItemSelected(item);

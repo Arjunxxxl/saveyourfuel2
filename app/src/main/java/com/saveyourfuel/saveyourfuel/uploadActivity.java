@@ -21,6 +21,7 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,7 +47,7 @@ import java.util.Map;
 public class uploadActivity extends AppCompatActivity implements View.OnClickListener {
 
     Toolbar toolbar;
-    Button c1, c2, c3, c4;
+    ImageButton c1, c2, c3, c4;
     Button finalupload;
     TextView t1, t2, t3, t4;
     private static final int Pick_image1 = 100;

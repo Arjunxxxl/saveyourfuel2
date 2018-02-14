@@ -128,7 +128,11 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
                         editor.putString("id",res.getString("id"));
                         editor.apply();
 
-                        startActivity(new Intent("com.saveyourfuel.saveyourfuel.home"));
+                        Intent i = new Intent(loginActivity.this,home.class);
+                        i.putExtra("Name",res.getString("name"));
+                        i.putExtra("ph",res.getString("phone"));
+                        startActivity(i);
+
                         loginActivity.this.finish();
                     } else {
                         Toast.makeText(getBaseContext(), "WRONG CREDENTIALS!", Toast.LENGTH_SHORT).show();

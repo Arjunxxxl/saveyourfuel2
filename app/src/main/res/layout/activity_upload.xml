@@ -7,6 +7,7 @@
     android:background="#FAFAFA"
     tools:context="com.saveyourfuel.saveyourfuel.uploadActivity">
 
+
     <include
         android:id="@+id/toolbarU"
         layout="@layout/toolbar_main" />
@@ -31,6 +32,11 @@
         android:text="Document verification status"
         android:textColor="#4E342E" />
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/txt"
+        android:layout_marginTop="5dp">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -38,6 +44,74 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:orientation="vertical">
+
+        <!--profile-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="Profile Picture"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
+
+                <CheckBox
+                    android:id="@+id/check"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
+                    android:clickable="false" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:weightSum="10">
+
+                <TextView
+                    android:id="@+id/t"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="9"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:gravity="center_horizontal"
+                    android:text="File"
+                    android:textSize="15sp" />
+
+                <ImageButton
+                    android:id="@+id/upload"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/ic_action_upload" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
 
         <!--AAdhar -->
         <LinearLayout
@@ -73,21 +147,25 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:gravity="center_horizontal"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="10">
 
                 <TextView
                     android:id="@+id/t1"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginStart="10dp"
-                    android:layout_weight="5"
+                    android:layout_weight="9"
+                    android:ellipsize="end"
+                    android:singleLine="true"
                     android:gravity="center_horizontal"
                     android:text="File"
                     android:textSize="15sp" />
 
-                <Button
+                <ImageButton
                     android:id="@+id/upload1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -96,7 +174,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_marginStart="20dp"
                     android:layout_weight="1"
-                    android:text="Choose" />
+                    android:background="@drawable/ic_action_upload" />
             </LinearLayout>
 
         </LinearLayout>
@@ -136,21 +214,25 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:gravity="center_horizontal"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="10">
 
                 <TextView
                     android:id="@+id/t2"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginStart="10dp"
-                    android:layout_weight="5"
+                    android:layout_weight="9"
+                    android:ellipsize="end"
+                    android:singleLine="true"
                     android:gravity="center_horizontal"
                     android:text="File"
                     android:textSize="15sp" />
 
-                <Button
+                <ImageButton
                     android:id="@+id/buttonc2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -159,7 +241,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_marginStart="20dp"
                     android:layout_weight="1"
-                    android:text="Choose" />
+                    android:background="@drawable/ic_action_upload" />
             </LinearLayout>
 
         </LinearLayout>
@@ -198,21 +280,25 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:gravity="center_horizontal"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="10">
 
                 <TextView
                     android:id="@+id/t3"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginStart="10dp"
-                    android:layout_weight="5"
+                    android:layout_weight="9"
+                    android:ellipsize="end"
+                    android:singleLine="true"
                     android:gravity="center_horizontal"
                     android:text="File"
                     android:textSize="15sp" />
 
-                <Button
+                <ImageButton
                     android:id="@+id/buttonc3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -221,7 +307,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_marginStart="20dp"
                     android:layout_weight="1"
-                    android:text="Choose" />
+                    android:background="@drawable/ic_action_upload" />
             </LinearLayout>
 
         </LinearLayout>
@@ -261,21 +347,25 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:gravity="center_horizontal"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="10">
 
                 <TextView
                     android:id="@+id/t4"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginStart="10dp"
-                    android:layout_weight="5"
+                    android:layout_weight="9"
+                    android:singleLine="true"
+                    android:ellipsize="end"
                     android:gravity="center_horizontal"
                     android:text="File"
                     android:textSize="15sp" />
 
-                <Button
+                <ImageButton
                     android:id="@+id/buttonc4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -284,7 +374,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_marginStart="20dp"
                     android:layout_weight="1"
-                    android:text="Choose" />
+                    android:background="@drawable/ic_action_upload" />
             </LinearLayout>
 
         </LinearLayout>
@@ -294,9 +384,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="30dp"
             android:text="Upload" />
     </LinearLayout>
-
+    </ScrollView>
 
 </RelativeLayout>

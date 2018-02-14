@@ -24,4 +24,9 @@
         android:title="@string/about_us"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/logout"
+        android:title="Logout"
+        app:showAsAction="never" />
+
 </menu>

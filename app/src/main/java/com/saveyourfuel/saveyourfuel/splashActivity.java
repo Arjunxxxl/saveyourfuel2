@@ -28,12 +28,12 @@ public class splashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                //final Intent mainIntent = new Intent(splashActivity.this, loginActivity.class);
+//                final Intent mainIntent = new Intent(splashActivity.this, home.class);
                 checkLogin();
-               // splashActivity.this.startActivity(mainIntent);
-                //splashActivity.this.finish();
+//                splashActivity.this.startActivity(mainIntent);
+//                splashActivity.this.finish();
             }
-        }, 2000);
+        }, 500);
 
     }
 
@@ -63,7 +63,10 @@ public class splashActivity extends AppCompatActivity {
                     if (res.getString("code").contentEquals("800")) {
 
 
-                        startActivity(new Intent("com.saveyourfuel.saveyourfuel.home"));
+                        Intent i = new Intent(splashActivity.this,home.class);
+                        i.putExtra("Name",res.getString("name"));
+                        i.putExtra("ph",res.getString("phone"));
+                        startActivity(i);
                         splashActivity.this.finish();
                     } else {
                         Toast.makeText(getBaseContext(), "Login Please!", Toast.LENGTH_SHORT).show();

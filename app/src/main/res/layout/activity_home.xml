@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:background="#f8f1f9"
+    android:background="@drawable/homebg"
     android:layout_height="match_parent"
     tools:context="com.saveyourfuel.saveyourfuel.home">
 
@@ -28,7 +28,7 @@
         android:scrollbars="vertical"
         android:clipToPadding="false"
         android:layout_height="match_parent"
-        android:id="@+id/mainViewHolder">
+        android:id="@+id/mainViewHolder" >
 
     </android.support.v7.widget.RecyclerView>
 
