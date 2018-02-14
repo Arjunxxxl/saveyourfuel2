@@ -22,6 +22,7 @@ import org.json.JSONObject;
 public class splashActivity extends AppCompatActivity {
 
     public  static  String profile_image = "";
+    public  static  String name,ph;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

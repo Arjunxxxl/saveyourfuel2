@@ -18,6 +18,7 @@ import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -33,9 +34,9 @@ public class home extends AppCompatActivity {
 
     Toolbar toolbar;
     RecyclerView recyclerView;
-    String name,ph;
-    TextView nameT,phT;
-    Bitmap profileImage=null;
+    public static String name, ph;
+    TextView nameT, phT;
+    Bitmap profileImage = null;
     ImageView pic;
 
     @Override
@@ -54,16 +55,17 @@ public class home extends AppCompatActivity {
         cards.add(new card("Card", "description", R.mipmap.creditcard));
         cards.add(new card("Upload", "description", R.mipmap.uploaddoc));
 
-        recyclerView.setAdapter(new cardAdapter(cards));
+        recyclerView.setAdapter(new cardAdapter(cards,getApplicationContext()));
 
-         Intent i = getIntent();
-         name = i.getExtras().getString("Name", "");
-         ph = i.getExtras().getString("ph", "");
-         String imageString = splashActivity.profile_image;
-         if(!imageString.isEmpty()){
-             byte[] decodedString = Base64.decode(imageString, Base64.DEFAULT);
-             profileImage = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-         }
+
+        Intent i = getIntent();
+        name = i.getExtras().getString("Name", "");
+        ph = i.getExtras().getString("ph", "");
+        String imageString = splashActivity.profile_image;
+        if (!imageString.isEmpty()) {
+            byte[] decodedString = Base64.decode(imageString, Base64.DEFAULT);
+            profileImage = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+        }
 
         toolbar.setTitle("Save Your Fuel");
         setSupportActionBar(toolbar);
@@ -77,7 +79,7 @@ public class home extends AppCompatActivity {
         phT = findViewById(R.id.phone_user);
         nameT.setText(name);
         phT.setText(ph);
-        pic =  findViewById(R.id.user_profile_pic);
+        pic = findViewById(R.id.user_profile_pic);
         pic.setImageBitmap(profileImage);
     }
 
@@ -92,42 +94,44 @@ public class home extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.aboutus:
-                Intent i = new Intent(home.this,aboutusActivity.class);
-                i.putExtra("Name",name);
-                i.putExtra("ph",ph);
+                Intent i = new Intent(home.this, aboutusActivity.class);
+                i.putExtra("Name", name);
+                i.putExtra("ph", ph);
                 startActivity(i);
                 break;
             case R.id.setting:
-                Intent i1 = new Intent(home.this,settingsActivity.class);
-                i1.putExtra("Name",name);
-                i1.putExtra("ph",ph);
+                Intent i1 = new Intent(home.this, settingsActivity.class);
+                i1.putExtra("Name", name);
+                i1.putExtra("ph", ph);
                 startActivity(i1);
                 break;
             case R.id.money:
-                Intent i2 = new Intent(home.this,balanceActivity.class);
-                i2.putExtra("Name",name);
-                i2.putExtra("ph",ph);
+                Intent i2 = new Intent(home.this, balanceActivity.class);
+                i2.putExtra("Name", name);
+                i2.putExtra("ph", ph);
                 startActivity(i2);
                 break;
             case R.id.upload:
-                Intent i4 = new Intent(home.this,uploadActivity.class);
-                i4.putExtra("Name",name);
-                i4.putExtra("ph",ph);
+                Intent i4 = new Intent(home.this, uploadActivity.class);
+                i4.putExtra("Name", name);
+                i4.putExtra("ph", ph);
                 startActivity(i4);
                 break;
 
             case R.id.logout:
-                startActivity(new Intent(home.this, loginActivity.class));
-                this.finish();
+
                 Toast.makeText(getApplicationContext(), "You have being logout", Toast.LENGTH_LONG).show();
                 SharedPreferences sharedPref = getSharedPreferences("data", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPref.edit();
                 editor.putString("username", " ");
                 editor.putString("password", " ");
                 editor.commit();
+                startActivity(new Intent(home.this, loginActivity.class));
+                this.finish();
                 break;
         }
         return super.onOptionsItemSelected(item);
     }
+
 
 }

@@ -1,14 +1,20 @@
 package com.saveyourfuel.saveyourfuel.adapters;
 
+import android.content.Context;
+import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.saveyourfuel.saveyourfuel.R;
+import com.saveyourfuel.saveyourfuel.home;
 import com.saveyourfuel.saveyourfuel.models.card;
+import com.saveyourfuel.saveyourfuel.uploadActivity;
 
 import java.util.ArrayList;
 
@@ -18,9 +24,12 @@ import java.util.ArrayList;
 
 public class cardAdapter extends RecyclerView.Adapter<cardAdapter.MyViewHolder>{
     private ArrayList<card> cards;
+    Context context;
 
-    public cardAdapter(ArrayList<card> cards){
+
+    public cardAdapter(ArrayList<card> cards,Context context){
         this.cards = cards;
+        this.context=context;
     }
 
     @Override
@@ -36,6 +45,7 @@ public class cardAdapter extends RecyclerView.Adapter<cardAdapter.MyViewHolder>{
         holder.Title.setText(cards.get(position).title);
         holder.description.setText(cards.get(position).description);
         holder.imageView.setImageResource(cards.get(position).icon);
+
     }
 
     @Override
@@ -46,12 +56,37 @@ public class cardAdapter extends RecyclerView.Adapter<cardAdapter.MyViewHolder>{
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView Title, description;
         public ImageView imageView;
+        public LinearLayout my_card;
         public MyViewHolder(View itemView) {
             super(itemView);
-            Title = (TextView)itemView.findViewById(R.id.title);
-            description = (TextView)itemView.findViewById(R.id.description);
+            Title = itemView.findViewById(R.id.title);
+            description = itemView.findViewById(R.id.description);
             imageView = itemView.findViewById(R.id.icon_for_recycle);
+            my_card = itemView.findViewById(R.id.card1);
 
+            my_card.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+                    Snackbar.make(view, "Click detected on item " + position,
+                            Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+                    switch (position)
+                    {
+                        case 0 :
+                            break;
+                        case 1:
+                            break;
+                        case 2:
+                            Intent i4 = new Intent("com.saveyourfuel.saveyourfuel.uploadActivity");
+                            i4.putExtra("Name",home.name);
+                            i4.putExtra("ph",home.ph);
+                            i4.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            context.startActivity(i4);
+
+                            break;
+                    }
+                }
+            });
 
         }
     }

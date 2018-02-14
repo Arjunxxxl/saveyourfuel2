@@ -9,6 +9,7 @@ import android.view.View;
 public class aboutusActivity extends AppCompatActivity {
 
     Toolbar toolbar;
+    String name,ph;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +28,23 @@ public class aboutusActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(aboutusActivity.this,home.class);
+                i.putExtra("Name",name);
+                i.putExtra("ph",ph);
                 startActivity(i);
                 aboutusActivity.this.finish();
             }
         });
     }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(aboutusActivity.this,home.class);
+        i.putExtra("Name",name);
+        i.putExtra("ph",ph);
+        startActivity(i);
+        aboutusActivity.this.finish();
+    }
+
 }

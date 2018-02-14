@@ -31,6 +31,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -79,6 +80,7 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
             }
         });
     }
+
 
     void setview(){
         c1 = findViewById(R.id.buttonc1);
