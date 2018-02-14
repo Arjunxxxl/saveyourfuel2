@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -18,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.GridLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,6 +36,8 @@ public class home extends AppCompatActivity {
     String name,ph;
     TextView nameT,phT;
     Bitmap profileImage=null;
+    ImageView pic;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +59,7 @@ public class home extends AppCompatActivity {
          Intent i = getIntent();
          name = i.getExtras().getString("Name", "");
          ph = i.getExtras().getString("ph", "");
-         String imageString = i.getExtras().getString("image", "");
+         String imageString = splashActivity.profile_image;
          if(!imageString.isEmpty()){
              byte[] decodedString = Base64.decode(imageString, Base64.DEFAULT);
              profileImage = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
@@ -73,6 +77,8 @@ public class home extends AppCompatActivity {
         phT = findViewById(R.id.phone_user);
         nameT.setText(name);
         phT.setText(ph);
+        pic =  findViewById(R.id.user_profile_pic);
+        pic.setImageBitmap(profileImage);
     }
 
     @Override
