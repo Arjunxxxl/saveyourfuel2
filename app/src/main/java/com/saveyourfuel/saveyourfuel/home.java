@@ -16,6 +16,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.saveyourfuel.saveyourfuel.adapters.cardAdapter;
@@ -28,6 +29,7 @@ public class home extends AppCompatActivity {
     Toolbar toolbar;
     RecyclerView recyclerView;
     String name,ph;
+    TextView nameT,phT;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,11 +53,18 @@ public class home extends AppCompatActivity {
          name = i.getExtras().getString("Name", "");
          ph = i.getExtras().getString("ph", "");
 
-        toolbar.setTitle(name);
+        toolbar.setTitle("Save Your Fuel");
         setSupportActionBar(toolbar);
-        toolbar.setSubtitle(ph);
+        toolbar.setSubtitle("Your Profile");
 
+        toolbar.setTitleTextColor(Color.parseColor("#ffffff"));
+        toolbar.setSubtitleTextColor(Color.parseColor("#ffffff"));
         toolbar.setBackgroundColor(Color.parseColor("#00000000"));
+
+        nameT = findViewById(R.id.user_name);
+        phT = findViewById(R.id.phone_user);
+        nameT.setText(name);
+        phT.setText(ph);
     }
 
     @Override

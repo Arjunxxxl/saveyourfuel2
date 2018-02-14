@@ -18,8 +18,8 @@
             android:layout_height="wrap_content">
             <ImageView
                 android:padding="5dp"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:scaleType="fitCenter"
                 android:id="@+id/icon_for_recycle"
                 android:src="@mipmap/creditcard"/>
