@@ -44,17 +44,20 @@ public class splashActivity extends AppCompatActivity {
 
     private void checkLogin() {
 
-        final String passwordText, emailText;
+        String passwordText, emailText;
 
-        SharedPreferences sharedPref = getSharedPreferences("data",Context.MODE_PRIVATE);
-        String username = sharedPref.getString("username","");
-        String pass = sharedPref.getString("password","");
-        Log.d("usename",username+"");
-        Log.d("pass",pass+"");
-        Log.d("QEQWRTYYENBF","RGAHTSRYJRTHERWTAEREHTRYT");
-        passwordText = pass;
-        emailText = username;
-        if(!username.isEmpty() && !pass.isEmpty()){
+        SharedPreferences sharedPref = getSharedPreferences("data", Context.MODE_PRIVATE);
+        String username = sharedPref.getString("username", " ");
+        String pass = sharedPref.getString("password", " ");
+        Log.d("usemane", username + " ");
+        Log.d("pass", pass + " ");
+        Log.d("QEQWRTYYENBF", "RGAHTSRYJRTHERWTAEREHTRYT");
+        if (username.equals(" ") && pass.equals(" ")) {
+            Intent i1 = new Intent(splashActivity.this, loginActivity.class);
+            startActivity(i1);
+        } else {
+            passwordText = pass;
+            emailText = username;
             RequestQueue queue = Volley.newRequestQueue(this);
 
             String url = "http://139.59.29.124:3000/authentication?id=" + emailText + "&pwd=" + passwordText;
@@ -68,16 +71,16 @@ public class splashActivity extends AppCompatActivity {
                         if (res.getString("code").contentEquals("800")) {
 
 
-                            Intent i = new Intent(splashActivity.this,home.class);
-                            i.putExtra("Name",res.getString("name"));
-                            i.putExtra("ph",res.getString("phone"));
+                            Intent i = new Intent(splashActivity.this, home.class);
+                            i.putExtra("Name", res.getString("name"));
+                            i.putExtra("ph", res.getString("phone"));
                             profile_image = res.getString("profile");
                             //i.putExtra("image",profile_image);
                             startActivity(i);
                             splashActivity.this.finish();
                         } else {
                             Toast.makeText(getBaseContext(), "Login Please!", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(splashActivity.this,loginActivity.class));
+                            startActivity(new Intent(splashActivity.this, loginActivity.class));
                             splashActivity.this.finish();
                         }
 
@@ -95,13 +98,8 @@ public class splashActivity extends AppCompatActivity {
                 }
             });
             queue.add(stringRequest);
-        }
-        else{
-            startActivity(new Intent(splashActivity.this,loginActivity.class));
-            splashActivity.this.finish();
-        }
-
 //        StringRequest stringRequest = new Str
+        }
     }
 
 }
