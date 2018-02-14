@@ -55,6 +55,8 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
     private static final int Pick_image3 = 300;
     private static final int Pick_image4 = 400;
 
+    String name,ph;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,6 +87,10 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
         t3 = findViewById(R.id.t3);
         t4 = findViewById(R.id.t4);
 
+        Intent i = getIntent();
+        name = i.getExtras().getString("Name", "");
+        ph = i.getExtras().getString("ph", "");
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_action_back));
@@ -92,10 +98,22 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(uploadActivity.this, home.class);
+                i.putExtra("Name",name);
+                i.putExtra("ph",ph);
                 startActivity(i);
                 uploadActivity.this.finish();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(uploadActivity.this, home.class);
+        i.putExtra("Name",name);
+        i.putExtra("ph",ph);
+        startActivity(i);
+        uploadActivity.this.finish();
     }
 
     @Override

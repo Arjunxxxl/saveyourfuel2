@@ -27,6 +27,7 @@ public class home extends AppCompatActivity {
 
     Toolbar toolbar;
     RecyclerView recyclerView;
+    String name,ph;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +47,9 @@ public class home extends AppCompatActivity {
 
         recyclerView.setAdapter(new cardAdapter(cards));
 
-        Intent i = getIntent();
-
-        String name = i.getExtras().getString("Name", "");
-        String ph = i.getExtras().getString("ph", "");
+         Intent i = getIntent();
+         name = i.getExtras().getString("Name", "");
+         ph = i.getExtras().getString("ph", "");
 
         toolbar.setTitle(name);
         setSupportActionBar(toolbar);
@@ -69,16 +69,28 @@ public class home extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.aboutus:
-                startActivity(new Intent(home.this, aboutusActivity.class));
+                Intent i = new Intent(home.this,aboutusActivity.class);
+                i.putExtra("Name",name);
+                i.putExtra("ph",ph);
+                startActivity(i);
                 break;
             case R.id.setting:
-                startActivity(new Intent(home.this, settingsActivity.class));
+                Intent i1 = new Intent(home.this,settingsActivity.class);
+                i1.putExtra("Name",name);
+                i1.putExtra("ph",ph);
+                startActivity(i1);
                 break;
             case R.id.money:
-                startActivity(new Intent(home.this, balanceActivity.class));
+                Intent i2 = new Intent(home.this,balanceActivity.class);
+                i2.putExtra("Name",name);
+                i2.putExtra("ph",ph);
+                startActivity(i2);
                 break;
             case R.id.upload:
-                startActivity(new Intent(home.this, uploadActivity.class));
+                Intent i4 = new Intent(home.this,uploadActivity.class);
+                i4.putExtra("Name",name);
+                i4.putExtra("ph",ph);
+                startActivity(i4);
                 break;
 
             case R.id.logout:
@@ -94,4 +106,5 @@ public class home extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 }
