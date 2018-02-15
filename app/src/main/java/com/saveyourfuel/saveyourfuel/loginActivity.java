@@ -131,7 +131,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
                         Intent i = new Intent(loginActivity.this,home.class);
                         i.putExtra("Name",res.getString("name"));
                         i.putExtra("ph",res.getString("phone"));
-                        splashActivity.profile_image = res.getString("profile");
+                        //splashActivity.profile_image = res.getString("profile");
                         startActivity(i);
 
                         loginActivity.this.finish();
