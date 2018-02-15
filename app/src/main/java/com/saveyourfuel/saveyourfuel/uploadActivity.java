@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
@@ -20,6 +21,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,14 +44,16 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
     ImageButton c1, c2, c3, c4, c5;
     Button finalupload;
     TextView t1, t2, t3, t4, t5;
-    CheckBox check1,check2,check3,check4,check5;
+    CheckBox check1, check2, check3, check4, check5;
     private static final int Pick_image1 = 100;
     private static final int Pick_image2 = 200;
     private static final int Pick_image3 = 300;
     private static final int Pick_image4 = 400;
     private static final int Pick_image5 = 500;
 
-    String name,ph;
+    LinearLayout l1, l2, l3, l4, l5;
+
+    String name, ph;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +63,7 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
         toolbar = findViewById(R.id.toolbarU);
         toolbar.setTitle("Upload Your Documents");
         toolbar.setTitleTextColor(Color.parseColor("#ffffff"));
+        toolbar.setBackgroundColor(Color.parseColor("#00ffffff"));
         setSupportActionBar(toolbar);
 
         setview();
@@ -73,16 +78,33 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(uploadActivity.this, home.class);
-                i.putExtra("Name",name);
-                i.putExtra("ph",ph);
+                i.putExtra("Name", name);
+                i.putExtra("ph", ph);
                 startActivity(i);
                 uploadActivity.this.finish();
             }
         });
+        check1.setVisibility(View.INVISIBLE);
+        check2.setVisibility(View.INVISIBLE);
+        check3.setVisibility(View.INVISIBLE);
+        check4.setVisibility(View.INVISIBLE);
+        check5.setVisibility(View.INVISIBLE);
+        l1 = findViewById(R.id.layout1);
+        l2 = findViewById(R.id.layout2);
+        l3 = findViewById(R.id.layout3);
+        l4 = findViewById(R.id.layout4);
+        l5 = findViewById(R.id.layout5);
+
+        l1.setOnClickListener(this);
+        l2.setOnClickListener(this);
+        l3.setOnClickListener(this);
+        l4.setOnClickListener(this);
+        l5.setOnClickListener(this);
+
     }
 
 
-    void setview(){
+    void setview() {
         c1 = findViewById(R.id.buttonc1);
         c1.setOnClickListener(this);
 
@@ -120,8 +142,8 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
     public void onBackPressed() {
         super.onBackPressed();
         Intent i = new Intent(uploadActivity.this, home.class);
-        i.putExtra("Name",name);
-        i.putExtra("ph",ph);
+        i.putExtra("Name", name);
+        i.putExtra("ph", ph);
         startActivity(i);
         uploadActivity.this.finish();
     }
@@ -152,10 +174,27 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.finalupload:
                 uploadFilesToServer();
                 break;
+
+            case R.id.layout1:
+                Snackbar.make(view, "Upload Your Profile Picture" , Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+                break;
+            case R.id.layout2:
+                Snackbar.make(view, "Upload Your Aadhar Card" , Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+                break;
+            case R.id.layout3:
+                Snackbar.make(view, "Upload Your License" , Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+                break;
+            case R.id.layout4:
+                Snackbar.make(view, "Upload Your Insurance" , Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+                break;
+            case R.id.layout5:
+                Snackbar.make(view, "Upload Your RC" , Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+                break;
         }
     }
 
     Uri adhar, license, insurance, rc, profile;
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -164,7 +203,8 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
             adhar = data.getData();
             Toast.makeText(getApplicationContext(), path, Toast.LENGTH_LONG).show();
             t1.setText(path);
-
+            check2.setVisibility(View.VISIBLE);
+            check2.setChecked(true);
         }
 
         if (resultCode == RESULT_OK && requestCode == Pick_image2) {
@@ -172,7 +212,8 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
             license = data.getData();
             Toast.makeText(getApplicationContext(), path2, Toast.LENGTH_LONG).show();
             t2.setText(path2);
-
+            check3.setVisibility(View.VISIBLE);
+            check3.setChecked(true);
         }
 
         if (resultCode == RESULT_OK && requestCode == Pick_image3) {
@@ -180,7 +221,8 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
             insurance = data.getData();
             Toast.makeText(getApplicationContext(), path3, Toast.LENGTH_LONG).show();
             t3.setText(path3);
-
+            check4.setVisibility(View.VISIBLE);
+            check4.setChecked(true);
         }
 
         if (resultCode == RESULT_OK && requestCode == Pick_image4) {
@@ -189,7 +231,8 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
             rc = data.getData();
             Toast.makeText(getApplicationContext(), path4, Toast.LENGTH_LONG).show();
             t4.setText(path4);
-
+            check5.setVisibility(View.VISIBLE);
+            check5.setChecked(true);
         }
         if (resultCode == RESULT_OK && requestCode == Pick_image5) {
             String path5 = getRealPathFromURI(data.getData());
@@ -197,7 +240,8 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
             profile = data.getData();
             Toast.makeText(getApplicationContext(), path5, Toast.LENGTH_LONG).show();
             t5.setText(path5);
-
+            check1.setVisibility(View.VISIBLE);
+            check1.setChecked(true);
         }
     }
 
@@ -221,47 +265,33 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
     String url = "http://139.59.29.124:3000/upload_documents";
 
 
+    void uploadFilesToServer() {
 
 
-    void uploadFilesToServer(){
-
-
-
-
-        RequestQueue queue= Volley.newRequestQueue(this);
+        RequestQueue queue = Volley.newRequestQueue(this);
         setRequest();
 
 
-
-
-
-
-        if(!t1.getText().toString().contentEquals("File")){
+        if (!t1.getText().toString().contentEquals("File")) {
             queue.add(adharReq);
         }
-        if(!t2.getText().toString().contentEquals("File")){
+        if (!t2.getText().toString().contentEquals("File")) {
             queue.add(licenseReq);
         }
-        if(!t3.getText().toString().contentEquals("File")){
+        if (!t3.getText().toString().contentEquals("File")) {
             queue.add(insuranceReq);
         }
-        if(!t4.getText().toString().contentEquals("File")){
+        if (!t4.getText().toString().contentEquals("File")) {
             queue.add(rcReq);
         }
-        if(!t5.getText().toString().contentEquals("File")){
+        if (!t5.getText().toString().contentEquals("File")) {
             queue.add(profileReq);
         }
 
 
-
-
-
-
-
-
     }
 
-    void setRequest(){
+    void setRequest() {
 
         final ProgressDialog progressDialog = new ProgressDialog(uploadActivity.this);
         progressDialog.setMessage("Uploading, please wait...");
@@ -270,21 +300,20 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
 //        progressDialog.show();
 
         final Toast toast = new Toast(getBaseContext());
-         licenseReq = new StringRequest(Request.Method.POST, url,
+        licenseReq = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        try{
+                        try {
 
 //                            progressDialog.cancel();
                             check3.setChecked(true);
 
 
-                            toast.makeText(getBaseContext(),"license uploaded successfully",Toast.LENGTH_SHORT).show();
-                        }
-                        catch (Exception e){
+                            toast.makeText(getBaseContext(), "license uploaded successfully", Toast.LENGTH_SHORT).show();
+                        } catch (Exception e) {
 //                            progressDialog.cancel();
-                            toast.makeText(getBaseContext(),"cant upload",Toast.LENGTH_SHORT).show();
+                            toast.makeText(getBaseContext(), "cant upload", Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -292,7 +321,7 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onErrorResponse(VolleyError error) {
 //                progressDialog.cancel();
-                toast.makeText(getBaseContext(),"Check your connection..",Toast.LENGTH_SHORT).show();
+                toast.makeText(getBaseContext(), "Check your connection..", Toast.LENGTH_SHORT).show();
             }
 
         }) {
@@ -310,34 +339,32 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
                     licenseImage.compress(Bitmap.CompressFormat.JPEG, 100, baos);
                     byte[] imageBytes = baos.toByteArray();
                     final String imageString = Base64.encodeToString(imageBytes, Base64.DEFAULT);
-                    Log.d("size",imageBytes.length+"");
+                    Log.d("size", imageBytes.length + "");
                     params.put("image", imageString);
-                    params.put("imageName","license");
-                    SharedPreferences preferences = getSharedPreferences("data",Context.MODE_PRIVATE);
-                    params.put("id",preferences.getString("id",""));
+                    params.put("imageName", "license");
+                    SharedPreferences preferences = getSharedPreferences("data", Context.MODE_PRIVATE);
+                    params.put("id", preferences.getString("id", ""));
 
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
 
 
-
                 return params;
             }
         };
-         insuranceReq = new StringRequest(Request.Method.POST, url,
+        insuranceReq = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        try{
+                        try {
 //                            progressDialog.cancel();
                             check4.setChecked(true);
 
-                            toast.makeText(getBaseContext(),"insurance uploaded successfully",Toast.LENGTH_SHORT).show();
-                        }
-                        catch (Exception e){
+                            toast.makeText(getBaseContext(), "insurance uploaded successfully", Toast.LENGTH_SHORT).show();
+                        } catch (Exception e) {
 //                            progressDialog.cancel();
-                            toast.makeText(getBaseContext(),"cant upload",Toast.LENGTH_SHORT).show();
+                            toast.makeText(getBaseContext(), "cant upload", Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -345,7 +372,7 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onErrorResponse(VolleyError error) {
 //                progressDialog.cancel();
-                toast.makeText(getBaseContext(),"Check your connection..",Toast.LENGTH_SHORT).show();
+                toast.makeText(getBaseContext(), "Check your connection..", Toast.LENGTH_SHORT).show();
             }
 
         }) {
@@ -363,16 +390,15 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
                     insuranceImage.compress(Bitmap.CompressFormat.JPEG, 100, baos);
                     byte[] imageBytes = baos.toByteArray();
                     final String imageString = Base64.encodeToString(imageBytes, Base64.DEFAULT);
-                    Log.d("size",imageBytes.length+"");
+                    Log.d("size", imageBytes.length + "");
                     params.put("image", imageString);
-                    params.put("imageName","insurance");
-                    SharedPreferences preferences = getSharedPreferences("data",Context.MODE_PRIVATE);
-                    params.put("id",preferences.getString("id",""));
+                    params.put("imageName", "insurance");
+                    SharedPreferences preferences = getSharedPreferences("data", Context.MODE_PRIVATE);
+                    params.put("id", preferences.getString("id", ""));
 
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
 
 
                 return params;
@@ -380,19 +406,18 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
         };
 
 
-         adharReq = new StringRequest(Request.Method.POST, url,
+        adharReq = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        try{
+                        try {
 //                            progressDialog.cancel();
                             check2.setChecked(true);
 
-                            toast.makeText(getBaseContext(),"Adhar uploaded successfully",Toast.LENGTH_SHORT).show();
-                        }
-                        catch (Exception e){
+                            toast.makeText(getBaseContext(), "Adhar uploaded successfully", Toast.LENGTH_SHORT).show();
+                        } catch (Exception e) {
 //                            progressDialog.cancel();
-                            toast.makeText(getBaseContext(),"cant upload",Toast.LENGTH_SHORT).show();
+                            toast.makeText(getBaseContext(), "cant upload", Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -400,7 +425,7 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onErrorResponse(VolleyError error) {
 //                progressDialog.cancel();
-                toast.makeText(getBaseContext(),"Check your connection..",Toast.LENGTH_SHORT).show();
+                toast.makeText(getBaseContext(), "Check your connection..", Toast.LENGTH_SHORT).show();
             }
 
         }) {
@@ -418,34 +443,32 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
                     adharCard.compress(Bitmap.CompressFormat.JPEG, 100, baos);
                     byte[] imageBytes = baos.toByteArray();
                     final String imageString = Base64.encodeToString(imageBytes, Base64.DEFAULT);
-                    Log.d("size",imageBytes.length+"");
+                    Log.d("size", imageBytes.length + "");
                     params.put("image", imageString);
-                    params.put("imageName","adhar");
-                    SharedPreferences preferences = getSharedPreferences("data",Context.MODE_PRIVATE);
-                    params.put("id",preferences.getString("id",""));
+                    params.put("imageName", "adhar");
+                    SharedPreferences preferences = getSharedPreferences("data", Context.MODE_PRIVATE);
+                    params.put("id", preferences.getString("id", ""));
 
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
 
 
-
                 return params;
             }
         };
 
-         rcReq = new StringRequest(Request.Method.POST, url,
+        rcReq = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        try{
+                        try {
 //                            progressDialog.cancel();
                             check5.setChecked(true);
-                            toast.makeText(getBaseContext(),"RC uploaded successfully",Toast.LENGTH_SHORT).show();
-                        }
-                        catch (Exception e){
+                            toast.makeText(getBaseContext(), "RC uploaded successfully", Toast.LENGTH_SHORT).show();
+                        } catch (Exception e) {
 //                            progressDialog.cancel();
-                            toast.makeText(getBaseContext(),"cant upload",Toast.LENGTH_SHORT).show();
+                            toast.makeText(getBaseContext(), "cant upload", Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -453,7 +476,7 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onErrorResponse(VolleyError error) {
 //                progressDialog.cancel();final ProgressDialog progressDialog = new ProgressDialog(uploadActivity.this);
-                toast.makeText(getBaseContext(),"Check your connection..",Toast.LENGTH_SHORT).show();
+                toast.makeText(getBaseContext(), "Check your connection..", Toast.LENGTH_SHORT).show();
             }
 
         }) {
@@ -471,16 +494,15 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
                     rcImage.compress(Bitmap.CompressFormat.JPEG, 100, baos);
                     byte[] imageBytes = baos.toByteArray();
                     final String imageString = Base64.encodeToString(imageBytes, Base64.DEFAULT);
-                    Log.d("size",imageBytes.length+"");
+                    Log.d("size", imageBytes.length + "");
                     params.put("image", imageString);
-                    params.put("imageName","RC");
-                    SharedPreferences preferences = getSharedPreferences("data",Context.MODE_PRIVATE);
-                    params.put("id",preferences.getString("id",""));
+                    params.put("imageName", "RC");
+                    SharedPreferences preferences = getSharedPreferences("data", Context.MODE_PRIVATE);
+                    params.put("id", preferences.getString("id", ""));
 
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
 
 
                 return params;
@@ -488,19 +510,18 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
         };
 
 
-         profileReq = new StringRequest(Request.Method.POST, url,
+        profileReq = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        try{
+                        try {
 //                            progressDialog.cancel();
 
                             check1.setChecked(true);
-                            toast.makeText(getBaseContext(),"Profile picture uploaded successfully",Toast.LENGTH_SHORT).show();
-                        }
-                        catch (Exception e){
+                            toast.makeText(getBaseContext(), "Profile picture uploaded successfully", Toast.LENGTH_SHORT).show();
+                        } catch (Exception e) {
 //                            progressDialog.cancel();
-                            toast.makeText(getBaseContext(),"cant upload",Toast.LENGTH_SHORT).show();
+                            toast.makeText(getBaseContext(), "cant upload", Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -508,7 +529,7 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onErrorResponse(VolleyError error) {
 //                progressDialog.cancel();
-                toast.makeText(getBaseContext(),"Check your connection..",Toast.LENGTH_SHORT).show();
+                toast.makeText(getBaseContext(), "Check your connection..", Toast.LENGTH_SHORT).show();
             }
 
         }) {
@@ -526,16 +547,15 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
                     profileImage.compress(Bitmap.CompressFormat.JPEG, 100, baos);
                     byte[] imageBytes = baos.toByteArray();
                     final String imageString = Base64.encodeToString(imageBytes, Base64.DEFAULT);
-                    Log.d("size",imageBytes.length+"");
+                    Log.d("size", imageBytes.length + "");
                     params.put("image", imageString);
-                    params.put("imageName","profile");
-                    SharedPreferences preferences = getSharedPreferences("data",Context.MODE_PRIVATE);
-                    params.put("id",preferences.getString("id",""));
+                    params.put("imageName", "profile");
+                    SharedPreferences preferences = getSharedPreferences("data", Context.MODE_PRIVATE);
+                    params.put("id", preferences.getString("id", ""));
 
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
 
 
                 return params;

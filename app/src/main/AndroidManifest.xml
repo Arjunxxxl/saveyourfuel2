@@ -34,7 +34,13 @@
         </activity>
         <activity android:name=".aboutusActivity" />
         <activity android:name=".settingsActivity" />
-        <activity android:name=".balanceActivity" />
+        <activity android:name=".balanceActivity" >
+            <intent-filter>
+                <action android:name="com.saveyourfuel.saveyourfuel.balanceActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity android:name=".uploadActivity" >
             <intent-filter>
                 <action android:name="com.saveyourfuel.saveyourfuel.uploadActivity" />

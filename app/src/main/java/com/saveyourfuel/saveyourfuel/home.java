@@ -52,7 +52,7 @@ public class home extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         ArrayList<card> cards = new ArrayList<>();
         cards.add(new card("Buy", "description", R.mipmap.buybag));
-        cards.add(new card("Card", "description", R.mipmap.creditcard));
+        cards.add(new card("Add Funds", "description", R.mipmap.creditcard));
         cards.add(new card("Upload", "description", R.mipmap.uploaddoc));
 
         recyclerView.setAdapter(new cardAdapter(cards,getApplicationContext()));

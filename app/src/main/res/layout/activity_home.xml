@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/homebg"
+    android:background="@drawable/upload_bg"
     android:orientation="vertical"
     tools:context="com.saveyourfuel.saveyourfuel.home">
 
@@ -30,10 +30,10 @@
         android:layout_height="125dp"
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
+        android:contentDescription="Your profile picture"
         android:scaleType="centerCrop"
-        android:src="@drawable/city3"
 
-        android:contentDescription="Your profile picture" />
+        android:src="@drawable/city3" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -50,8 +50,9 @@
             android:layout_gravity="center_horizontal"
             android:text="Name"
             android:textAlignment="center"
-            android:textColor="#000000"
-            android:textSize="20sp" />
+            android:textColor="#0471A6"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <ImageView
             android:layout_width="25dp"
@@ -73,8 +74,9 @@
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="user_phone"
-        android:textColor="#000000"
-        android:textSize="20sp" />
+        android:textColor="#0471A6"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/mainViewHolder"
