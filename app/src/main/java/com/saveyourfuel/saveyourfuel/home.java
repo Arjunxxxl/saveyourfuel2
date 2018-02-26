@@ -15,6 +15,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -25,8 +26,17 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.saveyourfuel.saveyourfuel.adapters.cardAdapter;
 import com.saveyourfuel.saveyourfuel.models.card;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -38,6 +48,7 @@ public class home extends AppCompatActivity {
     TextView nameT, phT;
     Bitmap profileImage = null;
     ImageView pic;
+    String profile_image="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +63,7 @@ public class home extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         ArrayList<card> cards = new ArrayList<>();
         cards.add(new card("Buy", "description", R.mipmap.buybag));
-        cards.add(new card("Card", "description", R.mipmap.creditcard));
+        cards.add(new card("Add Funds", "description", R.mipmap.creditcard));
         cards.add(new card("Upload", "description", R.mipmap.uploaddoc));
 
         recyclerView.setAdapter(new cardAdapter(cards,getApplicationContext()));
@@ -61,11 +72,14 @@ public class home extends AppCompatActivity {
         Intent i = getIntent();
         name = i.getExtras().getString("Name", "");
         ph = i.getExtras().getString("ph", "");
-        String imageString = splashActivity.profile_image;
-        if (!imageString.isEmpty()) {
-            byte[] decodedString = Base64.decode(imageString, Base64.DEFAULT);
-            profileImage = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-        }
+
+        setImage();
+
+//        String imageString = profile_image;
+//        if (!imageString.isEmpty()) {
+//            byte[] decodedString = Base64.decode(imageString, Base64.DEFAULT);
+//            profileImage = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+//        }
 
         toolbar.setTitle("Save Your Fuel");
         setSupportActionBar(toolbar);
@@ -79,8 +93,9 @@ public class home extends AppCompatActivity {
         phT = findViewById(R.id.phone_user);
         nameT.setText(name);
         phT.setText(ph);
-        pic = findViewById(R.id.user_profile_pic);
-        pic.setImageBitmap(profileImage);
+
+       pic = findViewById(R.id.user_profile_pic);
+//        pic.setImageBitmap(profileImage);
     }
 
     @Override
@@ -130,5 +145,65 @@ public class home extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
+    private void setImage() {
+
+        String passwordText, emailText;
+
+        SharedPreferences sharedPref = getSharedPreferences("data", Context.MODE_PRIVATE);
+        String username = sharedPref.getString("username", "");
+        String pass = sharedPref.getString("password", "");
+        Log.d("usemane", username + "");
+        Log.d("pass", pass + "");
+        if (username.isEmpty() || pass.isEmpty()) {
+            Intent i1 = new Intent(home.this, loginActivity.class);
+            startActivity(i1);
+            home.this.finish();
+        } else {
+            passwordText = pass;
+            emailText = username;
+            RequestQueue queue = Volley.newRequestQueue(this);
+
+            String url = "http://139.59.29.124:3000/authentication?id=" + emailText + "&pwd=" + passwordText;
+            StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    try {
+                        JSONObject res = new JSONObject(response);
+
+                        Log.d("response", "response " + res);
+                        if (res.getString("code").contentEquals("800")) {
+
+                            profile_image = res.getString("profile");
+                            String imageString = profile_image;
+                            if (!imageString.isEmpty()) {
+                                byte[] decodedString = Base64.decode(imageString, Base64.DEFAULT);
+                                profileImage = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                            }
+                            pic.setImageBitmap(profileImage);
+
+                        } else {
+                            Toast.makeText(getBaseContext(), "Login Please!", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(home.this, loginActivity.class));
+                            home.this.finish();
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.d("error", error.toString());
+                    Toast.makeText(getBaseContext(), "check your connection...", Toast.LENGTH_SHORT).show();
+
+                }
+            });
+            queue.add(stringRequest);
+//        StringRequest stringRequest = new Str
+        }
+    }
 
 }

@@ -1,6 +1,7 @@
 package com.saveyourfuel.saveyourfuel;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -17,10 +18,12 @@ public class settingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
 
         toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle(" ");
+        toolbar.setTitle("Settings");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        toolbar.setTitleTextColor(Color.parseColor("#ffffff"));
+        toolbar.setBackgroundColor(Color.parseColor("#00ffffff"));
 
         Intent i = getIntent();
          name = i.getExtras().getString("Name", "");

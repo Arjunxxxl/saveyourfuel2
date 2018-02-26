@@ -75,6 +75,11 @@ public class cardAdapter extends RecyclerView.Adapter<cardAdapter.MyViewHolder>{
                         case 0 :
                             break;
                         case 1:
+                            Intent i3 = new Intent("com.saveyourfuel.saveyourfuel.balanceActivity");
+                            i3.putExtra("Name",home.name);
+                            i3.putExtra("ph",home.ph);
+                            i3.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            context.startActivity(i3);
                             break;
                         case 2:
                             Intent i4 = new Intent("com.saveyourfuel.saveyourfuel.uploadActivity");

@@ -19,6 +19,7 @@ public class balanceActivity extends AppCompatActivity {
     Toolbar toolbar;
     Switch aSwitch;
     Button balance;
+    String name,ph;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,10 +27,16 @@ public class balanceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_balance);
 
         toolbar = findViewById(R.id.toolbarkok);
-        toolbar.setTitle(" ");
+        toolbar.setTitle("Add Balance");
         setSupportActionBar(toolbar);
+        toolbar.setSubtitle("Save Your Fuel");
+        Intent i = getIntent();
+        name = i.getExtras().getString("Name", "");
+        ph = i.getExtras().getString("ph", "");
 
-        toolbar.setBackgroundColor(Color.parseColor("#80BDBDBD"));
+        toolbar.setTitleTextColor(Color.parseColor("#ffffff"));
+        toolbar.setBackgroundColor(Color.parseColor("#00ffffff"));
+        toolbar.setSubtitleTextColor(Color.parseColor("#ffffff"));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_action_back));
@@ -37,6 +44,8 @@ public class balanceActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(balanceActivity.this,home.class);
+                i.putExtra("Name",name);
+                i.putExtra("ph",ph);
                 startActivity(i);
                 balanceActivity.this.finish();
             }
@@ -78,5 +87,16 @@ public class balanceActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(balanceActivity.this,home.class);
+        i.putExtra("Name",name);
+        i.putExtra("ph",ph);
+        startActivity(i);
+        balanceActivity.this.finish();
+    }
+
 
 }

@@ -21,7 +21,7 @@ import org.json.JSONObject;
 
 public class splashActivity extends AppCompatActivity {
 
-    public  static  String profile_image = "";
+    //public  static  String profile_image = "";
     public  static  String name,ph;
 
     @Override
@@ -75,7 +75,7 @@ public class splashActivity extends AppCompatActivity {
                             Intent i = new Intent(splashActivity.this, home.class);
                             i.putExtra("Name", res.getString("name"));
                             i.putExtra("ph", res.getString("phone"));
-                            profile_image = res.getString("profile");
+                            //profile_image = res.getString("profile");
                             //i.putExtra("image",profile_image);
                             startActivity(i);
                             splashActivity.this.finish();

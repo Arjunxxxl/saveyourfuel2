@@ -4,21 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/bgblueorange"
+    android:background="@drawable/upload_bg"
     tools:context="com.saveyourfuel.saveyourfuel.balanceActivity">
 
     <include
         android:id="@+id/toolbarkok"
         layout="@layout/toolbar_main" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:textSize="20sp"
-        android:text="Manage Your Balance"
-        android:textColor="#ffff"/>
 
     <Switch
         android:id="@+id/switch2"
@@ -34,6 +26,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:background="@drawable/upload_button"
+        android:textColor="#F7ECE1"
+        android:padding="10dp"
         android:layout_centerVertical="true"
         android:text="Add balance/retrieve balance" />
 
@@ -42,7 +37,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"
+        android:textColor="#210203"
+        android:layout_marginTop="80dp"
         android:layout_alignTop="@id/button6"
         android:text="Use toggle to retrieve or add balance" />
 

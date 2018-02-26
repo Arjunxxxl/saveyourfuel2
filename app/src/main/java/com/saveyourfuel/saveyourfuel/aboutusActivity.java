@@ -1,6 +1,7 @@
 package com.saveyourfuel.saveyourfuel;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -20,6 +21,13 @@ public class aboutusActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setTitle("Save Your Fuel Pvt. Ltd.");
         toolbar.setSubtitle("About Us");
+        toolbar.setTitleTextColor(Color.parseColor("#ffffff"));
+        toolbar.setBackgroundColor(Color.parseColor("#00ffffff"));
+        toolbar.setSubtitleTextColor(Color.parseColor("#ffffff"));
+
+        Intent i = getIntent();
+        name = i.getExtras().getString("Name", "");
+        ph = i.getExtras().getString("ph", "");
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
