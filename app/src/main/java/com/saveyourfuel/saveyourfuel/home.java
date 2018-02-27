@@ -40,14 +40,14 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class home extends AppCompatActivity {
+public class home extends AppCompatActivity implements View.OnClickListener {
 
     Toolbar toolbar;
-    RecyclerView recyclerView;
     public static String name, ph;
     TextView nameT, phT;
     Bitmap profileImage = null;
     ImageView pic;
+    LinearLayout buy, funds, documents;
     String profile_image="";
 
     @Override
@@ -56,17 +56,7 @@ public class home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         toolbar = findViewById(R.id.toolbar);
-        recyclerView = findViewById(R.id.mainViewHolder);
 
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 1);
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        ArrayList<card> cards = new ArrayList<>();
-        cards.add(new card("Buy", "description", R.mipmap.buybag));
-        cards.add(new card("Add Funds", "description", R.mipmap.creditcard));
-        cards.add(new card("Upload", "description", R.mipmap.uploaddoc));
-
-        recyclerView.setAdapter(new cardAdapter(cards,getApplicationContext()));
 
 
         Intent i = getIntent();
@@ -87,17 +77,25 @@ public class home extends AppCompatActivity {
 
         toolbar.setTitleTextColor(Color.parseColor("#ffffff"));
         toolbar.setSubtitleTextColor(Color.parseColor("#ffffff"));
-        toolbar.setBackgroundColor(Color.parseColor("#00000000"));
+        toolbar.setBackgroundColor(Color.parseColor("#128C7E"));
 
         nameT = findViewById(R.id.user_name);
         phT = findViewById(R.id.phone_user);
         nameT.setText(name);
         phT.setText(ph);
-
+        setView();
        pic = findViewById(R.id.user_profile_pic);
 //        pic.setImageBitmap(profileImage);
     }
 
+    void setView(){
+        buy = findViewById(R.id.option1);
+        buy.setOnClickListener(this);
+        funds = findViewById(R.id.option2);
+        funds.setOnClickListener(this);
+        documents = findViewById(R.id.option3);
+        documents.setOnClickListener(this);
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -206,4 +204,31 @@ public class home extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.option1:
+
+                Intent i2 = new Intent("com.saveyourfuel.saveyourfuel.documentStatus");
+                i2.putExtra("Name",home.name);
+                i2.putExtra("ph",home.ph);
+                startActivity(i2);
+                break;
+            case R.id.option2:
+                Intent i3 = new Intent("com.saveyourfuel.saveyourfuel.balanceActivity");
+                i3.putExtra("Name",home.name);
+                i3.putExtra("ph",home.ph);
+                startActivity(i3);
+
+                break;
+            case R.id.option3:
+
+                Intent i4 = new Intent("com.saveyourfuel.saveyourfuel.documentStatus");
+                i4.putExtra("Name",home.name);
+                i4.putExtra("ph",home.ph);
+                startActivity(i4);
+                break;
+
+        }
+    }
 }

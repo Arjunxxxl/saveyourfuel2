@@ -38,7 +38,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class uploadActivity extends AppCompatActivity implements View.OnClickListener {
+public class uploadActivity extends AppCompatActivity implements View.OnClickListener{
 
     Toolbar toolbar;
     ImageButton c1, c2, c3, c4, c5;
@@ -63,7 +63,7 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
         toolbar = findViewById(R.id.toolbarU);
         toolbar.setTitle("Upload Your Documents");
         toolbar.setTitleTextColor(Color.parseColor("#ffffff"));
-        toolbar.setBackgroundColor(Color.parseColor("#00ffffff"));
+        toolbar.setBackgroundColor(Color.parseColor("#128C7E"));
         setSupportActionBar(toolbar);
 
         setview();
@@ -77,7 +77,7 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(uploadActivity.this, home.class);
+                Intent i = new Intent(uploadActivity.this, documentStatus.class);
                 i.putExtra("Name", name);
                 i.putExtra("ph", ph);
                 startActivity(i);
@@ -141,7 +141,7 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent i = new Intent(uploadActivity.this, home.class);
+        Intent i = new Intent(uploadActivity.this, documentStatus.class);
         i.putExtra("Name", name);
         i.putExtra("ph", ph);
         startActivity(i);
@@ -264,38 +264,56 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
 
     String url = "http://139.59.29.124:3000/upload_documents";
 
-
+    int countRequest=0;
     void uploadFilesToServer() {
+        progressDialog = new ProgressDialog(uploadActivity.this);
+        progressDialog.setMessage("Uploading, please wait...");
+        progressDialog.setCancelable(false);
 
+        progressDialog.show();
 
-        RequestQueue queue = Volley.newRequestQueue(this);
+        final RequestQueue queue = Volley.newRequestQueue(this);
+        queue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<String>() {
+            @Override
+            public void onRequestFinished(Request<String> request) {
+                countRequest--;
+                Log.d("counRequest",countRequest+"");
+                if(countRequest==0)
+                    handler.sendEmptyMessage(1);
+            }
+        });
+
         setRequest();
 
 
         if (!t1.getText().toString().contentEquals("File")) {
+            countRequest++;
             queue.add(adharReq);
         }
         if (!t2.getText().toString().contentEquals("File")) {
+            countRequest++;
             queue.add(licenseReq);
         }
         if (!t3.getText().toString().contentEquals("File")) {
+            countRequest++;
             queue.add(insuranceReq);
         }
         if (!t4.getText().toString().contentEquals("File")) {
+            countRequest++;
             queue.add(rcReq);
         }
         if (!t5.getText().toString().contentEquals("File")) {
+            countRequest++;
             queue.add(profileReq);
         }
 
 
     }
 
+     ProgressDialog progressDialog;
     void setRequest() {
 
-        final ProgressDialog progressDialog = new ProgressDialog(uploadActivity.this);
-        progressDialog.setMessage("Uploading, please wait...");
-        progressDialog.setCancelable(false);
+
 
 //        progressDialog.show();
 
@@ -315,6 +333,7 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
 //                            progressDialog.cancel();
                             toast.makeText(getBaseContext(), "cant upload", Toast.LENGTH_SHORT).show();
                         }
+                         
 
                     }
                 }, new Response.ErrorListener() {
@@ -322,13 +341,17 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
             public void onErrorResponse(VolleyError error) {
 //                progressDialog.cancel();
                 toast.makeText(getBaseContext(), "Check your connection..", Toast.LENGTH_SHORT).show();
+                 
             }
 
         }) {
             //adding parameters to the request
             @Override
             protected Map<String, String> getParams() {
-                progressDialog.setMessage("uploading license image..");
+
+                progressMessage = "uploading license image..";
+                handler.sendEmptyMessage(0);
+                 
 //                progressDialog.show();
 //                handler.sendEmptyMessage(0);
                 Map<String, String> params = new HashMap<>();
@@ -337,13 +360,18 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
                     licenseImage = MediaStore.Images.Media.getBitmap(getContentResolver(), license);
                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
                     licenseImage.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                    licenseImage.recycle();
+                    licenseImage = null;
                     byte[] imageBytes = baos.toByteArray();
                     final String imageString = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+
                     Log.d("size", imageBytes.length + "");
+                    imageBytes = null;
                     params.put("image", imageString);
                     params.put("imageName", "license");
                     SharedPreferences preferences = getSharedPreferences("data", Context.MODE_PRIVATE);
                     params.put("id", preferences.getString("id", ""));
+
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -362,9 +390,11 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
                             check4.setChecked(true);
 
                             toast.makeText(getBaseContext(), "insurance uploaded successfully", Toast.LENGTH_SHORT).show();
+                             
                         } catch (Exception e) {
 //                            progressDialog.cancel();
                             toast.makeText(getBaseContext(), "cant upload", Toast.LENGTH_SHORT).show();
+                             
                         }
 
                     }
@@ -373,13 +403,17 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
             public void onErrorResponse(VolleyError error) {
 //                progressDialog.cancel();
                 toast.makeText(getBaseContext(), "Check your connection..", Toast.LENGTH_SHORT).show();
+                 
             }
 
         }) {
             //adding parameters to the request
             @Override
             protected Map<String, String> getParams() {
-                progressDialog.setMessage("uploading insurance image..");
+
+                progressMessage = "uploading insurance image..";
+                handler.sendEmptyMessage(0);
+                 
 //                progressDialog.show();
 //                handler.sendEmptyMessage(0);
                 Map<String, String> params = new HashMap<>();
@@ -388,9 +422,13 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
                     insuranceImage = MediaStore.Images.Media.getBitmap(getContentResolver(), insurance);
                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
                     insuranceImage.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+
+                    insuranceImage.recycle();
+                    insuranceImage = null;
                     byte[] imageBytes = baos.toByteArray();
                     final String imageString = Base64.encodeToString(imageBytes, Base64.DEFAULT);
                     Log.d("size", imageBytes.length + "");
+                    imageBytes = null;
                     params.put("image", imageString);
                     params.put("imageName", "insurance");
                     SharedPreferences preferences = getSharedPreferences("data", Context.MODE_PRIVATE);
@@ -419,6 +457,7 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
 //                            progressDialog.cancel();
                             toast.makeText(getBaseContext(), "cant upload", Toast.LENGTH_SHORT).show();
                         }
+                   
 
                     }
                 }, new Response.ErrorListener() {
@@ -426,13 +465,16 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
             public void onErrorResponse(VolleyError error) {
 //                progressDialog.cancel();
                 toast.makeText(getBaseContext(), "Check your connection..", Toast.LENGTH_SHORT).show();
+               
             }
 
         }) {
             //adding parameters to the request
             @Override
             protected Map<String, String> getParams() {
-                progressDialog.setMessage("uploading adhar image..");
+                progressMessage = "uploading adhar image..";
+                handler.sendEmptyMessage(0);
+                 
                 //progressDialog.show();
 //                handler.sendEmptyMessage(0);
                 Map<String, String> params = new HashMap<>();
@@ -441,9 +483,12 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
                     adharCard = MediaStore.Images.Media.getBitmap(getContentResolver(), adhar);
                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
                     adharCard.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                    adharCard.recycle();
+                    adharCard = null;
                     byte[] imageBytes = baos.toByteArray();
                     final String imageString = Base64.encodeToString(imageBytes, Base64.DEFAULT);
                     Log.d("size", imageBytes.length + "");
+                    imageBytes = null;
                     params.put("image", imageString);
                     params.put("imageName", "adhar");
                     SharedPreferences preferences = getSharedPreferences("data", Context.MODE_PRIVATE);
@@ -470,6 +515,7 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
 //                            progressDialog.cancel();
                             toast.makeText(getBaseContext(), "cant upload", Toast.LENGTH_SHORT).show();
                         }
+                         
 
                     }
                 }, new Response.ErrorListener() {
@@ -477,13 +523,17 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
             public void onErrorResponse(VolleyError error) {
 //                progressDialog.cancel();final ProgressDialog progressDialog = new ProgressDialog(uploadActivity.this);
                 toast.makeText(getBaseContext(), "Check your connection..", Toast.LENGTH_SHORT).show();
+                 
             }
 
         }) {
             //adding parameters to the request
             @Override
             protected Map<String, String> getParams() {
-                progressDialog.setMessage("uploading RC image..");
+
+                progressMessage = "uploading RC image..";
+                handler.sendEmptyMessage(0);
+                 
                 //progressDialog.show();
 //                handler.sendEmptyMessage(0);
                 Map<String, String> params = new HashMap<>();
@@ -492,9 +542,14 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
                     rcImage = MediaStore.Images.Media.getBitmap(getContentResolver(), rc);
                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
                     rcImage.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+
+                    rcImage.recycle();
+                    rcImage = null;
                     byte[] imageBytes = baos.toByteArray();
                     final String imageString = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+
                     Log.d("size", imageBytes.length + "");
+                    imageBytes = null;
                     params.put("image", imageString);
                     params.put("imageName", "RC");
                     SharedPreferences preferences = getSharedPreferences("data", Context.MODE_PRIVATE);
@@ -515,8 +570,6 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
                     @Override
                     public void onResponse(String response) {
                         try {
-//                            progressDialog.cancel();
-
                             check1.setChecked(true);
                             toast.makeText(getBaseContext(), "Profile picture uploaded successfully", Toast.LENGTH_SHORT).show();
                         } catch (Exception e) {
@@ -524,30 +577,38 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
                             toast.makeText(getBaseContext(), "cant upload", Toast.LENGTH_SHORT).show();
                         }
 
+                         
+
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
 //                progressDialog.cancel();
                 toast.makeText(getBaseContext(), "Check your connection..", Toast.LENGTH_SHORT).show();
+                 
             }
 
         }) {
             //adding parameters to the request
             @Override
             protected Map<String, String> getParams() {
-                progressDialog.setMessage("uploading profile image..");
-                //progressDialog.show();
-//                handler.sendEmptyMessage(0);
+
+
+                progressMessage = "uploading profile image..";
+                handler.sendEmptyMessage(0);
                 Map<String, String> params = new HashMap<>();
                 Bitmap profileImage = null;
                 try {
                     profileImage = MediaStore.Images.Media.getBitmap(getContentResolver(), profile);
                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
                     profileImage.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+
+                    profileImage.recycle();
+                    profileImage = null;
                     byte[] imageBytes = baos.toByteArray();
                     final String imageString = Base64.encodeToString(imageBytes, Base64.DEFAULT);
                     Log.d("size", imageBytes.length + "");
+                    imageBytes = null;
                     params.put("image", imageString);
                     params.put("imageName", "profile");
                     SharedPreferences preferences = getSharedPreferences("data", Context.MODE_PRIVATE);
@@ -562,4 +623,32 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
             }
         };
     }
+
+    private String progressMessage = "";
+
+    private Handler handler = new Handler(){
+
+
+        public void handleMessage(Message msg) {
+
+
+            switch (msg.what){
+
+                case 0:
+                    progressDialog.setMessage(progressMessage);
+                    progressDialog.show();
+
+                    break;
+                case 1:
+                    progressDialog.dismiss();
+                    break;
+                
+            }
+
+
+        }
+
+    };
+
+
 }
