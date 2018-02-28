@@ -2,8 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="#fdf5f5f5"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/upload_container"
     tools:context="com.saveyourfuel.saveyourfuel.uploadActivity">
 
 
@@ -22,402 +24,125 @@
     -->
 
     <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5dp"
+        android:visibility="visible"
+        android:layout_marginLeft="5dp"
         android:layout_below="@id/toolbarU"
-        android:id="@+id/card_show_status"
-        android:layout_width="match_parent"
-        android:elevation="1dp"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/txt"
-            android:layout_marginTop="3dp"
-            android:layout_marginBottom="3dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:layout_below="@+id/toolbar"
-            android:layout_centerHorizontal="true"
-            android:text="Document verification status"
-            android:textColor="#D32F2F" />
-    </android.support.v7.widget.CardView>
-
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fadeScrollbars="false"
-        android:layout_below="@+id/card_show_status">
+        android:background="#ffffff"
+        android:elevation="3dp"
+        android:layout_marginTop="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/txt"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="10dp"
             android:orientation="vertical">
 
-            <!--profile-->
-            <LinearLayout
-                android:id="@+id/layout1"
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
+                android:layout_marginTop="10dp"
+                android:textColor="#4d4d4d"
+                android:textSize="17sp"
+                android:text="Select a document to upload"
+                android:textAlignment="center" />
+            <View
+                android:layout_width="300dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
 
-                <LinearLayout
+                android:background="#d2d2d2"></View>
+
+
+            <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="10"
-                    android:gravity="center_horizontal"
+                    android:layout_marginRight="30dp"
+                android:layout_marginTop="20dp"
+                    android:layout_weight=".28"
+                android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="30dp"
+
+                    android:background="@drawable/spinner_bg"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <Spinner
+                        android:id="@+id/upload_document_selector"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="9"
-                        android:layout_gravity="start"
-                        android:text="Profile Picture"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginLeft="20dp"
-                        android:textColor="#061826"
-                        android:textSize="20sp" />
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:layout_marginLeft="5dp"
+                        android:spinnerMode="dropdown" />
 
-                    <CheckBox
-                        android:id="@+id/check"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginRight="20dp"
-                        android:layout_weight="1"
-                        android:clickable="false" />
-                </LinearLayout>
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:src="@mipmap/drop" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:gravity="center_horizontal"
-                    android:orientation="horizontal"
-                    android:weightSum="10">
-
-                    <TextView
-                        android:id="@+id/tProfile"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginStart="20dp"
-                        android:layout_weight="9"
-                        android:ellipsize="end"
-                        android:singleLine="true"
-                        android:text="File"
-                        android:textSize="15sp" />
-
-                    <ImageButton
-                        android:id="@+id/uploadProfile"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginStart="20dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/ic_action_upload" />
-                </LinearLayout>
-
-            </LinearLayout>
+                </RelativeLayout>
 
 
-            <!--AAdhar -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:id="@+id/layout2"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:weightSum="10"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="9"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginStart="20dp"
-                        android:text="AAdhar Card"
-                        android:textColor="#061826"
-                        android:textSize="20sp" />
-
-                    <CheckBox
-                        android:id="@+id/check1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:clickable="false" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:gravity="center_horizontal"
-                    android:orientation="horizontal"
-                    android:weightSum="10">
-
-                    <TextView
-                        android:id="@+id/t1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginStart="20dp"
-                        android:layout_weight="9"
-                        android:ellipsize="end"
-                        android:singleLine="true"
-                        android:text="File"
-                        android:textSize="15sp" />
-
-                    <ImageButton
-                        android:id="@+id/buttonc1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginStart="20dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/ic_action_upload" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-
-            <!--License -->
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/layout3"
-                android:layout_marginTop="20dp"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_weight=".28"
+                android:background="@drawable/spinner_bg"
 
-                <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+               >
+                <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:layout_weight="10"
-                    android:orientation="horizontal">
+                    android:layout_height="40dp"
+                    android:clickable="true"
+                    android:id="@+id/upload_filename"
+                    android:background="?attr/selectableItemBackground"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:ellipsize="end"
+                    android:textColor="#353535"
+                    android:gravity="center_vertical"
+                    android:layout_centerInParent="true"
+                    android:paddingLeft="20dp"
+                    android:text="File..."/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginLeft="20dp"
-                        android:text="License"
-                        android:layout_weight="9"
-                        android:textColor="#061826"
-                        android:textSize="20sp" />
+            </RelativeLayout>
 
-                    <CheckBox
-                        android:id="@+id/check2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginRight="10dp"
-                        android:clickable="false" />
-                </LinearLayout>
+            <View
+                android:layout_width="300dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:gravity="center_horizontal"
-                    android:orientation="horizontal"
-                    android:weightSum="10">
-
-                    <TextView
-                        android:id="@+id/t2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginStart="20dp"
-                        android:layout_weight="9"
-                        android:ellipsize="end"
-                        android:singleLine="true"
-                        android:text="File"
-                        android:textSize="15sp" />
-
-                    <ImageButton
-                        android:id="@+id/buttonc2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginStart="20dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/ic_action_upload" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <!--insurance -->
-            <LinearLayout
+                android:background="#d2d2d2"></View>
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/layout4"
-                android:layout_marginTop="20dp"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
+                android:text="upload document"
+                android:clickable="true"
+                android:id="@+id/upload_document_button"
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:weightSum="10"
-                    android:orientation="horizontal">
+                android:background="?attr/selectableItemBackground"
+                android:foreground="?attr/selectableItemBackground"
+                android:textColor="#353535"
+                android:textAlignment="center"
+                android:paddingTop="10dp"
+                android:paddingBottom="20dp"
+                android:textAllCaps="true"
+                android:textSize="18sp"/>
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="9"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginStart="20dp"
-                        android:text="Insurance"
-                        android:textColor="#061826"
-                        android:textSize="20sp" />
-
-                    <CheckBox
-                        android:id="@+id/check3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginRight="10dp"
-                        android:clickable="false" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:gravity="center_horizontal"
-                    android:orientation="horizontal"
-                    android:weightSum="10">
-
-                    <TextView
-                        android:id="@+id/t3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginStart="20dp"
-                        android:layout_weight="9"
-                        android:ellipsize="end"
-                        android:singleLine="true"
-                        android:text="File"
-                        android:textSize="15sp" />
-
-                    <ImageButton
-                        android:id="@+id/buttonc3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginStart="20dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/ic_action_upload" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-
-            <!--rc -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:id="@+id/layout5"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:weightSum="10"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="9"
-                        android:text="RC"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginStart="20dp"
-                        android:textColor="#061826"
-                        android:textSize="20sp" />
-
-                    <CheckBox
-                        android:id="@+id/check4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"
-                        android:layout_weight="1"
-                        android:layout_marginEnd="10dp"
-                        android:clickable="false" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:gravity="center_horizontal"
-                    android:orientation="horizontal"
-                    android:weightSum="10">
-
-                    <TextView
-                        android:id="@+id/t4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginStart="20dp"
-                        android:layout_weight="9"
-                        android:ellipsize="end"
-                        android:singleLine="true"
-                        android:text="File"
-                        android:textSize="15sp" />
-
-                    <ImageButton
-                        android:id="@+id/buttonc4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginStart="20dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/ic_action_upload" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/finalupload"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/upload_button"
-                android:text="Upload documents"
-                android:padding="10dp"
-                android:textStyle="bold"
-                android:textColor="#F7ECE1"/>
         </LinearLayout>
-    </ScrollView>
+
+    </android.support.v7.widget.CardView>
 
 </RelativeLayout>
