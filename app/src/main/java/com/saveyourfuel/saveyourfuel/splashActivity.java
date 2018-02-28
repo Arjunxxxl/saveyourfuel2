@@ -3,10 +3,13 @@ package com.saveyourfuel.saveyourfuel;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -27,6 +30,12 @@ public class splashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+             requestWindowFeature(Window.FEATURE_NO_TITLE);
+             getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                     WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        }
         setContentView(R.layout.activity_splash);
 
         new Handler().postDelayed(new Runnable() {
@@ -37,7 +46,7 @@ public class splashActivity extends AppCompatActivity {
 //                splashActivity.this.startActivity(mainIntent);
 //                splashActivity.this.finish();
             }
-        }, 500);
+        }, 1000);
 
     }
 

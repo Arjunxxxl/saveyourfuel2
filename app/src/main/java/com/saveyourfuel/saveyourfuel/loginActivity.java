@@ -5,10 +5,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -42,18 +45,29 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
 
     public static String FACEBOOK_URL = "https://www.facebook.com/iitp.ac.in/";
     public static String FACEBOOK_PAGE_ID = "iitp.ac.in";
-    ImageButton facebookbutton,website;
+    ImageButton facebookbutton, website;
 
-    SharedPreferences sharedPref ;
+    SharedPreferences sharedPref;
 
     Toolbar toolbar;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       // requestWindowFeature(Window.FEATURE_NO_TITLE);
-       // getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-       //         WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        // requestWindowFeature(Window.FEATURE_NO_TITLE);
+        // getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+        //         WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = this.getWindow();
+// clear FLAG_TRANSLUCENT_STATUS flag:
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+// add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+// finally change the color
+            window.setStatusBarColor(Color.parseColor("#000000"));
+        }
+
         setContentView(R.layout.activity_login);
 
 //        toolbar = findViewById(R.id.toolbar);
@@ -121,16 +135,16 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
                     if (res.getString("code").contentEquals("800")) {
                         login.setEnabled(true);
 
-                        sharedPref  = getSharedPreferences("data",Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedPref .edit();
-                        editor.putString("username",emailText);
-                        editor.putString("password",passwordText);
-                        editor.putString("id",res.getString("id"));
+                        sharedPref = getSharedPreferences("data", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPref.edit();
+                        editor.putString("username", emailText);
+                        editor.putString("password", passwordText);
+                        editor.putString("id", res.getString("id"));
                         editor.apply();
 
-                        Intent i = new Intent(loginActivity.this,home.class);
-                        i.putExtra("Name",res.getString("name"));
-                        i.putExtra("ph",res.getString("phone"));
+                        Intent i = new Intent(loginActivity.this, home.class);
+                        i.putExtra("Name", res.getString("name"));
+                        i.putExtra("ph", res.getString("phone"));
                         //splashActivity.profile_image = res.getString("profile");
                         startActivity(i);
 
@@ -157,7 +171,6 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
         queue.add(stringRequest);
 //        StringRequest stringRequest = new Str
     }
-
 
 
     //method to get the right URL to use in the intent
