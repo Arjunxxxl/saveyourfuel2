@@ -7,6 +7,7 @@
     android:orientation="vertical"
     tools:context="com.saveyourfuel.saveyourfuel.documentStatus">
     <RelativeLayout
+        android:id="@+id/main_container_document"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <include
@@ -58,12 +59,12 @@
                         android:text="upload status:" />
 
                     <TextView
+                        android:id="@+id/adhar_u"
                         android:layout_width="wrap_content"
-
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:text="uploaded..."
-                        android:textColor="#3bbc2d" />
+                        android:text="not uploaded..."
+                        android:textColor="#D50000" />
 
                 </LinearLayout>
 
@@ -79,11 +80,12 @@
                         android:text="verification status:" />
 
                     <TextView
+                        android:id="@+id/adhar_v"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:text="verification in progress..."
-                        android:textColor="#3bbc2d" />
+                        android:text="waiting for upload..."
+                        android:textColor="#D50000" />
 
                 </LinearLayout>
 
@@ -123,12 +125,13 @@
                         android:text="upload status:" />
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:id="@+id/insurance_u"
 
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:text="uploaded..."
-                        android:textColor="#3bbc2d" />
+                        android:text="not uploaded..."
+                        android:textColor="#D50000" />
 
                 </LinearLayout>
 
@@ -144,11 +147,12 @@
                         android:text="verification status:" />
 
                     <TextView
+                        android:id="@+id/insurance_v"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:text="verification in progress..."
-                        android:textColor="#3bbc2d" />
+                        android:text="waiting for upload..."
+                        android:textColor="#D50000" />
 
                 </LinearLayout>
 
@@ -191,12 +195,13 @@
                         android:text="upload status:" />
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:id="@+id/license_u"
 
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:text="uploaded..."
-                        android:textColor="#3bbc2d" />
+                        android:text="not uploaded..."
+                        android:textColor="#D50000" />
 
                 </LinearLayout>
 
@@ -212,11 +217,12 @@
                         android:text="verification status:" />
 
                     <TextView
+                        android:id="@+id/license_v"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:text="verification in progress..."
-                        android:textColor="#3bbc2d" />
+                        android:text="waiting for upload..."
+                        android:textColor="#D50000" />
 
                 </LinearLayout>
 
@@ -257,12 +263,13 @@
                         android:text="upload status:" />
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:id="@+id/rc_u"
 
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:text="uploaded..."
-                        android:textColor="#3bbc2d" />
+                        android:text="not uploaded..."
+                        android:textColor="#D50000" />
 
                 </LinearLayout>
 
@@ -278,11 +285,12 @@
                         android:text="verification status:" />
 
                     <TextView
+                        android:id="@+id/rc_v"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:text="verification in progress..."
-                        android:textColor="#3bbc2d" />
+                        android:text="waiting for upload..."
+                        android:textColor="#D50000" />
 
                 </LinearLayout>
 
