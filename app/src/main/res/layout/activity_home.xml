@@ -147,12 +147,12 @@
                         android:id="@+id/buyTitle"
                         android:textColor="#383838"
                         android:layout_height="wrap_content"
-                        android:text="Buy"/>
+                        android:text="@string/buy"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:id="@+id/buyDescription"
                         android:layout_height="wrap_content"
-                        android:text="Description"/>
+                        android:text="@string/description"/>
 
                 </LinearLayout>
 
@@ -194,12 +194,12 @@
                         android:id="@+id/fundsTitle"
                         android:textColor="#383838"
                         android:layout_height="wrap_content"
-                        android:text="Add Funds"/>
+                        android:text="@string/add_funds"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:id="@+id/fundsDescription"
                         android:layout_height="wrap_content"
-                        android:text="Description"/>
+                        android:text="@string/description2"/>
 
                 </LinearLayout>
 
@@ -241,12 +241,12 @@
                         android:id="@+id/uploadTitle"
                         android:textColor="#383838"
                         android:layout_height="wrap_content"
-                        android:text="Upload Documents"/>
+                        android:text="@string/upload_documents2"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:id="@+id/uploadDescription"
                         android:layout_height="wrap_content"
-                        android:text="Description"/>
+                        android:text="@string/description3"/>
 
                 </LinearLayout>
 

@@ -47,7 +47,7 @@
                 android:layout_marginTop="10dp"
                 android:textColor="#4d4d4d"
                 android:textSize="17sp"
-                android:text="Select a document to upload"
+                android:text="@string/select_a_document_to_upload"
                 android:textAlignment="center" />
             <View
                 android:layout_width="300dp"
@@ -163,7 +163,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="upload"
+                android:text="@string/upload"
                 android:clickable="true"
                 android:id="@+id/upload_document_button"
                 android:textStyle="bold"

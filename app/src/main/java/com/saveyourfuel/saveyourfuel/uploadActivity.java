@@ -67,7 +67,7 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_upload);
 
         toolbar = findViewById(R.id.toolbarU);
-        toolbar.setTitle("Upload Your Documents");
+        toolbar.setTitle(R.string.uploadDocuments);
         toolbar.setTitleTextColor(Color.parseColor("#ffffff"));
         toolbar.setBackgroundColor(Color.parseColor("#004E64"));
         setSupportActionBar(toolbar);
@@ -197,6 +197,7 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
                         break;
                 }
             }
+
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {

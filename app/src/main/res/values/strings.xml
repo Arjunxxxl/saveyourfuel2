@@ -1,8 +1,54 @@
 <resources>
     <string name="app_name">Save Your Fuel</string>
+    <string name="name">Save Your Fuel</string>
     <string name="register"><u>New here, <b>Register Now!</b></u></string>
     <string name="about_us">About US</string>
     <string name="upload_disclaimer">Uploading the already verified documents will initiate verification process again</string>
+    <string name="coming_soon">Coming Soon</string>
+    <string name="back">Back</string>
+    <string name="add_balance_retrieve_balance">Add balance/retrieve balance</string>
+    <string name="use_toggle_to_retrieve_or_add_balance">Use toggle to retrieve or add balance</string>
+    <string name="balance">Add Balance</string>
+    <string name="create_account">create account</string>
+    <string name="re_enter_password">Re-enter password</string>
+
+    <string name="phone">Phone</string>
+    <string name="postal_address">Postal Address</string>
+    <string name="dob">DOB</string>
+    <string name="name_reg">Name</string>
+    <string name="upload_documents">UPLOAD DOCUMENTS</string>
+    <string name="waiting_for_upload">waiting for upload...</string>
+    <string name="verification_status">verification status:</string>
+    <string name="not_uploaded">not uploaded...</string>
+    <string name="upload_status">upload status:</string>
+    <string name="rc_card">RC card</string>
+    <string name="license_card">License card</string>
+    <string name="insurance_card">Insurance card</string>
+    <string name="adhar_card">Adhar card</string>
+    <string name="Upload_Your_Documents">Upload Your Documents</string>
+    <string name="uploaded">uploaded...</string>
+    <string name="verification_in_progress">verification in progress...</string>
+    <string name="y_profile">Your Profile</string>
+    <string name="logout">You have being logout</string>
+    <string name="description">Description</string>
+    <string name="buy">Buy</string>
+    <string name="add_funds">Add Funds</string>
+    <string name="description2">Description</string>
+    <string name="upload_documents2">Upload Documents</string>
+    <string name="description3">Description</string>
+    <string name="account_login">ACCOUNT LOGIN</string>
+    <string name="e_mail">E-mail</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="WRONG_CREDENTIALS">WRONG CREDENTIALS!</string>
+    <string name="check_your_connection">check your connection...</string>
+    <string name="select_account_type">Select Account Type</string>
+    <string name="consumer_account">Consumer Account</string>
+    <string name="transport_account">Transport Account</string>
+    <string name="settings">Settings</string>
+    <string name="uploadDocuments">Upload Your Documents</string>
+    <string name="select_a_document_to_upload">Select a document to upload</string>
+    <string name="upload">upload</string>
 
     <string-array name="document_type">
         <item>Select an option...</item>

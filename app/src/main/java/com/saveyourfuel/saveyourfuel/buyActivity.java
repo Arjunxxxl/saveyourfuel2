@@ -34,9 +34,9 @@ public class buyActivity extends AppCompatActivity implements  View.OnClickListe
         name = i.getExtras().getString("Name", "");
         ph = i.getExtras().getString("ph", "");
 
-        toolbar.setTitle("Buy");
+        toolbar.setTitle(R.string.buy);
         setSupportActionBar(toolbar);
-        toolbar.setSubtitle("Save Your Fuel");
+        toolbar.setSubtitle(R.string.name);
 
         back = findViewById(R.id.button_back2);
         back.setOnClickListener(this);

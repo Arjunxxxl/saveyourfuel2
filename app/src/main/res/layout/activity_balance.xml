@@ -32,7 +32,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Coming Soon"
+            android:text="@string/coming_soon"
             android:textColor="#000000"
             android:textSize="20sp"
             android:textAlignment="center"
@@ -42,7 +42,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/actype"
-            android:text="Back"
+            android:text="@string/back"
             android:textColor="#CFDEF3"
             android:textStyle="bold"
             android:id="@+id/button_back"
@@ -70,7 +70,7 @@
         android:layout_centerVertical="true"
         android:background="@drawable/actype"
         android:padding="10dp"
-        android:text="Add balance/retrieve balance"
+        android:text="@string/add_balance_retrieve_balance"
         android:textColor="#F7ECE1" />
 
     <TextView
@@ -81,6 +81,6 @@
         android:textColor="#210203"
         android:layout_marginTop="80dp"
         android:layout_alignTop="@id/button6"
-        android:text="Use toggle to retrieve or add balance" />
+        android:text="@string/use_toggle_to_retrieve_or_add_balance" />
 </RelativeLayout>
 </android.widget.RelativeLayout>

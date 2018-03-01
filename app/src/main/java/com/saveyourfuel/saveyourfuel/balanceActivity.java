@@ -40,9 +40,9 @@ public class balanceActivity extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.activity_balance);
 
         toolbar = findViewById(R.id.toolbarkok);
-        toolbar.setTitle("Add Balance");
+        toolbar.setTitle(R.string.balance);
         setSupportActionBar(toolbar);
-        toolbar.setSubtitle("Save Your Fuel");
+        toolbar.setSubtitle(R.string.name);
         Intent i = getIntent();
         name = i.getExtras().getString("Name", "");
         ph = i.getExtras().getString("ph", "");

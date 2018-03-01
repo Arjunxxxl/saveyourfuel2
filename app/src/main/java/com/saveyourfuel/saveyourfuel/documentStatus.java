@@ -54,7 +54,7 @@ public class documentStatus extends AppCompatActivity implements View.OnClickLis
 
 
         toolbar = findViewById(R.id.toolbarU);
-        toolbar.setTitle("Upload Your Documents");
+        toolbar.setTitle(R.string.Upload_Your_Documents);
         toolbar.setTitleTextColor(Color.parseColor("#ffffff"));
         toolbar.setBackgroundColor(Color.parseColor("#004E64"));
         setSupportActionBar(toolbar);
@@ -118,14 +118,14 @@ public class documentStatus extends AppCompatActivity implements View.OnClickLis
             case 1:
                 adhar_u.setTextColor(Color.parseColor("#3bbc2d"));
                 adhar_v.setTextColor(Color.parseColor("#3bbc2d"));
-                adhar_u.setText("uploaded...");
-                adhar_v.setText("verification in progress...");
+                adhar_u.setText(R.string.uploaded);
+                adhar_v.setText(R.string.verification_in_progress);
                 break;
             case 0:
                 adhar_u.setTextColor(Color.parseColor("#D50000"));
                 adhar_v.setTextColor(Color.parseColor("#D50000"));
-                adhar_u.setText("not uploaded...");
-                adhar_v.setText("waiting for upload...");
+                adhar_u.setText(R.string.not_uploaded);
+                adhar_v.setText(R.string.waiting_for_upload);
                 break;
         }
         switch(status[2])
@@ -133,14 +133,14 @@ public class documentStatus extends AppCompatActivity implements View.OnClickLis
             case 1:
                 insurance_u.setTextColor(Color.parseColor("#3bbc2d"));
                 insurance_v.setTextColor(Color.parseColor("#3bbc2d"));
-                insurance_u.setText("uploaded...");
-                insurance_v.setText("verification in progress...");
+                insurance_u.setText(R.string.uploaded);
+                insurance_v.setText(R.string.verification_in_progress);
                 break;
             case 0:
                 insurance_u.setTextColor(Color.parseColor("#D50000"));
                 insurance_v.setTextColor(Color.parseColor("#D50000"));
-                insurance_u.setText("not uploaded...");
-                insurance_v.setText("waiting for upload...");
+                insurance_u.setText(R.string.not_uploaded);
+                insurance_v.setText(R.string.waiting_for_upload);
                 break;
         }
         switch(status[3])
@@ -148,14 +148,14 @@ public class documentStatus extends AppCompatActivity implements View.OnClickLis
             case 1:
                 license_u.setTextColor(Color.parseColor("#3bbc2d"));
                 license_v.setTextColor(Color.parseColor("#3bbc2d"));
-                license_u.setText("uploaded...");
-                license_v.setText("verification in progress...");
+                license_u.setText(R.string.uploaded);
+                license_v.setText(R.string.verification_in_progress);
                 break;
             case 0:
                 license_u.setTextColor(Color.parseColor("#D50000"));
                 license_v.setTextColor(Color.parseColor("#D50000"));
-                license_u.setText("not uploaded...");
-                license_v.setText("waiting for upload...");
+                license_u.setText(R.string.not_uploaded);
+                license_v.setText(R.string.waiting_for_upload);
                 break;
         }
         switch(status[4])
@@ -163,14 +163,14 @@ public class documentStatus extends AppCompatActivity implements View.OnClickLis
             case 1:
                 rc_u.setTextColor(Color.parseColor("#3bbc2d"));
                 rc_v.setTextColor(Color.parseColor("#3bbc2d"));
-                rc_u.setText("uploaded...");
-                rc_v.setText("verification in progress...");
+                rc_u.setText(R.string.uploaded);
+                rc_v.setText(R.string.verification_in_progress);
                 break;
             case 0:
                 rc_u.setTextColor(Color.parseColor("#D50000"));
                 rc_v.setTextColor(Color.parseColor("#D50000"));
-                rc_u.setText("not uploaded...");
-                rc_v.setText("waiting for upload...");
+                rc_u.setText(R.string.not_uploaded);
+                rc_v.setText(R.string.waiting_for_upload);
                 break;
         }
 

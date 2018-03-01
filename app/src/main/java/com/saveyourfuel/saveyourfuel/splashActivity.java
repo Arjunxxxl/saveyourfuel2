@@ -26,6 +26,7 @@ public class splashActivity extends AppCompatActivity {
 
     //public  static  String profile_image = "";
     public  static  String name,ph;
+    static String LANG_CURRENT = "en";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

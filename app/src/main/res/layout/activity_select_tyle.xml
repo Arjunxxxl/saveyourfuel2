@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:text="Select Account Type"
+            android:text="@string/select_account_type"
             android:textAllCaps="true"
             android:textAlignment="center"
             android:textStyle="bold"
@@ -47,7 +47,7 @@
             android:layout_marginTop="50dp"
             android:textColor="#ffffff"
             android:background="@drawable/actype"
-            android:text="Consumer Account" />
+            android:text="@string/consumer_account" />
 
         <Button
             android:id="@+id/button1"
@@ -57,7 +57,7 @@
             android:textColor="#ffffff"
             android:layout_marginTop="30dp"
             android:background="@drawable/actype"
-            android:text="Transport Account" />
+            android:text="@string/transport_account" />
 
 
     </LinearLayout>

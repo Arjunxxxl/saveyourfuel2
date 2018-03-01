@@ -36,8 +36,8 @@ public class aboutusActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        toolbar.setTitle("Save Your Fuel Pvt. Ltd.");
-        toolbar.setSubtitle("About Us");
+        toolbar.setTitle(R.string.name);
+        toolbar.setSubtitle(R.string.about_us);
         toolbar.setTitleTextColor(Color.parseColor("#ffffff"));
         toolbar.setBackgroundColor(Color.parseColor("#004E64"));
         toolbar.setSubtitleTextColor(Color.parseColor("#ffffff"));

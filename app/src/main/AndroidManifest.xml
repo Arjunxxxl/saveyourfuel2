@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.saveyourfuel.saveyourfuel">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -25,12 +26,13 @@
         <activity android:name=".loginActivity" />
         <activity android:name=".selectTyleActivity" />
         <activity android:name=".consumerREGActivity" />
-        <activity android:name=".home">
+        <activity android:name=".home" android:configChanges="locale|orientation">
             <intent-filter>
                 <action android:name="com.saveyourfuel.saveyourfuel.home" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+
         </activity>
         <activity android:name=".aboutusActivity" />
         <activity android:name=".settingsActivity" />

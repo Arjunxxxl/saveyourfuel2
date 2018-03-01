@@ -36,7 +36,7 @@
             android:layout_marginBottom="10dp"
             android:textColor="#0F0F0F"
             android:textStyle="bold"
-            android:text="Create Account"/>
+            android:text="@string/create_account"/>
 
 
         <LinearLayout
@@ -56,7 +56,7 @@
                     android:id="@+id/nameReg"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Name"
+                    android:hint="@string/name_reg"
                     android:imeOptions="actionNext"
                     android:lines="1" />
             </android.support.design.widget.TextInputLayout>
@@ -80,7 +80,7 @@
                     android:id="@+id/dobReg"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="DOB"
+                    android:hint="@string/dob"
                     android:lines="1"
                     android:imeOptions="actionNext"
                     android:inputType="date" />
@@ -104,7 +104,7 @@
                     android:id="@+id/addressReg"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Postal Address"
+                    android:hint="@string/postal_address"
                     android:lines="1"
                     android:imeOptions="actionNext"
                     android:inputType="textPostalAddress" />
@@ -127,7 +127,7 @@
                     android:id="@+id/phoneReg"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Phone"
+                    android:hint="@string/phone"
                     android:lines="1"
                     android:imeOptions="actionNext"
                     android:inputType="phone" />
@@ -151,7 +151,7 @@
                     android:id="@+id/emailReg"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="E-mail"
+                    android:hint="@string/e_mail"
                     android:lines="1"
                     android:imeOptions="actionNext"
                     android:inputType="textEmailAddress" />
@@ -176,7 +176,7 @@
                     android:id="@+id/passReg"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Password"
+                    android:hint="@string/password"
                     android:lines="1"
                     android:imeOptions="actionNext"
                     android:inputType="textPassword" />
@@ -200,7 +200,7 @@
                     android:id="@+id/repassReg"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Re-enter password"
+                    android:hint="@string/re_enter_password"
                     android:lines="1"
                     android:imeOptions="actionDone"
                     android:inputType="textPassword" />
@@ -218,7 +218,7 @@
             android:textColor="#ffffff"
             android:background="@drawable/actype"
             android:layout_marginTop="20dp"
-            android:text="create account" />
+            android:text="@string/create_account" />
 
     </LinearLayout>
 </ScrollView>

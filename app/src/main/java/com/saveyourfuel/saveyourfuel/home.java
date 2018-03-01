@@ -3,11 +3,14 @@ package com.saveyourfuel.saveyourfuel;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.media.Image;
 import android.os.Build;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -16,6 +19,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -42,6 +46,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class home extends AppCompatActivity implements View.OnClickListener {
 
@@ -52,6 +57,7 @@ public class home extends AppCompatActivity implements View.OnClickListener {
     ImageView pic;
     LinearLayout buy, funds, documents;
     String profile_image = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +75,7 @@ public class home extends AppCompatActivity implements View.OnClickListener {
 
         setContentView(R.layout.activity_home);
 
+
         toolbar = findViewById(R.id.toolbar);
 
 
@@ -84,9 +91,9 @@ public class home extends AppCompatActivity implements View.OnClickListener {
 //            profileImage = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
 //        }
 
-        toolbar.setTitle("Save Your Fuel");
+        toolbar.setTitle(R.string.name);
         setSupportActionBar(toolbar);
-        toolbar.setSubtitle("Your Profile");
+        toolbar.setSubtitle(R.string.y_profile);
 
         toolbar.setTitleTextColor(Color.parseColor("#ffffff"));
         toolbar.setSubtitleTextColor(Color.parseColor("#ffffff"));
@@ -145,9 +152,22 @@ public class home extends AppCompatActivity implements View.OnClickListener {
                 startActivity(i4);
                 break;
 
+            case R.id.language:
+                if (splashActivity.LANG_CURRENT.equals("en")) {
+                    changeLang(home.this, "hi");
+                } else {
+                    changeLang(home.this, "en");
+                }
+                finish();
+                Intent i_ln = new Intent(home.this, home.class);
+                i_ln.putExtra("Name", name);
+                i_ln.putExtra("ph", ph);
+                startActivity(i_ln);
+                break;
+
             case R.id.logout:
 
-                Toast.makeText(getApplicationContext(), "You have being logout", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), R.string.logout, Toast.LENGTH_LONG).show();
                 SharedPreferences sharedPref = getSharedPreferences("data", Context.MODE_PRIVATE);
                 sharedPref.edit().clear().apply();
                 startActivity(new Intent(home.this, loginActivity.class));
@@ -155,6 +175,22 @@ public class home extends AppCompatActivity implements View.OnClickListener {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void changeLang(Context context, String lang) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("Language", lang);
+        editor.apply();
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(newBase);
+        splashActivity.LANG_CURRENT = preferences.getString("Language", "en");
+
+        super.attachBaseContext(MyContextWrapper.wrap(newBase, splashActivity.LANG_CURRENT));
     }
 
 
@@ -223,7 +259,7 @@ public class home extends AppCompatActivity implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.option1:
 
-                Intent i2 = new Intent(home.this,buyActivity.class);
+                Intent i2 = new Intent(home.this, buyActivity.class);
                 i2.putExtra("Name", home.name);
                 i2.putExtra("ph", home.ph);
                 startActivity(i2);

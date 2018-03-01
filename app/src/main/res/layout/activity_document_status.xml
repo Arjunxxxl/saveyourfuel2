@@ -44,7 +44,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Adhar card"
+                    android:text="@string/adhar_card"
                     android:textColor="#383838"
                     android:textSize="18sp" />
 
@@ -56,14 +56,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="upload status:" />
+                        android:text="@string/upload_status" />
 
                     <TextView
                         android:id="@+id/adhar_u"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:text="not uploaded..."
+                        android:text="@string/not_uploaded"
                         android:textColor="#D50000" />
 
                 </LinearLayout>
@@ -77,14 +77,14 @@
                         android:layout_width="wrap_content"
 
                         android:layout_height="wrap_content"
-                        android:text="verification status:" />
+                        android:text="@string/verification_status" />
 
                     <TextView
                         android:id="@+id/adhar_v"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:text="waiting for upload..."
+                        android:text="@string/waiting_for_upload"
                         android:textColor="#D50000" />
 
                 </LinearLayout>
@@ -111,7 +111,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#383838"
-                    android:text="Insurance card"
+                    android:text="@string/insurance_card"
                     android:textSize="18sp" />
 
                 <LinearLayout
@@ -122,7 +122,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="upload status:" />
+                        android:text="@string/upload_status" />
 
                     <TextView
                         android:id="@+id/insurance_u"
@@ -130,7 +130,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:text="not uploaded..."
+                        android:text="@string/not_uploaded"
                         android:textColor="#D50000" />
 
                 </LinearLayout>
@@ -144,14 +144,14 @@
                         android:layout_width="wrap_content"
 
                         android:layout_height="wrap_content"
-                        android:text="verification status:" />
+                        android:text="@string/verification_status" />
 
                     <TextView
                         android:id="@+id/insurance_v"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:text="waiting for upload..."
+                        android:text="@string/waiting_for_upload"
                         android:textColor="#D50000" />
 
                 </LinearLayout>
@@ -181,7 +181,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="#383838"
 
-                    android:text="License card"
+                    android:text="@string/license_card"
                     android:textSize="18sp" />
 
                 <LinearLayout
@@ -192,7 +192,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="upload status:" />
+                        android:text="@string/upload_status" />
 
                     <TextView
                         android:id="@+id/license_u"
@@ -200,7 +200,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:text="not uploaded..."
+                        android:text="@string/not_uploaded"
                         android:textColor="#D50000" />
 
                 </LinearLayout>
@@ -214,14 +214,14 @@
                         android:layout_width="wrap_content"
 
                         android:layout_height="wrap_content"
-                        android:text="verification status:" />
+                        android:text="@string/verification_status" />
 
                     <TextView
                         android:id="@+id/license_v"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:text="waiting for upload..."
+                        android:text="@string/waiting_for_upload"
                         android:textColor="#D50000" />
 
                 </LinearLayout>
@@ -249,7 +249,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#383838"
-                    android:text="RC card"
+                    android:text="@string/rc_card"
                     android:textSize="18sp" />
 
                 <LinearLayout
@@ -260,7 +260,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="upload status:" />
+                        android:text="@string/upload_status" />
 
                     <TextView
                         android:id="@+id/rc_u"
@@ -268,7 +268,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:text="not uploaded..."
+                        android:text="@string/not_uploaded"
                         android:textColor="#D50000" />
 
                 </LinearLayout>
@@ -282,14 +282,14 @@
                         android:layout_width="wrap_content"
 
                         android:layout_height="wrap_content"
-                        android:text="verification status:" />
+                        android:text="@string/verification_status" />
 
                     <TextView
                         android:id="@+id/rc_v"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:text="waiting for upload..."
+                        android:text="@string/waiting_for_upload"
                         android:textColor="#D50000" />
 
                 </LinearLayout>
@@ -344,7 +344,7 @@
                     android:layout_marginBottom="10dp"
                     android:layout_height="match_parent"
                     android:textStyle="bold"
-                    android:text="UPLOAD DOCUMENTS"
+                    android:text="@string/upload_documents"
                     />
 
 

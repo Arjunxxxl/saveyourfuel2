@@ -181,7 +181,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
 
                         loginActivity.this.finish();
                     } else {
-                        Toast.makeText(getBaseContext(), "WRONG CREDENTIALS!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getBaseContext(), R.string.WRONG_CREDENTIALS, Toast.LENGTH_SHORT).show();
                         login.setEnabled(true);
                     }
 
@@ -195,7 +195,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d("error", error.toString());
-                Toast.makeText(getBaseContext(), "check your connection...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(), R.string.check_your_connection, Toast.LENGTH_SHORT).show();
                 login.setEnabled(true);
             }
         });

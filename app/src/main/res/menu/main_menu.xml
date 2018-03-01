@@ -20,8 +20,13 @@
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/aboutus"
-        android:title="@string/about_us"
+    android:id="@+id/aboutus"
+    android:title="@string/about_us"
+    app:showAsAction="never" />
+
+    <item
+        android:id="@+id/language"
+        android:title="Change Language"
         app:showAsAction="never" />
 
     <item
