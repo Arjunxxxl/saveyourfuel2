@@ -49,10 +49,16 @@
             </intent-filter>
         </activity>
         <activity android:name=".maincomsumerREGActivity" />
-
         <activity android:name=".documentStatus">
             <intent-filter>
                 <action android:name="com.saveyourfuel.saveyourfuel.documentStatus" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".buyActivity">
+            <intent-filter>
+                <action android:name="com.saveyourfuel.saveyourfuel.buyActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

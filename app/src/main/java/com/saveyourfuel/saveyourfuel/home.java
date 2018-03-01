@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.media.Image;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -20,6 +21,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -48,15 +51,25 @@ public class home extends AppCompatActivity implements View.OnClickListener {
     Bitmap profileImage = null;
     ImageView pic;
     LinearLayout buy, funds, documents;
-    String profile_image="";
+    String profile_image = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = this.getWindow();
+// clear FLAG_TRANSLUCENT_STATUS flag:
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+// add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+// finally change the color
+            window.setStatusBarColor(Color.parseColor("#003240"));
+        }
+
         setContentView(R.layout.activity_home);
 
         toolbar = findViewById(R.id.toolbar);
-
 
 
         Intent i = getIntent();
@@ -77,18 +90,18 @@ public class home extends AppCompatActivity implements View.OnClickListener {
 
         toolbar.setTitleTextColor(Color.parseColor("#ffffff"));
         toolbar.setSubtitleTextColor(Color.parseColor("#ffffff"));
-        toolbar.setBackgroundColor(Color.parseColor("#128C7E"));
+        toolbar.setBackgroundColor(Color.parseColor("#004E64"));
 
         nameT = findViewById(R.id.user_name);
         phT = findViewById(R.id.phone_user);
         nameT.setText(name);
         phT.setText(ph);
         setView();
-       pic = findViewById(R.id.user_profile_pic);
+        pic = findViewById(R.id.user_profile_pic);
 //        pic.setImageBitmap(profileImage);
     }
 
-    void setView(){
+    void setView() {
         buy = findViewById(R.id.option1);
         buy.setOnClickListener(this);
         funds = findViewById(R.id.option2);
@@ -96,6 +109,7 @@ public class home extends AppCompatActivity implements View.OnClickListener {
         documents = findViewById(R.id.option3);
         documents.setOnClickListener(this);
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -125,7 +139,7 @@ public class home extends AppCompatActivity implements View.OnClickListener {
                 startActivity(i2);
                 break;
             case R.id.upload:
-                Intent i4 = new Intent(home.this, uploadActivity.class);
+                Intent i4 = new Intent(home.this, documentStatus.class);
                 i4.putExtra("Name", name);
                 i4.putExtra("ph", ph);
                 startActivity(i4);
@@ -206,26 +220,26 @@ public class home extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.option1:
 
-                Intent i2 = new Intent("com.saveyourfuel.saveyourfuel.documentStatus");
-                i2.putExtra("Name",home.name);
-                i2.putExtra("ph",home.ph);
+                Intent i2 = new Intent(home.this,buyActivity.class);
+                i2.putExtra("Name", home.name);
+                i2.putExtra("ph", home.ph);
                 startActivity(i2);
                 break;
             case R.id.option2:
                 Intent i3 = new Intent("com.saveyourfuel.saveyourfuel.balanceActivity");
-                i3.putExtra("Name",home.name);
-                i3.putExtra("ph",home.ph);
+                i3.putExtra("Name", home.name);
+                i3.putExtra("ph", home.ph);
                 startActivity(i3);
 
                 break;
             case R.id.option3:
 
                 Intent i4 = new Intent("com.saveyourfuel.saveyourfuel.documentStatus");
-                i4.putExtra("Name",home.name);
-                i4.putExtra("ph",home.ph);
+                i4.putExtra("Name", home.name);
+                i4.putExtra("ph", home.ph);
                 startActivity(i4);
                 break;
 

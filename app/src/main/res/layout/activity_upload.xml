@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#fdf5f5f5"
+    android:background="@drawable/homebg"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/upload_container"
@@ -91,6 +91,41 @@
                 </RelativeLayout>
 
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight=".28"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="30dp"
+                android:visibility="gone"
+                android:id="@+id/insurance_hidden"
+                android:background="@drawable/spinner_bg"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/upload_document_selector2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:spinnerMode="dropdown" />
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:src="@mipmap/drop" />
+
+            </RelativeLayout>
+
+
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -128,10 +163,10 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="upload document"
+                android:text="upload"
                 android:clickable="true"
                 android:id="@+id/upload_document_button"
-
+                android:textStyle="bold"
                 android:background="?attr/selectableItemBackground"
                 android:foreground="?attr/selectableItemBackground"
                 android:textColor="#353535"

@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.design.widget.Snackbar;
@@ -16,6 +17,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -36,7 +39,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class uploadActivity extends AppCompatActivity implements View.OnClickListener,AdapterView.OnItemSelectedListener{
+public class uploadActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
     Toolbar toolbar;
     TextView showFile, upload_document_button;
@@ -45,17 +48,32 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
 
     String name, ph;
     RelativeLayout container;
-    Spinner upload_choice;
+    Spinner upload_choice, insurance_select;
+
+    RelativeLayout insurance_layout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = this.getWindow();
+// clear FLAG_TRANSLUCENT_STATUS flag:
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+// add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+// finally change the color
+            window.setStatusBarColor(Color.parseColor("#003240"));
+        }
         setContentView(R.layout.activity_upload);
 
         toolbar = findViewById(R.id.toolbarU);
         toolbar.setTitle("Upload Your Documents");
         toolbar.setTitleTextColor(Color.parseColor("#ffffff"));
-        toolbar.setBackgroundColor(Color.parseColor("#128C7E"));
+        toolbar.setBackgroundColor(Color.parseColor("#004E64"));
         setSupportActionBar(toolbar);
+
+        insurance_layout = findViewById(R.id.insurance_hidden);
+        insurance_layout.setVisibility(View.GONE);
 
         setView();
         Intent i = getIntent();
@@ -82,12 +100,109 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
 
     void setView() {
         upload_choice = findViewById(R.id.upload_document_selector);
+        insurance_select = findViewById(R.id.upload_document_selector2);
+
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.document_type, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
+        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
+                R.array.insurance_type, android.R.layout.simple_spinner_item);
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
         upload_choice.setAdapter(adapter);
         upload_choice.setOnItemSelectedListener(this);
+        insurance_select.setAdapter(adapter2);
+        insurance_select.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                switch (i) {
+                    case 0:
+                        make_Toast(adapterView,i);
+                        break;
+                    case 1:
+                        make_Toast(adapterView,i);
+                        break;
+                    case 2:
+                        make_Toast(adapterView,i);
+                        break;
+                    case 3:
+                        make_Toast(adapterView,i);
+                        break;
+                    case 4:
+                        make_Toast(adapterView,i);
+                        break;
+                    case 5:
+                        make_Toast(adapterView,i);
+                        break;
+                    case 6:
+                        make_Toast(adapterView,i);
+                        break;
+                    case 7:
+                        make_Toast(adapterView,i);
+                        break;
+                    case 8:
+                        make_Toast(adapterView,i);
+                        break;
+                    case 9:
+                        make_Toast(adapterView,i);
+                        break;
+                    case 10:
+                        make_Toast(adapterView,i);
+                        break;
+                    case 11:
+                        make_Toast(adapterView,i);
+                        break;
+                    case 12:
+                        make_Toast(adapterView,i);
+                        break;
+                    case 13:
+                        make_Toast(adapterView,i);
+                        break;
+                    case 14:
+                        make_Toast(adapterView,i);
+                        break;
+                    case 15:
+                        make_Toast(adapterView,i);
+                        break;
+                    case 16:
+                        make_Toast(adapterView,i);
+                        break;
+                    case 17:
+                        make_Toast(adapterView,i);
+                        break;
+                    case 18:
+                        make_Toast(adapterView,i);
+                        break;
+                    case 19:
+                        make_Toast(adapterView,i);
+                        break;
+                    case 20:
+                        make_Toast(adapterView,i);
+                        break;
+                    case 21:
+                        make_Toast(adapterView,i);
+                        break;
+                    case 22:
+                        make_Toast(adapterView,i);
+                        break;
+                    case 23:
+                        make_Toast(adapterView,i);
+                        break;
+                    case 24:
+                        make_Toast(adapterView,i);
+                        break;
+                    case 25:
+                        make_Toast(adapterView,i);
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         showFile = findViewById(R.id.upload_filename);
         showFile.setOnClickListener(this);
@@ -98,6 +213,11 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
         upload_document_button.setOnClickListener(this);
 
 
+    }
+
+    void make_Toast(AdapterView<?> adapterView,int pos)
+    {
+        Toast.makeText(getApplicationContext(), (CharSequence) adapterView.getItemAtPosition(pos), Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -187,21 +307,20 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
 
         if (!imagename.isEmpty() && !showFile.getText().toString().contains("File")) {
             queue.add(documentReq);
-        }
-        else if (imagename.isEmpty()){
+        } else if (imagename.isEmpty()) {
 
-            Snackbar.make(container, "select the document type" , Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+            Snackbar.make(container, "select the document type", Snackbar.LENGTH_SHORT).setAction("Action", null).show();
             progressDialog.dismiss();
-        }
-        else {
+        } else {
 
-            Snackbar.make(container, "select the document file" , Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+            Snackbar.make(container, "select the document file", Snackbar.LENGTH_SHORT).setAction("Action", null).show();
             progressDialog.dismiss();
         }
 
     }
 
-     ProgressDialog progressDialog;
+    ProgressDialog progressDialog;
+
     void setRequest() {
 
 
@@ -218,16 +337,16 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
                             progressDialog.dismiss();
                             toast.makeText(getBaseContext(), "can't upload", Toast.LENGTH_SHORT).show();
                         }
-                         
+
 
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Snackbar.make(container, "check your connection..." , Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+                Snackbar.make(container, "check your connection...", Snackbar.LENGTH_SHORT).setAction("Action", null).show();
 
                 progressDialog.dismiss();
-                 
+
             }
 
         }) {
@@ -265,24 +384,30 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        switch (position){
+        switch (position) {
             case 0:
                 imagename = "";
+                insurance_layout.setVisibility(View.GONE);
                 break;
             case 1:
                 imagename = "profile";
+                insurance_layout.setVisibility(View.GONE);
                 break;
             case 2:
                 imagename = "adhar";
+                insurance_layout.setVisibility(View.GONE);
                 break;
             case 3:
                 imagename = "insurance";
+                insurance_layout.setVisibility(View.VISIBLE);
                 break;
             case 4:
                 imagename = "license";
+                insurance_layout.setVisibility(View.GONE);
                 break;
             case 5:
                 imagename = "rc";
+                insurance_layout.setVisibility(View.GONE);
                 break;
 
         }

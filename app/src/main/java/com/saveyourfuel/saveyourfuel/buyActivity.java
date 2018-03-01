@@ -6,20 +6,15 @@ import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.TextView;
+import android.widget.Button;
 
-import java.io.InputStream;
-
-public class aboutusActivity extends AppCompatActivity {
-
+public class buyActivity extends AppCompatActivity implements  View.OnClickListener{
     Toolbar toolbar;
     String name,ph;
-    private TextView about_tv;
-
+    Button back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,19 +27,23 @@ public class aboutusActivity extends AppCompatActivity {
 // finally change the color
             window.setStatusBarColor(Color.parseColor("#003240"));
         }
-        setContentView(R.layout.activity_aboutus);
+        setContentView(R.layout.activity_buy);
 
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        toolbar.setTitle("Save Your Fuel Pvt. Ltd.");
-        toolbar.setSubtitle("About Us");
-        toolbar.setTitleTextColor(Color.parseColor("#ffffff"));
-        toolbar.setBackgroundColor(Color.parseColor("#004E64"));
-        toolbar.setSubtitleTextColor(Color.parseColor("#ffffff"));
-
+        toolbar = findViewById(R.id.toolbar_buy);
         Intent i = getIntent();
         name = i.getExtras().getString("Name", "");
         ph = i.getExtras().getString("ph", "");
+
+        toolbar.setTitle("Buy");
+        setSupportActionBar(toolbar);
+        toolbar.setSubtitle("Save Your Fuel");
+
+        back = findViewById(R.id.button_back2);
+        back.setOnClickListener(this);
+
+        toolbar.setTitleTextColor(Color.parseColor("#ffffff"));
+        toolbar.setSubtitleTextColor(Color.parseColor("#ffffff"));
+        toolbar.setBackgroundColor(Color.parseColor("#004E64"));
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -52,48 +51,34 @@ public class aboutusActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(aboutusActivity.this,home.class);
+                Intent i = new Intent(buyActivity.this,home.class);
                 i.putExtra("Name",name);
                 i.putExtra("ph",ph);
                 startActivity(i);
-                aboutusActivity.this.finish();
+                buyActivity.this.finish();
             }
         });
-
-        about_tv = findViewById(R.id.tv_aboutus);
-        SimpleText();
     }
-
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent i = new Intent(aboutusActivity.this,home.class);
+        Intent i = new Intent(buyActivity.this,home.class);
         i.putExtra("Name",name);
         i.putExtra("ph",ph);
         startActivity(i);
-        aboutusActivity.this.finish();
+        buyActivity.this.finish();
     }
 
-    private void SimpleText(){
-
-        try {
-
-
-            InputStream is = this.getResources().openRawResource(R.raw.aboutus1);
-            byte[] buffer = new byte[is.available()];
-            while (is.read(buffer) != -1);
-            String jsontext = new String(buffer);
-
-
-
-            about_tv.setText(jsontext);
-
-        } catch (Exception e) {
-
-            Log.e("Text: ", ""+e.toString());
+    @Override
+    public void onClick(View view) {
+        switch(view.getId())
+        {
+            case R.id.button_back2: Intent i = new Intent(buyActivity.this,home.class);
+                i.putExtra("Name", home.name);
+                i.putExtra("ph", home.ph);
+                startActivity(i);
+                buyActivity.this.finish();
         }
-
     }
-
 }

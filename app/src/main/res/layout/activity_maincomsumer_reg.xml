@@ -37,6 +37,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/actype"
             android:text="Back"
+            android:textColor="#CFDEF3"
             android:textStyle="bold"
             android:id="@+id/backbutton1"
             android:layout_marginTop="30dp"/>

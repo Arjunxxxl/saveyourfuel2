@@ -73,7 +73,7 @@ public class cardAdapter extends RecyclerView.Adapter<cardAdapter.MyViewHolder>{
                     switch (position)
                     {
                         case 0 :
-                            Intent i2 = new Intent("com.saveyourfuel.saveyourfuel.documentStatus");
+                            Intent i2 = new Intent("com.saveyourfuel.saveyourfuel.buyActivity");
 
                             i2.putExtra("Name",home.name);
                             i2.putExtra("ph",home.ph);

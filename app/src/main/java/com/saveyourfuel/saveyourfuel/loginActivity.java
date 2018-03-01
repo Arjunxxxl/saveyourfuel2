@@ -1,17 +1,17 @@
 package com.saveyourfuel.saveyourfuel;
 
-import android.app.ActionBar;
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -20,7 +20,6 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,6 +41,8 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
     TextInputLayout temail;
     Button login;
     TextInputEditText email, password;
+    Button sound;
+    static MediaPlayer play_music;
 
     public static String FACEBOOK_URL = "https://www.facebook.com/iitp.ac.in/";
     public static String FACEBOOK_PAGE_ID = "iitp.ac.in";
@@ -87,6 +88,13 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
         website = findViewById(R.id.imageButton);
         website.setOnClickListener(this);
 
+        sound = findViewById(R.id.sound);
+        sound.setOnClickListener(this);
+        if (play_music == null) {
+            play_music = MediaPlayer.create(getApplicationContext(), R.raw.uprising);
+            play_music.start();
+            play_music.setLooping(true);
+        }
 
     }
 
@@ -114,7 +122,26 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);
                 break;
+            case R.id.sound:
+                if (play_music.isPlaying()) {
+                    play_music.pause();
+                    sound.setBackgroundResource(R.drawable.ic_action_sound);
+                } else if (!play_music.isPlaying()) {
+                    play_music.start();
+                    sound.setBackgroundResource(R.drawable.ic_action_soundplay);
+                }
+
+                break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        play_music.stop();
+        play_music.release();
+        play_music = null;
+        this.finish();
     }
 
     private void checkLogin() {
@@ -141,6 +168,10 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
                         editor.putString("password", passwordText);
                         editor.putString("id", res.getString("id"));
                         editor.apply();
+
+                        play_music.stop();
+                        play_music.release();
+                        play_music = null;
 
                         Intent i = new Intent(loginActivity.this, home.class);
                         i.putExtra("Name", res.getString("name"));

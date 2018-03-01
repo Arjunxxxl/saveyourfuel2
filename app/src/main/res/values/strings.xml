@@ -5,12 +5,42 @@
     <string name="upload_disclaimer">Uploading the already verified documents will initiate verification process again</string>
 
     <string-array name="document_type">
-        <item>Select an option..</item>
+        <item>Select an option...</item>
         <item>Profile picture</item>
         <item>Adhar card</item>
         <item>Insurance card</item>
         <item>License card</item>
         <item>RC card</item>
+
+    </string-array>
+
+    <string-array name="insurance_type">
+        <item>Select an option...</item>
+        <item>AEGON Life Insurance</item>
+        <item>Aviva Life Insurance</item>
+        <item>Bajaj Allianz Life Insurance</item>
+        <item>Bharti AXA Life Insurance</item>
+        <item>Birla Sun Life Insurance</item>
+        <item>Canara HSBC OBC Life Insurance</item>
+        <item>DHFL Pramerica Life Insurance</item>
+        <item>Edelweiss Tokio Life Insurance</item>
+        <item>Exide Life Insurance</item>
+        <item>Future Generali India Life Insurance</item>
+        <item>HDFC Standard Life Insurance</item>
+        <item>ICICI Prudential Life Insurance</item>
+        <item>IDBI Federal Life Insurance</item>
+        <item>IndiaFirst Life Insurance Company Ltd - India First</item>
+        <item>Kotak Life Insurance</item>
+        <item>Life Insurance Corporation of India</item>
+        <item>Max Newyork Life Insurance</item>
+        <item>PNB MetLife Insurance</item>
+        <item>Reliance Life Insurance</item>
+        <item>Sahara Life Insurance</item>
+        <item>SBI Life Insurance</item>
+        <item>Shriram Life Insurance</item>
+        <item>Star Union Dai-ichi Life Insurance</item>
+        <item>Tata AIA Life Insurance</item>
+        <item>Others</item>
 
     </string-array>
 

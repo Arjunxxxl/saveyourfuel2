@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/homebg"
-    tools:context="com.saveyourfuel.saveyourfuel.balanceActivity">
-
+    tools:context="com.saveyourfuel.saveyourfuel.buyActivity">
     <include
-        android:id="@+id/toolbarkok"
+        android:id="@+id/toolbar_buy"
         layout="@layout/toolbar_main" />
 
     <LinearLayout
@@ -45,42 +44,8 @@
             android:text="Back"
             android:textColor="#CFDEF3"
             android:textStyle="bold"
-            android:id="@+id/button_back"
+            android:id="@+id/button_back2"
             android:layout_marginTop="30dp"/>
     </LinearLayout>
 
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:visibility="invisible">
-    <Switch
-        android:id="@+id/switch2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/button6"
-        android:layout_marginBottom="20dp"
-        android:layout_centerHorizontal="true"
-         />
-
-    <Button
-        android:id="@+id/button6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:background="@drawable/actype"
-        android:padding="10dp"
-        android:text="Add balance/retrieve balance"
-        android:textColor="#F7ECE1" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:textColor="#210203"
-        android:layout_marginTop="80dp"
-        android:layout_alignTop="@id/button6"
-        android:text="Use toggle to retrieve or add balance" />
 </RelativeLayout>
-</android.widget.RelativeLayout>
