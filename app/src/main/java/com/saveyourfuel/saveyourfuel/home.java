@@ -71,7 +71,7 @@ public class home extends AppCompatActivity implements View.OnClickListener {
         String languageToLoad  = sharedPref.getString("lang","en");
         Locale locale = new Locale(languageToLoad);
         Locale.setDefault(locale);
-        Configuration config = new Configuration();
+        Configuration config = getBaseContext().getResources().getConfiguration();
         config.locale = locale;
         getBaseContext().getResources().updateConfiguration(config,
                 getBaseContext().getResources().getDisplayMetrics());

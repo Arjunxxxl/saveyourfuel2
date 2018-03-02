@@ -20,8 +20,7 @@ import android.widget.Toast;
 public class balanceActivity extends AppCompatActivity implements View.OnClickListener{
 
     Toolbar toolbar;
-    Switch aSwitch;
-    Button balance;
+
     String name,ph;
     Button back;
 
@@ -64,24 +63,10 @@ public class balanceActivity extends AppCompatActivity implements View.OnClickLi
             }
         });
 
-        aSwitch = findViewById(R.id.switch2);
-        balance = findViewById(R.id.button6);
-        balance.setText("Add Balance");
-        aSwitch.setChecked(false);
         back = findViewById(R.id.button_back);
         back.setOnClickListener(this);
 
 
-        aSwitch.setOnCheckedChangeListener(
-                new CompoundButton.OnCheckedChangeListener() {
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        // do something, the isChecked will be
-                        // true if the switch is in the On position
-                        if(isChecked == false) balance.setText("Add Balance");
-                        else if(isChecked==true) balance.setText("Retrieve Balance");
-                    }
-                }
-        );
     }
 
     @Override

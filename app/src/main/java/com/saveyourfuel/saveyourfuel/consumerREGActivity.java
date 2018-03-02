@@ -376,6 +376,12 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
                                     consumerREGActivity.this.startActivity(i);
                                     consumerREGActivity.this.finish();
                                 }
+                                else{
+                                    Toast.makeText(getBaseContext(),"Unknown error",Toast.LENGTH_SHORT).show();
+                                    Intent i = new Intent(consumerREGActivity.this,loginActivity.class);
+                                    consumerREGActivity.this.startActivity(i);
+                                    consumerREGActivity.this.finish();
+                                }
                             }
                             catch (Exception e){
                                 Toast.makeText(getBaseContext(),"Unknown error",Toast.LENGTH_SHORT).show();

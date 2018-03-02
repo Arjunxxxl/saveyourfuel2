@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Handler;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -91,7 +92,8 @@ public class splashActivity extends AppCompatActivity {
                             startActivity(i);
                             splashActivity.this.finish();
                         } else {
-                            Toast.makeText(getBaseContext(), "Login Please!", Toast.LENGTH_SHORT).show();
+                            Snackbar.make(findViewById(R.id.splash_container), "Login Please!", Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+
                             startActivity(new Intent(splashActivity.this, loginActivity.class));
                             splashActivity.this.finish();
                         }
@@ -105,7 +107,7 @@ public class splashActivity extends AppCompatActivity {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     Log.d("error", error.toString());
-                    Toast.makeText(getBaseContext(), "check your connection...", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(findViewById(R.id.splash_container), "check your connection...", Snackbar.LENGTH_SHORT).setAction("Action", null).show();
 
                 }
             });
