@@ -63,15 +63,21 @@ public class home extends AppCompatActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = this.getWindow();
-// clear FLAG_TRANSLUCENT_STATUS flag:
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-// add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-// finally change the color
-            window.setStatusBarColor(Color.parseColor("#003240"));
-        }
+
+        SharedPreferences sharedPref = getSharedPreferences("data", Context.MODE_PRIVATE);
+        sharedPref.getString("lang","en");
+
+
+        String languageToLoad  = sharedPref.getString("lang","en");
+        Locale locale = new Locale(languageToLoad);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config,
+                getBaseContext().getResources().getDisplayMetrics());
+
+
+
 
         setContentView(R.layout.activity_home);
 
@@ -153,16 +159,20 @@ public class home extends AppCompatActivity implements View.OnClickListener {
                 break;
 
             case R.id.language:
-                if (splashActivity.LANG_CURRENT.equals("en")) {
-                    changeLang(home.this, "hi");
+
+                SharedPreferences sharedPrefer = getSharedPreferences("data", Context.MODE_PRIVATE);
+
+
+                if (sharedPrefer.getString("lang","en").equals("en")) {
+                    changeLang("hi");
                 } else {
-                    changeLang(home.this, "en");
+                    changeLang("en");
                 }
                 finish();
-                Intent i_ln = new Intent(home.this, home.class);
-                i_ln.putExtra("Name", name);
-                i_ln.putExtra("ph", ph);
-                startActivity(i_ln);
+                Intent i5 = getBaseContext().getPackageManager()
+                    .getLaunchIntentForPackage( getBaseContext().getPackageName() );
+                i5.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i5);
                 break;
 
             case R.id.logout:
@@ -177,21 +187,15 @@ public class home extends AppCompatActivity implements View.OnClickListener {
         return super.onOptionsItemSelected(item);
     }
 
-    public void changeLang(Context context, String lang) {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("Language", lang);
+    public void changeLang(String lang) {
+
+        SharedPreferences sharedPref = getSharedPreferences("data", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString("lang", lang);
         editor.apply();
     }
 
-    @Override
-    protected void attachBaseContext(Context newBase) {
 
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(newBase);
-        splashActivity.LANG_CURRENT = preferences.getString("Language", "en");
-
-        super.attachBaseContext(MyContextWrapper.wrap(newBase, splashActivity.LANG_CURRENT));
-    }
 
 
     private void setImage() {
