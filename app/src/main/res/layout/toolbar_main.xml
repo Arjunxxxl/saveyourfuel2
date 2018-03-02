@@ -6,6 +6,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:titleTextColor="#ffffff"
     app:subtitleTextColor="#ffffff"
-    android:background="#6A1B9A">
+    android:background="@color/colorPrimaryDark">
 
 </android.support.v7.widget.Toolbar>

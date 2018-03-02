@@ -21,7 +21,7 @@
             android:background="@drawable/recyclebg"
             android:layout_width="match_parent"
             android:id="@+id/card_view"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:layout_height="wrap_content">
 
             <RelativeLayout
@@ -304,7 +304,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/upload_doc_cardview"
             android:layout_below="@+id/card_view"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:foreground="?attr/selectableItemBackgroundBorderless"
             android:clickable="true"
@@ -316,7 +316,7 @@
                 android:orientation="vertical"
                 android:gravity="center_horizontal"
                 android:paddingBottom="10dp"
-                android:background="@drawable/recyclebg"
+
                 android:paddingTop="10dp">
 
                 <TextView
@@ -327,6 +327,7 @@
                     android:layout_marginBottom="10dp"
                     android:textSize="16sp"
                     android:paddingLeft="10dp"
+                    android:textColor="#484848"
                     android:paddingRight="10dp"
                     android:text="@string/upload_disclaimer"
                     android:textAlignment="center" />

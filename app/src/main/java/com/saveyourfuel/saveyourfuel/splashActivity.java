@@ -32,6 +32,7 @@ public class splashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
              requestWindowFeature(Window.FEATURE_NO_TITLE);
              getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,

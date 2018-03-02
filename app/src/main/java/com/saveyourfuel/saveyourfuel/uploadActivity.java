@@ -65,17 +65,17 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
             window.setStatusBarColor(Color.parseColor("#003240"));
         }
         setContentView(R.layout.activity_upload);
+        setView();
 
-        toolbar = findViewById(R.id.toolbarU);
         toolbar.setTitle(R.string.uploadDocuments);
         toolbar.setTitleTextColor(Color.parseColor("#ffffff"));
         toolbar.setBackgroundColor(Color.parseColor("#004E64"));
         setSupportActionBar(toolbar);
 
-        insurance_layout = findViewById(R.id.insurance_hidden);
+
         insurance_layout.setVisibility(View.GONE);
 
-        setView();
+
         Intent i = getIntent();
         name = i.getExtras().getString("Name", "");
         ph = i.getExtras().getString("ph", "");
@@ -99,8 +99,10 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
 
 
     void setView() {
+        insurance_layout = findViewById(R.id.insurance_hidden);
+        toolbar = findViewById(R.id.toolbarU);
         upload_choice = findViewById(R.id.upload_document_selector);
-        insurance_select = findViewById(R.id.upload_document_selector2);
+        insurance_select = findViewById(R.id.upload_document_type);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.document_type, android.R.layout.simple_spinner_item);
@@ -112,98 +114,9 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
 
         upload_choice.setAdapter(adapter);
         upload_choice.setOnItemSelectedListener(this);
+
         insurance_select.setAdapter(adapter2);
-        insurance_select.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                switch (i) {
-                    case 0:
-                        make_Toast(adapterView,i);
-                        break;
-                    case 1:
-                        make_Toast(adapterView,i);
-                        break;
-                    case 2:
-                        make_Toast(adapterView,i);
-                        break;
-                    case 3:
-                        make_Toast(adapterView,i);
-                        break;
-                    case 4:
-                        make_Toast(adapterView,i);
-                        break;
-                    case 5:
-                        make_Toast(adapterView,i);
-                        break;
-                    case 6:
-                        make_Toast(adapterView,i);
-                        break;
-                    case 7:
-                        make_Toast(adapterView,i);
-                        break;
-                    case 8:
-                        make_Toast(adapterView,i);
-                        break;
-                    case 9:
-                        make_Toast(adapterView,i);
-                        break;
-                    case 10:
-                        make_Toast(adapterView,i);
-                        break;
-                    case 11:
-                        make_Toast(adapterView,i);
-                        break;
-                    case 12:
-                        make_Toast(adapterView,i);
-                        break;
-                    case 13:
-                        make_Toast(adapterView,i);
-                        break;
-                    case 14:
-                        make_Toast(adapterView,i);
-                        break;
-                    case 15:
-                        make_Toast(adapterView,i);
-                        break;
-                    case 16:
-                        make_Toast(adapterView,i);
-                        break;
-                    case 17:
-                        make_Toast(adapterView,i);
-                        break;
-                    case 18:
-                        make_Toast(adapterView,i);
-                        break;
-                    case 19:
-                        make_Toast(adapterView,i);
-                        break;
-                    case 20:
-                        make_Toast(adapterView,i);
-                        break;
-                    case 21:
-                        make_Toast(adapterView,i);
-                        break;
-                    case 22:
-                        make_Toast(adapterView,i);
-                        break;
-                    case 23:
-                        make_Toast(adapterView,i);
-                        break;
-                    case 24:
-                        make_Toast(adapterView,i);
-                        break;
-                    case 25:
-                        make_Toast(adapterView,i);
-                        break;
-                }
-            }
-
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
+        insurance_select.setOnItemSelectedListener(this);
 
         showFile = findViewById(R.id.upload_filename);
         showFile.setOnClickListener(this);
@@ -216,10 +129,6 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
 
     }
 
-    void make_Toast(AdapterView<?> adapterView,int pos)
-    {
-        Toast.makeText(getApplicationContext(), (CharSequence) adapterView.getItemAtPosition(pos), Toast.LENGTH_SHORT).show();
-    }
 
     @Override
     public void onBackPressed() {
@@ -251,6 +160,7 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
 
     Uri document;
     String imagename;
+    String documentTypeText="";
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -298,6 +208,8 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onRequestFinished(Request<String> request) {
                 Intent i = new Intent(uploadActivity.this, documentStatus.class);
+                i.putExtra("Name", name);
+                i.putExtra("ph", ph);
                 startActivity(i);
                 uploadActivity.this.finish();
             }
@@ -305,16 +217,21 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
 
         setRequest();
 
+        boolean check_company = (insurance_layout.getVisibility()==View.VISIBLE && !documentTypeText.isEmpty()) || (insurance_layout.getVisibility() ==View.GONE);
 
-        if (!imagename.isEmpty() && !showFile.getText().toString().contains("File")) {
+        if (!imagename.isEmpty() && !showFile.getText().toString().contains("File") && check_company ) {
             queue.add(documentReq);
         } else if (imagename.isEmpty()) {
 
             Snackbar.make(container, "select the document type", Snackbar.LENGTH_SHORT).setAction("Action", null).show();
             progressDialog.dismiss();
-        } else {
+        } else if (showFile.getText().toString().contains("File")) {
 
             Snackbar.make(container, "select the document file", Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+            progressDialog.dismiss();
+        }
+        else{
+            Snackbar.make(container, "select the insurance provider", Snackbar.LENGTH_SHORT).setAction("Action", null).show();
             progressDialog.dismiss();
         }
 
@@ -366,7 +283,9 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
 
                     Log.d("size", imageBytes.length + "");
                     params.put("image", imageString);
-
+                    if(imagename.contentEquals("insurance")){
+                        params.put("insurance_company",documentTypeText);
+                    }
                     params.put("imageName", imagename);
                     SharedPreferences preferences = getSharedPreferences("data", Context.MODE_PRIVATE);
                     params.put("id", preferences.getString("id", ""));
@@ -385,33 +304,52 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        switch (position) {
-            case 0:
-                imagename = "";
-                insurance_layout.setVisibility(View.GONE);
-                break;
-            case 1:
-                imagename = "profile";
-                insurance_layout.setVisibility(View.GONE);
-                break;
-            case 2:
-                imagename = "adhar";
-                insurance_layout.setVisibility(View.GONE);
-                break;
-            case 3:
-                imagename = "insurance";
-                insurance_layout.setVisibility(View.VISIBLE);
-                break;
-            case 4:
-                imagename = "license";
-                insurance_layout.setVisibility(View.GONE);
-                break;
-            case 5:
-                imagename = "rc";
-                insurance_layout.setVisibility(View.GONE);
+        switch (parent.getId()){
+            case R.id.upload_document_type:
+                switch (position){
+                    case 0:
+                        documentTypeText="";
+                        break;
+                    default:
+                        documentTypeText = insurance_select.getSelectedItem().toString();
+                        break;
+                }
                 break;
 
+            case R.id.upload_document_selector:
+                switch (position) {
+
+                    case 0:
+                        imagename = "";
+                        insurance_layout.setVisibility(View.GONE);
+                        break;
+                    case 1:
+                        imagename = "profile";
+                        insurance_layout.setVisibility(View.GONE);
+                        break;
+                    case 2:
+                        imagename = "adhar";
+                        insurance_layout.setVisibility(View.GONE);
+                        break;
+                    case 3:
+                        imagename = "insurance";
+                        insurance_layout.setVisibility(View.VISIBLE);
+                        break;
+                    case 4:
+                        imagename = "license";
+                        insurance_layout.setVisibility(View.GONE);
+                        break;
+                    case 5:
+                        imagename = "rc";
+                        insurance_layout.setVisibility(View.GONE);
+                        break;
+
+                }
+                break;
+
+
         }
+
     }
 
     @Override

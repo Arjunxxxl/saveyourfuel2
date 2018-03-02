@@ -3,7 +3,7 @@
     <string name="name">Save Your Fuel</string>
     <string name="register"><u>New here, <b>Register Now!</b></u></string>
     <string name="about_us">About US</string>
-    <string name="upload_disclaimer">Uploading the already verified documents will initiate verification process again</string>
+    <string name="upload_disclaimer">Uploading already verified documents will initiate the verification process again</string>
     <string name="coming_soon">Coming Soon</string>
     <string name="back">Back</string>
     <string name="add_balance_retrieve_balance">Add balance/retrieve balance</string>
@@ -49,6 +49,10 @@
     <string name="uploadDocuments">Upload Your Documents</string>
     <string name="select_a_document_to_upload">Select a document to upload</string>
     <string name="upload">upload</string>
+    <string name="upload_info_line1">Your documents will be verified by an expert before taken into consideration.</string>
+    <string name="upload_info_line2">Select the correct documents to avoid inconvenience.</string>
+    <string name="upload_info_line3">You can always check the document status.</string>
+    <string name="upload_info_line4">Contact us for any queries.</string>
 
     <string-array name="document_type">
         <item>Select an option...</item>

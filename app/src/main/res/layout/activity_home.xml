@@ -25,19 +25,19 @@
     <!--/>-->
 
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/user_profile_pic"
         android:layout_width="120dp"
         android:layout_height="125dp"
         android:layout_below="@+id/toolbar"
-        android:layout_gravity="center"
         android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+
         android:layout_marginTop="30dp"
         android:contentDescription="Your profile picture"
-        android:src="@drawable/city2"
-        app:civ_border_width="2dp"
-        app:civ_border_color="#b4b4b4"/>
+        android:src="@mipmap/blueprofiledefault"
+        app:civ_border_color="#b4b4b4"
+        app:civ_border_width="2dp" />
 
     <!--<ImageView-->
         <!--android:id="@+id/user_profile_pic"-->
@@ -66,21 +66,19 @@
         android:textSize="20sp"
         android:textStyle="bold" />
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_below="@+id/user_name"
         android:layout_marginTop="10dp"
-        android:id="@+id/user_info_container"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:id="@+id/user_info_container">
 
         <TextView
             android:id="@+id/phone_user"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
+            android:layout_centerInParent="true"
             android:text="Phone"
             android:textAlignment="center"
             android:textColor="#0471A6"
@@ -91,14 +89,16 @@
             android:layout_width="25dp"
             android:layout_height="15dp"
             android:layout_marginLeft="20dp"
-
+            android:layout_toRightOf="@+id/phone_user"
             android:layout_marginStart="20dp"
+            android:layout_centerInParent="true"
+
             android:background="@drawable/india"
             android:contentDescription="India"
             android:paddingLeft="15dp"
             android:paddingStart="15dp" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
 
 
