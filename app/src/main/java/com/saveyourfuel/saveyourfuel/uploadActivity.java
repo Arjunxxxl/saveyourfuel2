@@ -110,7 +110,7 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
             public void onDateSet(DatePicker datePicker, int year, int month, int date) {
                 indurance_date_from.setText(date+"/"+month+"/"+year);
                 String dateS = date+"";
-                String monthS = month+" ";
+                String monthS = month+"";
 
                 if(dateS.length()<2){
                     dateS="0"+dateS;
