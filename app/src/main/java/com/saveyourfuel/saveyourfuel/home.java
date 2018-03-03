@@ -154,6 +154,14 @@ public class home extends AppCompatActivity implements View.OnClickListener {
                 i2.putExtra("ph", ph);
                 startActivity(i2);
                 break;
+
+            case R.id.contactsyf:
+                Intent i3 = new Intent(home.this, contactusActivity.class);
+                i3.putExtra("Name", name);
+                i3.putExtra("ph", ph);
+                startActivity(i3);
+                break;
+
 //            case R.id.upload:
 //                Intent i4 = new Intent(home.this, documentStatus.class);
 //                i4.putExtra("Name", name);
