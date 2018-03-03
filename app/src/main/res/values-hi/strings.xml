@@ -1,13 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">अपना ईंधन बचाओ</string>
     <string name="name">अपना ईंधन बचाओ</string>
     <string name="register"><u>यहाँ नये, <b>अभी पंजीकरण करें!</b></u></string>
     <string name="about_us">हमारे बारे में</string>
-    <string name="upload_disclaimer">पहले से सत्यापित दस्तावेजों को लोड करने से सत्यापन प्रक्रिया शुरू हो जाएगीn</string>
+    <string name="upload_disclaimer">पहले से सत्यापित दस्तावेज अपलोड करने से सत्यापन प्रक्रिया दोबारा शुरू हो जाएगी</string>
     <string name="coming_soon">जल्द आ रहा है</string>
     <string name="back">वापस</string>
-    <string name="add_balance_retrieve_balance">संतुलन जोड़ें / शेष राशि प्राप्त करें</string>
+    <string name="add_balance_retrieve_balance">शेष राशि जोड़ें / संतुलन पुनः प्राप्त करें</string>
     <string name="use_toggle_to_retrieve_or_add_balance">संतुलन प्राप्त करने या जोड़ने के लिए टॉगल का उपयोग करें</string>
     <string name="balance">बैलेंस जोड़ें</string>
     <string name="create_account">खाता बनाएं</string>
@@ -18,16 +17,16 @@
     <string name="dob">जन्म तिथि</string>
     <string name="name_reg">नाम</string>
     <string name="upload_documents">अपलोड डॉक्यूमेंट्स</string>
-    <string name="waiting_for_upload">अपलोड की प्रतीक्षा कर रहा है ...</string>
+    <string name="waiting_for_upload">अपलोड की प्रतीक्षा कर रहा है...</string>
     <string name="verification_status">सत्यापन स्थिति:</string>
-    <string name="not_uploaded">अपलोड नहीं की गई ...</string>
+    <string name="not_uploaded">अपलोड नहीं हुआ...</string>
     <string name="upload_status">अपलोड की स्थिति:</string>
     <string name="rc_card">आरसी कार्ड</string>
     <string name="license_card">लाइसेंस कार्ड</string>
     <string name="insurance_card">बीमा कार्ड</string>
-    <string name="adhar_card">आधार कार्ड</string>
+    <string name="adhar_card">वाहन परमिट</string>
     <string name="Upload_Your_Documents">अपने दस्तावेज़ अपलोड करें</string>
-    <string name="uploaded">अपलोड...</string>
+    <string name="uploaded">अपलोड की गई...</string>
     <string name="verification_in_progress">सत्यापन प्रगति में है...</string>
     <string name="y_profile">आपकी रूपरेखा</string>
     <string name="logout">आपके पास लॉगआउट हो रहा है</string>
@@ -50,44 +49,81 @@
     <string name="uploadDocuments">अपने दस्तावेज़ अपलोड करें</string>
     <string name="select_a_document_to_upload">अपलोड करने के लिए कोई दस्तावेज़ चुनें</string>
     <string name="upload">अपलोड</string>
+    <string name="upload_info_line1">ध्यान में लेने से पहले आपके दस्तावेज़ एक विशेषज्ञ द्वारा सत्यापित किए जाएंगे.</string>
+    <string name="upload_info_line2">असुविधा से बचने के लिए सही दस्तावेज चुनें.</string>
+    <string name="upload_info_line3">आप हमेशा दस्तावेज़ स्थिति की जांच कर सकते हैं.</string>
+    <string name="upload_info_line4">किसी भी प्रश्न के लिए हमसे संपर्क करें.</string>
+    <string name="date_picker">खजूर बीनने वाला</string>
+    <string name="valid_from">से मान्य :</string>
+    <string name="insurance_amount">बीमा राशि :</string>
+    <string name="enter_amt">रकम</string>
+    <string name="phonecopy">- फ़ोन नंबर कॉपी किया गया</string>
+    <string name="support_app_notinstalled">सहायक अनुप्रयोग इंस्टॉल नहीं हैं</string>
+    <string name="error_occured">कुछ त्रुटि हुई</string>
+    <string name="error_data">डेटा पुनर्प्राप्त करने में त्रुटि</string>
+    <string name="no_internet">कोई इंटरनेट कनेक्शन नहीं</string>
+    <string name="erroroccured_login_logout">एक गलती हुई है. कृपया लॉगआउट करें और दोबारा लॉगिन करें.</string>
+    <string name="enter_valid_date">कृपया एक मान्य तिथि प्रविष्ट करें</string>
+    <string name="valid_amt">कृपया एक वैध बीमा राशि दर्ज करें</string>
+    <string name="select_doc_type">दस्तावेज़ प्रकार का चयन करें</string>
+    <string name="upload_succedd">दस्तावेज़ सफलतापूर्वक अपलोड किया गया</string>
+    <string name="upload_error">अपलोड अपलोड करने में त्रुटि</string>
+    <string name="submit_your_query">अपनी क्वेरी सबमिट करें :</string>
+    <string name="send">भेजें</string>
+    <string name="our_official_will_reach_you_within_24hrs">हमारे अधिकारी आपको 24 घंटों के भीतर पहुंचेंगे.</string>
+    <string name="contact_us_at">हमसे संपर्क करें :</string>
+    <string name="contact_us">हमसे संपर्क करें</string>
+    <string name="select_date">तारीख़ चुनें</string>
+    <string name="valid_till">तक मान्य है :</string>
+    <string name="r">₹</string>
+    <string name="logout_menu">लोग आउट</string>
+    <string name="change_language">Change Language</string>
 
     <string-array name="document_type">
-        <item>एक विकल्प चुनें...</item>
+        <item>Sएक विकल्प का चुनाव करें...</item>
         <item>प्रोफ़ाइल फोटो</item>
-        <item>प्रोफ़ाइल फोटो</item>
-        <item>बीमा कार्ड</item>
+        <item>वाहन परमिट</item>
+        <item>Insurance card</item>
         <item>लाइसेंस कार्ड</item>
         <item>आरसी कार्ड</item>
 
     </string-array>
 
+    <string-array name="permit_type">
+        <item>अपना परमिट प्रकार चुनें...</item>
+        <item>राज्य परमिट</item>
+        <item>राष्ट्रीय परमिट</item>
+
+    </string-array>
+
     <string-array name="insurance_type">
-        <item>एक विकल्प चुनें...</item>
-        <item>AEGON Life Insurance</item>
-        <item>Aviva Life Insurance</item>
-        <item>Bajaj Allianz Life Insurance</item>
-        <item>Bharti AXA Life Insurance</item>
-        <item>Birla Sun Life Insurance</item>
-        <item>Canara HSBC OBC Life Insurance</item>
-        <item>DHFL Pramerica Life Insurance</item>
-        <item>Edelweiss Tokio Life Insurance</item>
-        <item>Exide Life Insurance</item>
-        <item>Future Generali India Life Insurance</item>
-        <item>HDFC Standard Life Insurance</item>
-        <item>ICICI Prudential Life Insurance</item>
-        <item>IDBI Federal Life Insurance</item>
-        <item>IndiaFirst Life Insurance Company Ltd - India First</item>
-        <item>Kotak Life Insurance</item>
-        <item>Life Insurance Corporation of India</item>
-        <item>Max Newyork Life Insurance</item>
-        <item>PNB MetLife Insurance</item>
-        <item>Reliance Life Insurance</item>
-        <item>Sahara Life Insurance</item>
-        <item>SBI Life Insurance</item>
-        <item>Shriram Life Insurance</item>
-        <item>Star Union Dai-ichi Life Insurance</item>
-        <item>Tata AIA Life Insurance</item>
+        <item>अपना बीमा प्रकार प्रकार चुनें...</item>
+        <item>एजीओएन लाइफ इंश्योरेंस</item>
+        <item>अवीवा लाइफ इंश्योरेंस</item>
+        <item>बजाज आलियांज लाइफ इंश्योरेंस</item>
+        <item>भारती एक्सा लाइफ इंश्योरेंस</item>
+        <item>बिड़ला सन लाइफ इंश्योरेंस</item>
+        <item>केनरा एचएसबीसी ओबीसी लाइफ इंश्योरेंस</item>
+        <item>डीएचएफएल प्रामेरिका लाइफ इंश्योरेंस</item>
+        <item>एडेलवीस टोकियो लाइफ इंश्योरेंस</item>
+        <item>एक्साइड लाइफ इंश्योरेंस</item>
+        <item>फ्यूचर जनरली इंडिया लाइफ इंश्योरेंस</item>
+        <item>एचडीएफसी स्टैंडर्ड लाइफ इंश्योरेंस</item>
+        <item>आईसीआईसीआई प्रूडेंशियल लाइफ इंश्योरेंस</item>
+        <item>आईडीबीआई फेडरल लाइफ इंश्योरेंस</item>
+        <item>इंडियाफस्ट लाइफ इंश्योरेंस कंपनी लिमिटेड - इंडिया फर्स्ट</item>
+        <item>कोटक लाइफ इंश्योरेंस</item>
+        <item>भारतीय जीवन बीमा निगम</item>
+        <item>मैक्स न्यूयार्क लाइफ इंश्योरेंस</item>
+        <item>पीएनबी मेटलाइफ बीमा</item>
+        <item>रिलायंस लाइफ इंश्योरेंस</item>
+        <item>सहारा लाइफ इंश्योरेंस</item>
+        <item>एसबीआई लाइफ इंश्योरेंस</item>
+        <item>श्रीराम लाइफ इंश्योरेंस</item>
+        <item>स्टार यूनियन दाई-इची लाइफ इंश्योरेंस</item>
+        <item>टाटा एआईए लाइफ इंश्योरेंस</item>
         <item>अन्य</item>
 
     </string-array>
+
 </resources>

@@ -60,7 +60,7 @@ public class buyActivity extends AppCompatActivity implements  View.OnClickListe
             }
         });
 
-        Snackbar.make(findViewById(android.R.id.content),"Comming Soon",Snackbar.LENGTH_LONG).show();
+        Snackbar.make(findViewById(android.R.id.content),R.string.coming_soon,Snackbar.LENGTH_LONG).show();
 
     }
 

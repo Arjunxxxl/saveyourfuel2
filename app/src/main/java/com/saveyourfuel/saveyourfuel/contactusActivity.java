@@ -46,8 +46,8 @@ public class contactusActivity extends AppCompatActivity implements View.OnClick
 
         toolbar = findViewById(R.id.toolbar_contactus);
         setSupportActionBar(toolbar);
-        toolbar.setTitle(R.string.name);
-        toolbar.setSubtitle(R.string.about_us);
+        toolbar.setTitle(R.string.contact_us);
+        toolbar.setSubtitle(R.string.name);
         toolbar.setTitleTextColor(Color.parseColor("#ffffff"));
         toolbar.setBackgroundColor(Color.parseColor("#004E64"));
         toolbar.setSubtitleTextColor(Color.parseColor("#ffffff"));
@@ -99,7 +99,7 @@ public class contactusActivity extends AppCompatActivity implements View.OnClick
                 ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
                 ClipData clip = ClipData.newPlainText("Phone number", ph2);
                 clipboard.setPrimaryClip(clip);
-                String snack_text = ph2 + " - phone number copied";
+                String snack_text = ph2 + getString(R.string.phonecopy);
                 Snackbar.make(findViewById(android.R.id.content),snack_text,Snackbar.LENGTH_SHORT).show();
                 break;
             case R.id.send:
@@ -115,7 +115,7 @@ public class contactusActivity extends AppCompatActivity implements View.OnClick
                 try {
                     startActivity(Intent.createChooser(i, "Send mail..."));
                 } catch (android.content.ActivityNotFoundException ex) {
-                    Snackbar.make(findViewById(android.R.id.content),"Supporting Applications are not installed ",Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(findViewById(android.R.id.content), R.string.support_app_notinstalled,Snackbar.LENGTH_SHORT).show();
                 }
                 break;
         }

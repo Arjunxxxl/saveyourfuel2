@@ -2,11 +2,11 @@
     <string name="app_name">Save Your Fuel</string>
     <string name="name">Save Your Fuel</string>
     <string name="register"><u>New here, <b>Register Now!</b></u></string>
-    <string name="about_us">About US</string>
+    <string name="about_us">About us</string>
     <string name="upload_disclaimer">Uploading already verified documents will initiate the verification process again</string>
     <string name="coming_soon">Coming Soon</string>
     <string name="back">Back</string>
-    <string name="add_balance_retrieve_balance">Add balance/retrieve balance</string>
+    <string name="add_balance_retrieve_balance">Add balance / retrieve balance</string>
     <string name="use_toggle_to_retrieve_or_add_balance">Use toggle to retrieve or add balance</string>
     <string name="balance">Add Balance</string>
     <string name="create_account">create account</string>
@@ -57,6 +57,27 @@
     <string name="valid_from">Valid From :</string>
     <string name="insurance_amount">Insurance Amount :</string>
     <string name="enter_amt">Amount</string>
+    <string name="phonecopy">- phone number copied</string>
+    <string name="support_app_notinstalled">Supporting Applications are not installed</string>
+    <string name="error_occured">Some error occurred</string>
+    <string name="error_data">Error retrieving data</string>
+    <string name="no_internet">No internet connection</string>
+    <string name="erroroccured_login_logout">An Error has occurred. Please Logout and Login again.</string>
+    <string name="enter_valid_date">Please enter a valid date</string>
+    <string name="valid_amt">Please enter a valid insurance amount</string>
+    <string name="select_doc_type">select the document type</string>
+    <string name="upload_succedd">Document uploaded successfully</string>
+    <string name="upload_error">Error in uploading upload</string>
+    <string name="submit_your_query">Submit your query :</string>
+    <string name="send">Send</string>
+    <string name="our_official_will_reach_you_within_24hrs">Our official will reach you within 24hrs.</string>
+    <string name="contact_us_at">Contact us at :</string>
+    <string name="contact_us">Contact us</string>
+    <string name="select_date">Select Date</string>
+    <string name="valid_till">Valid Till :</string>
+    <string name="r">₹</string>
+    <string name="logout_menu">Logout</string>
+    <string name="change_language">भाषा बदलो</string>
 
     <string-array name="document_type">
         <item>Select an option...</item>
@@ -69,14 +90,14 @@
     </string-array>
 
     <string-array name="permit_type">
-        <item>Select an option...</item>
+        <item>Select your permit type...</item>
         <item>State Permit</item>
         <item>National Permit</item>
 
     </string-array>
 
     <string-array name="insurance_type">
-        <item>Select an option...</item>
+        <item>Select your insurance type type...</item>
         <item>AEGON Life Insurance</item>
         <item>Aviva Life Insurance</item>
         <item>Bajaj Allianz Life Insurance</item>

@@ -246,7 +246,7 @@ public class home extends AppCompatActivity implements View.OnClickListener {
                             pic.setImageBitmap(profileImage);
 
                         } else {
-                            Snackbar.make(findViewById(android.R.id.content), "An Error has occurred. Please Logout and Login again. ", Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+                            Snackbar.make(findViewById(android.R.id.content), R.string.erroroccured_login_logout, Snackbar.LENGTH_SHORT).setAction("Action", null).show();
                             startActivity(new Intent(home.this, loginActivity.class));
                             home.this.finish();
                         }
@@ -260,7 +260,7 @@ public class home extends AppCompatActivity implements View.OnClickListener {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     Log.d("error", error.toString());
-                    Snackbar.make(findViewById(android.R.id.content), "check your connection...", Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+                    Snackbar.make(findViewById(android.R.id.content), R.string.check_your_connection, Snackbar.LENGTH_SHORT).setAction("Action", null).show();
 
 
                 }

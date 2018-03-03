@@ -50,7 +50,7 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
     TextView showFile, upload_document_button;
 
     private static final int Pick_image1 = 100;
-    String insurance_till,insurance_from,permit_till,permit_from, permit_type;
+    String insurance_till,insurance_from,permit_till,permit_from;
     String name, ph;
     RelativeLayout container;
     Spinner upload_choice, insurance_select,select_permit_type;
@@ -261,6 +261,28 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
                 startActivityForResult(i, Pick_image1);
                 break;
             case R.id.upload_document_button:
+                if(date_permit.getVisibility()==View.VISIBLE){
+                    String date1 = permit_date_from.getText().toString();
+                    String date2 = permit_date_till.getText().toString();
+                    if(date1.equals("")||date1.equals(" ")||date1.equals("Select Date")||
+                            date2.equals("")||date2.equals(" ")||date2.equals("Select Date")){
+                        Snackbar.make(findViewById(android.R.id.content), R.string.enter_valid_date,Snackbar.LENGTH_SHORT).show();
+                        return;
+                    }
+                }else if(date_insurance.getVisibility()==View.VISIBLE){
+                    String date11 = indurance_date_from.getText().toString();
+                    String date22 = indurance_date_from.getText().toString();
+                    String amt = insurance_amount.getText().toString();
+                    if(date11.equals("")||date11.equals(" ")||date11.equals("Select Date")||
+                            date22.equals("")||date22.equals(" ")||date22.equals("Select Date")){
+                        Snackbar.make(findViewById(android.R.id.content),R.string.enter_valid_date,Snackbar.LENGTH_SHORT).show();
+                        return;
+                    }
+                    else if(amt.equals("")||amt.equals(" ")){
+                        Snackbar.make(findViewById(android.R.id.content), R.string.valid_amt,Snackbar.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
                 uploadFilesToServer();
                 break;
 //
@@ -382,15 +404,15 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
             queue.add(documentReq);
         } else if (imagename.isEmpty()) {
 
-            Snackbar.make(container, "select the document type", Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+            Snackbar.make(container, R.string.select_doc_type, Snackbar.LENGTH_SHORT).setAction("Action", null).show();
             progressDialog.dismiss();
         } else if (showFile.getText().toString().contains("File")) {
 
-            Snackbar.make(container, "select the document file", Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+            Snackbar.make(container, R.string.select_doc_type, Snackbar.LENGTH_SHORT).setAction("Action", null).show();
             progressDialog.dismiss();
         }
         else{
-            Snackbar.make(container, "select the insurance provider", Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+            Snackbar.make(container, R.string.select_doc_type, Snackbar.LENGTH_SHORT).setAction("Action", null).show();
             progressDialog.dismiss();
         }
 
@@ -408,12 +430,12 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
                     public void onResponse(String response) {
                         try {
                             progressDialog.dismiss();
-                            Snackbar.make(findViewById(android.R.id.content),"Document uploaded successfully",Snackbar.LENGTH_LONG).show();
+                            Snackbar.make(findViewById(android.R.id.content), R.string.upload_succedd,Snackbar.LENGTH_LONG).show();
                             //toast.makeText(getBaseContext(), "Document uploaded successfully", Toast.LENGTH_SHORT).show();
                         } catch (Exception e) {
                             progressDialog.dismiss();
                            // toast.makeText(getBaseContext(), "can't upload", Toast.LENGTH_SHORT).show();
-                            Snackbar.make(findViewById(android.R.id.content),"Error in uploading upload",Snackbar.LENGTH_LONG).show();
+                            Snackbar.make(findViewById(android.R.id.content), R.string.upload_error,Snackbar.LENGTH_LONG).show();
 
                         }
 
@@ -422,7 +444,7 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Snackbar.make(container, "check your connection...", Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+                Snackbar.make(container, R.string.check_your_connection, Snackbar.LENGTH_SHORT).setAction("Action", null).show();
 
                 progressDialog.dismiss();
 

@@ -46,7 +46,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Submit your query :"
+                        android:text="@string/submit_your_query"
                         android:textColor="#3C362A"
                         android:textSize="19sp"
                         android:textStyle="bold" />
@@ -70,15 +70,15 @@
                         android:layout_marginStart="60dp"
                         android:layout_marginRight="60dp"
                         android:layout_marginEnd="60dp"
-                        android:text="Send"/>
+                        android:text="@string/send"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="10dp"
-                        android:textColor="#3C362A"
-                        android:text="Our official will reach you within 24hrs."/>
+                        android:text="@string/our_official_will_reach_you_within_24hrs"
+                        android:textColor="#3C362A" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -108,7 +108,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Contact us at :"
+                        android:text="@string/contact_us_at"
                         android:textColor="#3C362A"
                         android:textSize="19sp"
                         android:textStyle="bold" />

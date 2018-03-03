@@ -67,7 +67,7 @@ public class balanceActivity extends AppCompatActivity implements View.OnClickLi
         back = findViewById(R.id.button_back);
         back.setOnClickListener(this);
 
-        Snackbar.make(findViewById(android.R.id.content),"Comming Soon",Snackbar.LENGTH_LONG).show();
+        Snackbar.make(findViewById(android.R.id.content),R.string.coming_soon,Snackbar.LENGTH_LONG).show();
     }
 
     @Override

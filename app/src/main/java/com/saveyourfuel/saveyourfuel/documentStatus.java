@@ -207,11 +207,11 @@ public class documentStatus extends AppCompatActivity implements View.OnClickLis
                                 setTexts();
                             }
                             else{
-                                Snackbar.make( mainContainer,"Some error occurred" , Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+                                Snackbar.make( mainContainer, R.string.error_occured , Snackbar.LENGTH_SHORT).setAction("Action", null).show();
                             }
 
                         } catch (Exception e) {
-                            Snackbar.make( mainContainer,"Error retrieving data" , Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+                            Snackbar.make( mainContainer, R.string.error_data , Snackbar.LENGTH_SHORT).setAction("Action", null).show();
 
                         }
 
@@ -220,7 +220,7 @@ public class documentStatus extends AppCompatActivity implements View.OnClickLis
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Snackbar.make( mainContainer,"No internet connection" , Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+                Snackbar.make( mainContainer, R.string.no_internet , Snackbar.LENGTH_SHORT).setAction("Action", null).show();
             }
 
         }) {
