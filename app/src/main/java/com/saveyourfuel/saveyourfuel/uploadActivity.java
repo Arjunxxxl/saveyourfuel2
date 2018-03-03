@@ -109,7 +109,17 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int date) {
                 indurance_date_from.setText(date+"/"+month+"/"+year);
-                insurance_from = year+ "/"+month+ "/"+date;
+                String dateS = date+"";
+                String monthS = month+" ";
+
+                if(dateS.length()<2){
+                    dateS="0"+dateS;
+                }
+                if(monthS.length()<2){
+                    monthS="0"+monthS;
+                }
+
+                insurance_from = year+ "/"+monthS+ "/"+dateS;
             }
         };
 
@@ -117,7 +127,18 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int date) {
                 insurance_date_till.setText(date+"/"+month+"/"+year);
-                insurance_till = year+ "/"+month+ "/"+date;
+                String dateS = date+"";
+                String monthS = month+" ";
+
+                if(dateS.length()<2){
+                    dateS="0"+dateS;
+                }
+                if(monthS.length()<2){
+                    monthS="0"+monthS;
+                }
+
+                insurance_till = year+ "/"+monthS+ "/"+dateS;
+
             }
         };
 
@@ -125,7 +146,18 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int date) {
                 permit_date_from.setText(date+"/"+month+"/"+year);
-                permit_from = year+ "/"+month+ "/"+date;
+                String dateS = date+"";
+                String monthS = month+" ";
+
+                if(dateS.length()<2){
+                    dateS="0"+dateS;
+                }
+                if(monthS.length()<2){
+                    monthS="0"+monthS;
+                }
+
+                permit_from = year+ "/"+monthS+ "/"+dateS;
+
             }
         };
 
@@ -133,7 +165,19 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int date) {
                 permit_date_till.setText(date+"/"+month+"/"+year);
-                permit_till = year+ "/"+month+ "/"+date;
+
+                String dateS = date+"";
+                String monthS = month+" ";
+
+                if(dateS.length()<2){
+                    dateS="0"+dateS;
+                }
+                if(monthS.length()<2){
+                    monthS="0"+monthS;
+                }
+
+                permit_till = year+ "/"+monthS+ "/"+dateS;
+
             }
         };
 
