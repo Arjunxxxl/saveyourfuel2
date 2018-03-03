@@ -200,7 +200,7 @@ public class documentStatus extends AppCompatActivity implements View.OnClickLis
                             Log.d("response",res.toString());
                             if(res.getString("code").contentEquals("800")){
                                 status[0] = Integer.parseInt(res.getString("profile"));
-                                status[1] = Integer.parseInt(res.getString("adhar"));
+                                status[1] = Integer.parseInt(res.getString("vehicle"));
                                 status[2] = Integer.parseInt(res.getString("insurance"));
                                 status[3] = Integer.parseInt(res.getString("license"));
                                 status[4] = Integer.parseInt(res.getString("rc"));

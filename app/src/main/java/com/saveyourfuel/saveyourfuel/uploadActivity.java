@@ -23,8 +23,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -50,13 +50,13 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
     TextView showFile, upload_document_button;
 
     private static final int Pick_image1 = 100;
-
+    String insurance_till,insurance_from,permit_till,permit_from, permit_type;
     String name, ph;
     RelativeLayout container;
     Spinner upload_choice, insurance_select,select_permit_type;
-
+    EditText insurance_amount;
     RelativeLayout insurance_layout;
-    LinearLayout date_insurance,select_indurance_till,select_insurance_from,date_permit,permit_from,permit_till;
+    LinearLayout date_insurance,select_indurance_till,select_insurance_from,date_permit, permit_from_layout, permit_till_layout;
     TextView indurance_date_from,insurance_date_till,permit_date_till,permit_date_from;
     private DatePickerDialog.OnDateSetListener  insurance_datepicker_from,insurance_datepicker_till,permit_datepicker_till,permit_datepicker_from;
 
@@ -109,6 +109,7 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int date) {
                 indurance_date_from.setText(date+"/"+month+"/"+year);
+                insurance_from = year+ "/"+month+ "/"+date;
             }
         };
 
@@ -116,6 +117,7 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int date) {
                 insurance_date_till.setText(date+"/"+month+"/"+year);
+                insurance_till = year+ "/"+month+ "/"+date;
             }
         };
 
@@ -123,6 +125,7 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int date) {
                 permit_date_from.setText(date+"/"+month+"/"+year);
+                permit_from = year+ "/"+month+ "/"+date;
             }
         };
 
@@ -130,6 +133,7 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int date) {
                 permit_date_till.setText(date+"/"+month+"/"+year);
+                permit_till = year+ "/"+month+ "/"+date;
             }
         };
 
@@ -144,7 +148,7 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
         toolbar = findViewById(R.id.toolbarU);
         upload_choice = findViewById(R.id.upload_document_selector);
         insurance_select = findViewById(R.id.upload_document_type);
-        select_permit_type = findViewById(R.id.select_perrmit_type);
+        select_permit_type = findViewById(R.id.select_permit_type);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.document_type, android.R.layout.simple_spinner_item);
@@ -163,6 +167,8 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
 
         insurance_select.setAdapter(adapter2);
         insurance_select.setOnItemSelectedListener(this);
+
+        insurance_amount = findViewById(R.id.amount_insurance_etext);
 
         select_permit_type.setAdapter(adapter3);
         select_permit_type.setOnItemSelectedListener(this);
@@ -186,10 +192,10 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
         select_indurance_till.setOnClickListener(this);
         select_insurance_from.setOnClickListener(this);
 
-        permit_from=findViewById(R.id.permit_from);
-        permit_till = findViewById(R.id.permit_till);
-        permit_from.setOnClickListener(this);
-        permit_till.setOnClickListener(this);
+        permit_from_layout =findViewById(R.id.permit_from);
+        permit_till_layout = findViewById(R.id.permit_till);
+        permit_from_layout.setOnClickListener(this);
+        permit_till_layout.setOnClickListener(this);
     }
 
 
@@ -394,8 +400,19 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
 
                     Log.d("size", imageBytes.length + "");
                     params.put("image", imageString);
+
                     if(imagename.contentEquals("insurance")){
+
                         params.put("insurance_company",documentTypeText);
+                        params.put("valid_from",insurance_from);
+                        params.put("valid_till",insurance_till);
+                        params.put("insurance_amount",insurance_amount.getText().toString());
+                    }
+                    else if(imagename.contentEquals("vehicle")){
+
+                        params.put("valid_from",permit_from);
+                        params.put("valid_till",permit_till);
+                        params.put("permit_type",documentTypeText);
                     }
                     params.put("imageName", imagename);
                     SharedPreferences preferences = getSharedPreferences("data", Context.MODE_PRIVATE);
@@ -411,7 +428,6 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
             }
         };
     }
-
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -443,7 +459,7 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
                         date_permit.setVisibility(View.GONE);
                         break;
                     case 2:
-                        imagename = "adhar";
+                        imagename = "vehicle";
                         insurance_layout.setVisibility(View.GONE);
                         date_insurance.setVisibility(View.GONE);
                         date_permit.setVisibility(View.VISIBLE);
@@ -469,6 +485,17 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
 
                 }
                 break;
+            case R.id.select_permit_type:
+                switch (position){
+                    case 0:
+                        documentTypeText="";
+                        break;
+                    default:
+                        documentTypeText = select_permit_type.getSelectedItem().toString();
+                        break;
+                }
+                break;
+
 
 
         }

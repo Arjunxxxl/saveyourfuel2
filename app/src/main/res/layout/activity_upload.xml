@@ -221,6 +221,7 @@
 
                                 <EditText
                                     android:layout_width="match_parent"
+                                    android:id="@+id/amount_insurance_etext"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="3"
                                     android:hint="@string/enter_amt"
@@ -327,7 +328,7 @@
                                     android:orientation="horizontal">
 
                                     <Spinner
-                                        android:id="@+id/select_perrmit_type"
+                                        android:id="@+id/select_permit_type"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_centerVertical="true"
