@@ -20,6 +20,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 import android.widget.Toolbar;
@@ -43,7 +44,7 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
     TextInputLayout nameL, dobL, addressL, phoneL, emailL, passwordL, repassL;
     android.support.v7.widget.Toolbar toolbar;
     private DatePickerDialog.OnDateSetListener  mDateSetListener;
-    LinearLayout datepick;
+    ImageView datepick;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
