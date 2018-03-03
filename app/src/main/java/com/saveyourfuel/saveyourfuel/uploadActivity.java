@@ -128,7 +128,7 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
             public void onDateSet(DatePicker datePicker, int year, int month, int date) {
                 insurance_date_till.setText(date+"/"+month+"/"+year);
                 String dateS = date+"";
-                String monthS = month+" ";
+                String monthS = month+"";
 
                 if(dateS.length()<2){
                     dateS="0"+dateS;
@@ -147,7 +147,7 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
             public void onDateSet(DatePicker datePicker, int year, int month, int date) {
                 permit_date_from.setText(date+"/"+month+"/"+year);
                 String dateS = date+"";
-                String monthS = month+" ";
+                String monthS = month+"";
 
                 if(dateS.length()<2){
                     dateS="0"+dateS;
@@ -167,7 +167,7 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
                 permit_date_till.setText(date+"/"+month+"/"+year);
 
                 String dateS = date+"";
-                String monthS = month+" ";
+                String monthS = month+"";
 
                 if(dateS.length()<2){
                     dateS="0"+dateS;
