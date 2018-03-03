@@ -293,10 +293,19 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
 
             @Override
             public void afterTextChanged(Editable s) {
+                String ePattern = "^(?=.*?[a-z])(?=.*?[0-9])(?=\\S+$).{8,}$";
+                java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
+                java.util.regex.Matcher m = p.matcher(s.toString());
                 if (s.toString().isEmpty()) {
                     passwordL.setError("password cannot be empty");
                     checkPassword = false;
-                } else {
+                }
+                else if(!m.matches()){
+                    passwordL.setError("Minimum eight characters, at least one letter and one number:");
+                    checkPassword = false;
+
+                }
+                else{
                     passwordL.setErrorEnabled(false);
                     checkPassword = true;
                 }
@@ -321,8 +330,7 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (s.toString().isEmpty())
-                    passwordL.setError("password cannot be empty");
+
 
                 if (!s.toString().contentEquals(password.getText().toString()))
                     repassL.setError("password doesn't match");
