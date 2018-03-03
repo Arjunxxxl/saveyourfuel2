@@ -10,6 +10,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -96,7 +97,53 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
             play_music.setLooping(true);
         }
 
+        if(play_music.isPlaying()){
+            sound.setBackgroundResource(R.drawable.ic_action_soundplay);
+        }else{
+            sound.setBackgroundResource(R.drawable.ic_action_sound);
+        }
+
     }
+
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//        if(play_music!=null) {
+//            play_music.stop();
+//            play_music.release();
+//            play_music=null;
+//        }
+//    }
+//
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        if (play_music == null) {
+//            play_music = MediaPlayer.create(getApplicationContext(), R.raw.uprising);
+//            play_music.start();
+//            play_music.setLooping(true);
+//        }
+//    }
+
+//    @Override
+//    protected void onStop() {
+//        super.onStop();
+//        if(play_music!=null) {
+//            play_music.stop();
+//            play_music.release();
+//            play_music=null;
+//        }
+//    }
+//
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        if (play_music == null) {
+//            play_music = MediaPlayer.create(getApplicationContext(), R.raw.uprising);
+//            play_music.start();
+//            play_music.setLooping(true);
+//        }
+//    }
 
     @Override
     public void onClick(View view) {
@@ -141,7 +188,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
         play_music.stop();
         play_music.release();
         play_music = null;
-        this.finish();
+        loginActivity.this.finish();
     }
 
     private void checkLogin() {
@@ -181,7 +228,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
 
                         loginActivity.this.finish();
                     } else {
-                        Toast.makeText(getBaseContext(), R.string.WRONG_CREDENTIALS, Toast.LENGTH_SHORT).show();
+                        Snackbar.make(findViewById(android.R.id.content), R.string.WRONG_CREDENTIALS, Snackbar.LENGTH_SHORT).setAction("Action", null).show();
                         login.setEnabled(true);
                     }
 
@@ -195,7 +242,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d("error", error.toString());
-                Toast.makeText(getBaseContext(), R.string.check_your_connection, Toast.LENGTH_SHORT).show();
+                Snackbar.make(findViewById(android.R.id.content), R.string.check_your_connection, Snackbar.LENGTH_SHORT).setAction("Action", null).show();
                 login.setEnabled(true);
             }
         });

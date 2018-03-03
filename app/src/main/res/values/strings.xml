@@ -24,7 +24,7 @@
     <string name="rc_card">RC card</string>
     <string name="license_card">License card</string>
     <string name="insurance_card">Insurance card</string>
-    <string name="adhar_card">Adhar card</string>
+    <string name="adhar_card">Vehicle Permit</string>
     <string name="Upload_Your_Documents">Upload Your Documents</string>
     <string name="uploaded">uploaded...</string>
     <string name="verification_in_progress">verification in progress...</string>
@@ -53,14 +53,25 @@
     <string name="upload_info_line2">Select the correct documents to avoid inconvenience.</string>
     <string name="upload_info_line3">You can always check the document status.</string>
     <string name="upload_info_line4">Contact us for any queries.</string>
+    <string name="date_picker">Date Picker</string>
+    <string name="valid_from">Valid From :</string>
+    <string name="insurance_amount">Insurance Amount :</string>
+    <string name="enter_amt">Amount</string>
 
     <string-array name="document_type">
         <item>Select an option...</item>
         <item>Profile picture</item>
-        <item>Adhar card</item>
+        <item>Vehicle Permit</item>
         <item>Insurance card</item>
         <item>License card</item>
         <item>RC card</item>
+
+    </string-array>
+
+    <string-array name="permit_type">
+        <item>Select an option...</item>
+        <item>State Permit</item>
+        <item>National Permit</item>
 
     </string-array>
 

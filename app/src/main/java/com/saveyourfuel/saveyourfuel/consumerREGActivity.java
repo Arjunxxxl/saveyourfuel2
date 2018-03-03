@@ -1,9 +1,12 @@
 package com.saveyourfuel.saveyourfuel;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.provider.ContactsContract;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +19,8 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
@@ -26,16 +31,19 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-public class consumerREGActivity extends AppCompatActivity implements View.OnClickListener{
+public class consumerREGActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button reg;
-    TextInputEditText name, dob,address, phone,email,password,repass;
-    TextInputLayout nameL,dobL,addressL,phoneL,emailL,passwordL,repassL;
+    TextInputEditText name, dob, address, phone, email, password, repass;
+    TextInputLayout nameL, dobL, addressL, phoneL, emailL, passwordL, repassL;
     android.support.v7.widget.Toolbar toolbar;
+    private DatePickerDialog.OnDateSetListener  mDateSetListener;
+    LinearLayout datepick;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +64,6 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
 //        toolbar.setTitle("");
 
 
-
         setView();
         setListeners();
         initError();
@@ -64,7 +71,7 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
 
     }
 
-    void initError(){
+    void initError() {
         nameL.setError("This field cannot be empty");
         dobL.setError("This field cannot be empty");
         addressL.setError("This field cannot be empty");
@@ -76,9 +83,13 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
 
     }
 
-    void setView(){
+    void setView() {
         name = findViewById(R.id.nameReg);
         dob = findViewById(R.id.dobReg);
+
+        datepick = findViewById(R.id.datepicker);
+        datepick.setOnClickListener(this);
+
         address = findViewById(R.id.addressReg);
         phone = findViewById(R.id.phoneReg);
         email = findViewById(R.id.emailReg);
@@ -93,11 +104,20 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
         emailL = findViewById(R.id.emailRegL);
         passwordL = findViewById(R.id.passRegL);
         repassL = findViewById(R.id.repassRegL);
+
+        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int date) {
+                      dob.setText(date+"/"+month+"/"+year);
+            }
+        };
     }
 
-    boolean checkName=false,checkAddress=false, checkDob=false, checkEmail=false, checkPassword=false, checkPhone=false;
 
-    void setListeners(){
+
+    boolean checkName = false, checkAddress = false, checkDob = false, checkEmail = false, checkPassword = false, checkPhone = false;
+
+    void setListeners() {
         reg.setOnClickListener(this);
         name.addTextChangedListener(new TextWatcher() {
             @Override
@@ -113,11 +133,10 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
 
             @Override
             public void afterTextChanged(Editable s) {
-                if(s.toString().isEmpty()){
+                if (s.toString().isEmpty()) {
                     nameL.setError("this field cannot be empty");
                     checkName = false;
-                }
-                else{
+                } else {
                     nameL.setErrorEnabled(false);
                     checkName = true;
                 }
@@ -138,33 +157,30 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
 
             @Override
             public void afterTextChanged(Editable s) {
-                if(s.toString().isEmpty()){
+                if (s.toString().isEmpty()) {
                     dobL.setError("this field cannot be empty");
 
-                    checkDob= false;
-                }
-
-                else{
+                    checkDob = false;
+                } else {
                     String str[] = s.toString().split(Pattern.quote("/"));
-                    int tr =1;
-                    try{
-                        if(!(Integer.parseInt(str[0])<=31))
-                            tr=0;
-                        else if(!(Integer.parseInt(str[1])<=12))
-                            tr=0;
-                        else if(!(str[2].length()==4))
-                            tr=0;
-                        if(tr==0){
+                    int tr = 1;
+                    try {
+                        if (!(Integer.parseInt(str[0]) <= 31))
+                            tr = 0;
+                        else if (!(Integer.parseInt(str[1]) <= 12))
+                            tr = 0;
+                        else if (!(str[2].length() == 4))
+                            tr = 0;
+                        if (tr == 0) {
                             dobL.setError("invalid format");
-                            checkDob=false;
-                        }
-                        else{
+                            checkDob = false;
+                        } else {
                             dobL.setErrorEnabled(false);
-                            checkDob=true;
+                            checkDob = true;
                         }
 
 
-                    }catch (Exception e){
+                    } catch (Exception e) {
                         dobL.setError("invalid format");
                         checkDob = false;
                     }
@@ -188,12 +204,10 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
 
             @Override
             public void afterTextChanged(Editable s) {
-                if(s.toString().isEmpty()){
+                if (s.toString().isEmpty()) {
                     addressL.setError("this field cannot be empty");
                     checkAddress = false;
-                }
-
-                else {
+                } else {
                     addressL.setErrorEnabled(false);
                     checkAddress = true;
                 }
@@ -215,20 +229,18 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
             public void afterTextChanged(Editable s) {
 
 
-                if(s.toString().length()!=10){
+                if (s.toString().length() != 10) {
                     phoneL.setError("invalid format");
-                    checkPhone=false;
-                }
-                else{
-                    try{
+                    checkPhone = false;
+                } else {
+                    try {
                         Long t = Long.parseLong(s.toString());
                         phoneL.setErrorEnabled(false);
                         checkPhone = true;
 
-                    }
-                    catch (Exception e){
+                    } catch (Exception e) {
                         phoneL.setError("invalid format");
-                        checkPhone=false;
+                        checkPhone = false;
                     }
 
                 }
@@ -248,20 +260,19 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
 
             @Override
             public void afterTextChanged(Editable s) {
-                if(s.toString().isEmpty()){
+                if (s.toString().isEmpty()) {
 
                     emailL.setError("this field cannot be empty");
-                    checkEmail=false;
+                    checkEmail = false;
                 }
 
                 String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
                 java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
                 java.util.regex.Matcher m = p.matcher(s.toString());
-                if(!m.matches()){
+                if (!m.matches()) {
                     emailL.setError("invalid format");
-                    checkEmail=false;
-                }
-                else{
+                    checkEmail = false;
+                } else {
                     emailL.setErrorEnabled(false);
                     checkEmail = true;
                 }
@@ -281,18 +292,16 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
 
             @Override
             public void afterTextChanged(Editable s) {
-                if(s.toString().isEmpty()){
+                if (s.toString().isEmpty()) {
                     passwordL.setError("password cannot be empty");
-                    checkPassword=false;
-                }
-
-                else{
+                    checkPassword = false;
+                } else {
                     passwordL.setErrorEnabled(false);
                     checkPassword = true;
                 }
 
 
-                if(!s.toString().contentEquals(repass.getText().toString()))
+                if (!s.toString().contentEquals(repass.getText().toString()))
                     repassL.setError("password doesn't match");
                 else
                     repassL.setErrorEnabled(false);
@@ -311,10 +320,10 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
 
             @Override
             public void afterTextChanged(Editable s) {
-                if(s.toString().isEmpty())
+                if (s.toString().isEmpty())
                     passwordL.setError("password cannot be empty");
 
-                if(!s.toString().contentEquals(password.getText().toString()))
+                if (!s.toString().contentEquals(password.getText().toString()))
                     repassL.setError("password doesn't match");
                 else
                     repassL.setErrorEnabled(false);
@@ -323,12 +332,24 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
 
     }
 
+
+
     @Override
     public void onClick(View view) {
-        switch (view.getId())
-        {
+        switch (view.getId()) {
             case R.id.register:
                 postData();
+                break;
+            case R.id.datepicker:
+                Calendar cal = Calendar.getInstance();
+                int Year = cal.get(Calendar.YEAR);
+                int Month = cal.get(Calendar.MONTH);
+                int Date = cal.get(Calendar.DATE);
+                DatePickerDialog dialog = new DatePickerDialog(
+                        consumerREGActivity.this,android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                    mDateSetListener,Year,Month,Date);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
                 break;
         }
     }
@@ -336,14 +357,14 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent i = new Intent(consumerREGActivity.this,selectTyleActivity.class);
+        Intent i = new Intent(consumerREGActivity.this, selectTyleActivity.class);
         startActivity(i);
         this.finish();
     }
 
-    void postData(){
+    void postData() {
 
-        final String named, dobd, addressd, phoned,emaild,passwordd,repassd;
+        final String named, dobd, addressd, phoned, emaild, passwordd, repassd;
         named = name.getText().toString();
         dobd = dob.getText().toString();
         addressd = address.getText().toString();
@@ -354,43 +375,41 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
 
         final String dobSubstring[] = dobd.split(Pattern.quote("/"));
 
-        if(repassd.contentEquals(passwordd) && checkAddress&& checkEmail && checkName && checkDob && checkPassword && checkPhone ){
+        if (repassd.contentEquals(passwordd) && checkAddress && checkEmail && checkName && checkDob && checkPassword && checkPhone) {
 
-            RequestQueue queue= Volley.newRequestQueue(this);
+            RequestQueue queue = Volley.newRequestQueue(this);
 
             String url = "http://139.59.29.124:3000/register";
             StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-                            try{
+                            try {
                                 int code = Integer.parseInt(response);
-                                if(code==1062){
-                                    Toast.makeText(getBaseContext(),"email or phone already exist",Toast.LENGTH_SHORT).show();
+                                if (code == 1062) {
+                                    Snackbar.make(findViewById(android.R.id.content), "email or phone already exist", Snackbar.LENGTH_SHORT).setAction("Action", null).show();
                                     email.setText("");
                                     phone.setText("");
                                 }
-                                if(code==900){
-                                    Toast.makeText(getBaseContext(),"SUCCESSFULLY REGISTERED",Toast.LENGTH_SHORT).show();
-                                    Intent i = new Intent(consumerREGActivity.this,loginActivity.class);
+                                if (code == 900) {
+                                    Toast.makeText(getBaseContext(), "SUCCESSFULLY REGISTERED", Toast.LENGTH_SHORT).show();
+                                    Intent i = new Intent(consumerREGActivity.this, loginActivity.class);
+                                    consumerREGActivity.this.startActivity(i);
+                                    consumerREGActivity.this.finish();
+                                } else {
+                                    Snackbar.make(findViewById(android.R.id.content), "An error occurred. Please try again ", Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+                                    Intent i = new Intent(consumerREGActivity.this, loginActivity.class);
                                     consumerREGActivity.this.startActivity(i);
                                     consumerREGActivity.this.finish();
                                 }
-                                else{
-                                    Toast.makeText(getBaseContext(),"Unknown error",Toast.LENGTH_SHORT).show();
-                                    Intent i = new Intent(consumerREGActivity.this,loginActivity.class);
-                                    consumerREGActivity.this.startActivity(i);
-                                    consumerREGActivity.this.finish();
-                                }
-                            }
-                            catch (Exception e){
-                                Toast.makeText(getBaseContext(),"Unknown error",Toast.LENGTH_SHORT).show();
+                            } catch (Exception e) {
+                                Snackbar.make(findViewById(android.R.id.content), "An error occurred. Please try again ", Snackbar.LENGTH_SHORT).setAction("Action", null).show();
                             }
                         }
                     }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(getBaseContext(),"Check your connection..",Toast.LENGTH_SHORT).show();
+                    Snackbar.make(findViewById(android.R.id.content), R.string.check_your_connection, Snackbar.LENGTH_SHORT).setAction("Action", null).show();
                 }
 
             }) {
@@ -400,7 +419,7 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
                     Map<String, String> params = new HashMap<>();
                     params.put("name", named);
                     params.put("email", emaild);
-                    params.put("dob", dobSubstring[2]+dobSubstring[1]+dobSubstring[0]);
+                    params.put("dob", dobSubstring[2] + dobSubstring[1] + dobSubstring[0]);
                     params.put("address", addressd);
                     params.put("phone", phoned);
                     params.put("password", passwordd);
@@ -409,9 +428,8 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
                 }
             };
             queue.add(stringRequest);
-        }
-        else{
-            Toast.makeText(getBaseContext(),"fill valid entries",Toast.LENGTH_SHORT).show();
+        } else {
+            Snackbar.make(findViewById(android.R.id.content), "Fill all the fields", Snackbar.LENGTH_SHORT).setAction("Action", null).show();
         }
     }
 

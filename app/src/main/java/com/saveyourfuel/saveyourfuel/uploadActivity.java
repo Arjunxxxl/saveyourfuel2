@@ -1,5 +1,6 @@
 package com.saveyourfuel.saveyourfuel;
 
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -7,6 +8,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -22,6 +24,8 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -36,6 +40,7 @@ import com.android.volley.toolbox.Volley;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -48,9 +53,12 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
 
     String name, ph;
     RelativeLayout container;
-    Spinner upload_choice, insurance_select;
+    Spinner upload_choice, insurance_select,select_permit_type;
 
     RelativeLayout insurance_layout;
+    LinearLayout date_insurance,select_indurance_till,select_insurance_from,date_permit,permit_from,permit_till;
+    TextView indurance_date_from,insurance_date_till,permit_date_till,permit_date_from;
+    private DatePickerDialog.OnDateSetListener  insurance_datepicker_from,insurance_datepicker_till,permit_datepicker_till,permit_datepicker_from;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +82,9 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
 
 
         insurance_layout.setVisibility(View.GONE);
+        insurance_layout.setVisibility(View.GONE);
+        date_insurance.setVisibility(View.GONE);
+        date_permit.setVisibility(View.GONE);
 
 
         Intent i = getIntent();
@@ -94,15 +105,46 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
             }
         });
 
+        insurance_datepicker_from = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int date) {
+                indurance_date_from.setText(date+"/"+month+"/"+year);
+            }
+        };
+
+        insurance_datepicker_till = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int date) {
+                insurance_date_till.setText(date+"/"+month+"/"+year);
+            }
+        };
+
+        permit_datepicker_from = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int date) {
+                permit_date_from.setText(date+"/"+month+"/"+year);
+            }
+        };
+
+        permit_datepicker_till = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int date) {
+                permit_date_till.setText(date+"/"+month+"/"+year);
+            }
+        };
 
     }
 
 
     void setView() {
         insurance_layout = findViewById(R.id.insurance_hidden);
+        date_insurance = findViewById(R.id.date_insurance);
+        date_permit = findViewById(R.id.date_permit);
+
         toolbar = findViewById(R.id.toolbarU);
         upload_choice = findViewById(R.id.upload_document_selector);
         insurance_select = findViewById(R.id.upload_document_type);
+        select_permit_type = findViewById(R.id.select_perrmit_type);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.document_type, android.R.layout.simple_spinner_item);
@@ -112,11 +154,18 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
                 R.array.insurance_type, android.R.layout.simple_spinner_item);
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
+        ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this,
+                R.array.permit_type, android.R.layout.simple_spinner_item);
+        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
         upload_choice.setAdapter(adapter);
         upload_choice.setOnItemSelectedListener(this);
 
         insurance_select.setAdapter(adapter2);
         insurance_select.setOnItemSelectedListener(this);
+
+        select_permit_type.setAdapter(adapter3);
+        select_permit_type.setOnItemSelectedListener(this);
 
         showFile = findViewById(R.id.upload_filename);
         showFile.setOnClickListener(this);
@@ -126,7 +175,21 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
         upload_document_button = findViewById(R.id.upload_document_button);
         upload_document_button.setOnClickListener(this);
 
+        indurance_date_from = findViewById(R.id.date_insurance_from);
+        insurance_date_till = findViewById(R.id.date_insurance_till);
 
+        permit_date_from = findViewById(R.id.date_permit_from);
+        permit_date_till = findViewById(R.id.date_permit_till);
+
+        select_indurance_till=findViewById(R.id.select_till);
+        select_insurance_from = findViewById(R.id.select_from);
+        select_indurance_till.setOnClickListener(this);
+        select_insurance_from.setOnClickListener(this);
+
+        permit_from=findViewById(R.id.permit_from);
+        permit_till = findViewById(R.id.permit_till);
+        permit_from.setOnClickListener(this);
+        permit_till.setOnClickListener(this);
     }
 
 
@@ -154,6 +217,52 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
 //            case R.id.layout1:
 //                Snackbar.make(view, "Upload Your Profile Picture" , Snackbar.LENGTH_SHORT).setAction("Action", null).show();
 //                break;
+            case R.id.select_from:
+                Calendar cal = Calendar.getInstance();
+                int Year = cal.get(Calendar.YEAR);
+                int Month = cal.get(Calendar.MONTH);
+                int Date = cal.get(Calendar.DATE);
+                DatePickerDialog dialog = new DatePickerDialog(
+                        uploadActivity.this,android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        insurance_datepicker_from,Year,Month,Date);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+                break;
+            case R.id.select_till:
+                Calendar cal1 = Calendar.getInstance();
+                int Year1 = cal1.get(Calendar.YEAR);
+                int Month1 = cal1.get(Calendar.MONTH);
+                int Date1 = cal1.get(Calendar.DATE);
+                DatePickerDialog dialog1 = new DatePickerDialog(
+                        uploadActivity.this,android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        insurance_datepicker_till,Year1,Month1,Date1);
+                dialog1.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog1.show();
+                break;
+
+            case R.id.permit_till:
+                Calendar cal2 = Calendar.getInstance();
+                int Year2 = cal2.get(Calendar.YEAR);
+                int Month2 = cal2.get(Calendar.MONTH);
+                int Date2 = cal2.get(Calendar.DATE);
+                DatePickerDialog dialog2 = new DatePickerDialog(
+                        uploadActivity.this,android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        permit_datepicker_till,Year2,Month2,Date2);
+                dialog2.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog2.show();
+                break;
+
+            case R.id.permit_from:
+                Calendar cal3 = Calendar.getInstance();
+                int Year3 = cal3.get(Calendar.YEAR);
+                int Month3 = cal3.get(Calendar.MONTH);
+                int Date3 = cal3.get(Calendar.DATE);
+                DatePickerDialog dialog3 = new DatePickerDialog(
+                        uploadActivity.this,android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        permit_datepicker_from,Year3,Month3,Date3);
+                dialog3.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog3.show();
+                break;
 
         }
     }
@@ -249,11 +358,13 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
                     public void onResponse(String response) {
                         try {
                             progressDialog.dismiss();
-
-                            toast.makeText(getBaseContext(), "Document uploaded successfully", Toast.LENGTH_SHORT).show();
+                            Snackbar.make(findViewById(android.R.id.content),"Document uploaded successfully",Snackbar.LENGTH_LONG).show();
+                            //toast.makeText(getBaseContext(), "Document uploaded successfully", Toast.LENGTH_SHORT).show();
                         } catch (Exception e) {
                             progressDialog.dismiss();
-                            toast.makeText(getBaseContext(), "can't upload", Toast.LENGTH_SHORT).show();
+                           // toast.makeText(getBaseContext(), "can't upload", Toast.LENGTH_SHORT).show();
+                            Snackbar.make(findViewById(android.R.id.content),"Error in uploading upload",Snackbar.LENGTH_LONG).show();
+
                         }
 
 
@@ -322,26 +433,38 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
                     case 0:
                         imagename = "";
                         insurance_layout.setVisibility(View.GONE);
+                        date_insurance.setVisibility(View.GONE);
+                        date_permit.setVisibility(View.GONE);
                         break;
                     case 1:
                         imagename = "profile";
                         insurance_layout.setVisibility(View.GONE);
+                        date_insurance.setVisibility(View.GONE);
+                        date_permit.setVisibility(View.GONE);
                         break;
                     case 2:
                         imagename = "adhar";
                         insurance_layout.setVisibility(View.GONE);
+                        date_insurance.setVisibility(View.GONE);
+                        date_permit.setVisibility(View.VISIBLE);
                         break;
                     case 3:
                         imagename = "insurance";
                         insurance_layout.setVisibility(View.VISIBLE);
+                        date_insurance.setVisibility(View.VISIBLE);
+                        date_permit.setVisibility(View.GONE);
                         break;
                     case 4:
                         imagename = "license";
                         insurance_layout.setVisibility(View.GONE);
+                        date_insurance.setVisibility(View.GONE);
+                        date_permit.setVisibility(View.GONE);
                         break;
                     case 5:
                         imagename = "rc";
                         insurance_layout.setVisibility(View.GONE);
+                        date_insurance.setVisibility(View.GONE);
+                        date_permit.setVisibility(View.GONE);
                         break;
 
                 }

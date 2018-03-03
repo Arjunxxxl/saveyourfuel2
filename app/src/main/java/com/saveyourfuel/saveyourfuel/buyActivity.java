@@ -3,6 +3,7 @@ package com.saveyourfuel.saveyourfuel;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -58,6 +59,9 @@ public class buyActivity extends AppCompatActivity implements  View.OnClickListe
                 buyActivity.this.finish();
             }
         });
+
+        Snackbar.make(findViewById(android.R.id.content),"Comming Soon",Snackbar.LENGTH_LONG).show();
+
     }
 
     @Override

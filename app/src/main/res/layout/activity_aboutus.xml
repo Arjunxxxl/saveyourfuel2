@@ -11,52 +11,67 @@
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar_main" />
+
     <ScrollView
-        android:layout_below="@id/toolbar"
+
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:padding="2dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:orientation="vertical"
-            android:layout_marginLeft="15dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/recyclebg"
-            android:padding="10dp"
-            >
+            android:padding="2dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/recyclebg"
+                android:orientation="vertical"
+                android:padding="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
 
-                    android:padding="10dp"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:textSize="19sp"
+                        android:text="@string/about_us"
                         android:textColor="#3C362A"
-                        android:text="@string/about_us"/>
+                        android:textSize="19sp"
+                        android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/tv_aboutus"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
 
-                        android:textColor="#4D483D"
-                        android:textSize="17sp"
                         android:layout_marginBottom="10dp"
-                        android:inputType="textMultiLine" />
+                        android:inputType="textMultiLine"
+                        android:textColor="#4D483D"
+                        android:textSize="17sp" />
                 </LinearLayout>
 
+            </LinearLayout>
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="2dp"
+                android:background="#c0c0c0"/>
         </LinearLayout>
 
     </ScrollView>
-
 
 
 </android.widget.RelativeLayout>

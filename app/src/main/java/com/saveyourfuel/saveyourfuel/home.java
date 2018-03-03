@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.media.Image;
 import android.os.Build;
 import android.preference.PreferenceManager;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -59,6 +60,7 @@ public class home extends AppCompatActivity implements View.OnClickListener {
     String profile_image = "";
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,6 +82,7 @@ public class home extends AppCompatActivity implements View.OnClickListener {
 
 
         setContentView(R.layout.activity_home);
+
 
 
         toolbar = findViewById(R.id.toolbar);
@@ -139,24 +142,24 @@ public class home extends AppCompatActivity implements View.OnClickListener {
                 i.putExtra("ph", ph);
                 startActivity(i);
                 break;
-            case R.id.setting:
-                Intent i1 = new Intent(home.this, settingsActivity.class);
-                i1.putExtra("Name", name);
-                i1.putExtra("ph", ph);
-                startActivity(i1);
-                break;
+//            case R.id.setting:
+//                Intent i1 = new Intent(home.this, settingsActivity.class);
+//                i1.putExtra("Name", name);
+//                i1.putExtra("ph", ph);
+//                startActivity(i1);
+//                break;
             case R.id.money:
                 Intent i2 = new Intent(home.this, balanceActivity.class);
                 i2.putExtra("Name", name);
                 i2.putExtra("ph", ph);
                 startActivity(i2);
                 break;
-            case R.id.upload:
-                Intent i4 = new Intent(home.this, documentStatus.class);
-                i4.putExtra("Name", name);
-                i4.putExtra("ph", ph);
-                startActivity(i4);
-                break;
+//            case R.id.upload:
+//                Intent i4 = new Intent(home.this, documentStatus.class);
+//                i4.putExtra("Name", name);
+//                i4.putExtra("ph", ph);
+//                startActivity(i4);
+//                break;
 
             case R.id.language:
 
@@ -181,7 +184,7 @@ public class home extends AppCompatActivity implements View.OnClickListener {
                 SharedPreferences sharedPref = getSharedPreferences("data", Context.MODE_PRIVATE);
                 sharedPref.edit().clear().apply();
                 startActivity(new Intent(home.this, loginActivity.class));
-                this.finish();
+                home.this.finish();
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -235,7 +238,7 @@ public class home extends AppCompatActivity implements View.OnClickListener {
                             pic.setImageBitmap(profileImage);
 
                         } else {
-                            Toast.makeText(getBaseContext(), "Login Please!", Toast.LENGTH_SHORT).show();
+                            Snackbar.make(findViewById(android.R.id.content), "An Error has occurred. Please Logout and Login again. ", Snackbar.LENGTH_SHORT).setAction("Action", null).show();
                             startActivity(new Intent(home.this, loginActivity.class));
                             home.this.finish();
                         }
@@ -249,7 +252,8 @@ public class home extends AppCompatActivity implements View.OnClickListener {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     Log.d("error", error.toString());
-                    Toast.makeText(getBaseContext(), "check your connection...", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(findViewById(android.R.id.content), "check your connection...", Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+
 
                 }
             });
@@ -263,7 +267,7 @@ public class home extends AppCompatActivity implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.option1:
 
-                Intent i2 = new Intent(home.this, buyActivity.class);
+                Intent i2 = new Intent(home.this,buyActivity.class);
                 i2.putExtra("Name", home.name);
                 i2.putExtra("ph", home.ph);
                 startActivity(i2);

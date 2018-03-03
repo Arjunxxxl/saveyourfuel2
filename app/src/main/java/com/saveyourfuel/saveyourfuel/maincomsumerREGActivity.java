@@ -3,6 +3,7 @@ package com.saveyourfuel.saveyourfuel;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -28,6 +29,7 @@ public class maincomsumerREGActivity extends AppCompatActivity implements View.O
         }
         setContentView(R.layout.activity_maincomsumer_reg);
         setView();
+        Snackbar.make(findViewById(android.R.id.content), R.string.coming_soon, Snackbar.LENGTH_SHORT).setAction("Action", null).show();
 
     }
     void setView(){

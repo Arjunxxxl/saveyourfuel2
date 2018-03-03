@@ -9,7 +9,7 @@
         android:title="Rs. 00.00"
         app:showAsAction="always" />
 
-    <item
+   <!-- <item
         android:id="@+id/upload"
         android:title="Upload Documents"
         app:showAsAction="never" />
@@ -18,7 +18,7 @@
         android:id="@+id/setting"
         android:title="Settings"
         app:showAsAction="never" />
-
+-->
     <item
     android:id="@+id/aboutus"
     android:title="@string/about_us"

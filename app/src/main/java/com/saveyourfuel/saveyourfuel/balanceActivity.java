@@ -3,6 +3,7 @@ package com.saveyourfuel.saveyourfuel;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -66,7 +67,7 @@ public class balanceActivity extends AppCompatActivity implements View.OnClickLi
         back = findViewById(R.id.button_back);
         back.setOnClickListener(this);
 
-
+        Snackbar.make(findViewById(android.R.id.content),"Comming Soon",Snackbar.LENGTH_LONG).show();
     }
 
     @Override
