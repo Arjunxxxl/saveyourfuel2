@@ -26,13 +26,14 @@
         <activity android:name=".loginActivity" />
         <activity android:name=".selectTyleActivity" />
         <activity android:name=".consumerREGActivity" />
-        <activity android:name=".home" android:configChanges="locale|orientation">
+        <activity
+            android:name=".home"
+            android:configChanges="locale|orientation">
             <intent-filter>
                 <action android:name="com.saveyourfuel.saveyourfuel.home" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-
         </activity>
         <activity android:name=".aboutusActivity" />
         <activity android:name=".settingsActivity" />
@@ -65,6 +66,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity android:name=".contactusActivity"></activity>
     </application>
 
 </manifest>

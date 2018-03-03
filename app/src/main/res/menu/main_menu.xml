@@ -9,6 +9,11 @@
         android:title="Rs. 00.00"
         app:showAsAction="always" />
 
+    <item
+        android:id="@+id/contactsyf"
+        android:title="Contact us"
+        app:showAsAction="never" />
+
    <!-- <item
         android:id="@+id/upload"
         android:title="Upload Documents"
