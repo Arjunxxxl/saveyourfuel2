@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -22,6 +23,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +37,8 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Locale;
 
 public class loginActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -50,6 +55,8 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
     ImageButton facebookbutton, website;
 
     SharedPreferences sharedPref;
+    ImageView loginFlag;
+    LinearLayout changeLanguage;
 
     Toolbar toolbar;
 
@@ -57,25 +64,31 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // requestWindowFeature(Window.FEATURE_NO_TITLE);
-        // getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-        //         WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = this.getWindow();
-// clear FLAG_TRANSLUCENT_STATUS flag:
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-// add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-// finally change the color
-            window.setStatusBarColor(Color.parseColor("#000000"));
-        }
 
+
+        sharedPref = getSharedPreferences("data", Context.MODE_PRIVATE);
+
+        String languageToLoad  = sharedPref.getString("lang","en");
+
+        Locale locale = new Locale(languageToLoad);
+        Locale.setDefault(locale);
+        Configuration config = getBaseContext().getResources().getConfiguration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config,
+                getBaseContext().getResources().getDisplayMetrics());
         setContentView(R.layout.activity_login);
 
-//        toolbar = findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-//        toolbar.setTitle("User Login");
-//        toolbar.setSubtitle("Save Your Fuel Pvt. Ltd.");
+        loginFlag = findViewById(R.id.login_flag);
+        if(languageToLoad.contentEquals("en")){
+            loginFlag.setImageResource(R.drawable.india);
+        }
+        else{
+            loginFlag.setImageResource(R.drawable.flagusa);
+        }
+        setView();
+    }
+
+    void setView(){
 
         temail = findViewById(R.id.editText4);
         email = findViewById(R.id.loginEmail);
@@ -88,6 +101,9 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
         facebookbutton.setOnClickListener(this);
         website = findViewById(R.id.imageButton);
         website.setOnClickListener(this);
+
+        changeLanguage = findViewById(R.id.login_change_language);
+        changeLanguage.setOnClickListener(this);
 
         sound = findViewById(R.id.sound);
         sound.setOnClickListener(this);
@@ -104,46 +120,6 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
         }
 
     }
-
-//    @Override
-//    protected void onPause() {
-//        super.onPause();
-//        if(play_music!=null) {
-//            play_music.stop();
-//            play_music.release();
-//            play_music=null;
-//        }
-//    }
-//
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        if (play_music == null) {
-//            play_music = MediaPlayer.create(getApplicationContext(), R.raw.uprising);
-//            play_music.start();
-//            play_music.setLooping(true);
-//        }
-//    }
-
-//    @Override
-//    protected void onStop() {
-//        super.onStop();
-//        if(play_music!=null) {
-//            play_music.stop();
-//            play_music.release();
-//            play_music=null;
-//        }
-//    }
-//
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        if (play_music == null) {
-//            play_music = MediaPlayer.create(getApplicationContext(), R.raw.uprising);
-//            play_music.start();
-//            play_music.setLooping(true);
-//        }
-//    }
 
     @Override
     public void onClick(View view) {
@@ -179,8 +155,30 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
                 }
 
                 break;
+            case R.id.login_change_language:
+                SharedPreferences sharedPrefer = getSharedPreferences("data", Context.MODE_PRIVATE);
+
+
+                if (sharedPrefer.getString("lang","en").equals("en")) {
+                    SharedPreferences.Editor editor = sharedPref.edit();
+                    editor.putString("lang", "hi");
+                    editor.apply();
+                } else {
+                    SharedPreferences.Editor editor = sharedPref.edit();
+                    editor.putString("lang", "en");
+                    editor.apply();
+                }
+                finish();
+                Intent i5 = getBaseContext().getPackageManager()
+                        .getLaunchIntentForPackage( getBaseContext().getPackageName() );
+                i5.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i5);
+                break;
         }
     }
+
+
+
 
     @Override
     public void onBackPressed() {

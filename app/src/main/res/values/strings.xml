@@ -77,7 +77,7 @@
     <string name="valid_till">Valid Till :</string>
     <string name="r">₹</string>
     <string name="logout_menu">Logout</string>
-    <string name="change_language">भाषा बदलो</string>
+    <string name="change_language">भाषा बदलें</string>
 
     <string-array name="document_type">
         <item>Select an option...</item>

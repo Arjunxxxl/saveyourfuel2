@@ -67,7 +67,6 @@ public class home extends AppCompatActivity implements View.OnClickListener {
 
 
         SharedPreferences sharedPref = getSharedPreferences("data", Context.MODE_PRIVATE);
-        sharedPref.getString("lang","en");
 
 
         String languageToLoad  = sharedPref.getString("lang","en");
