@@ -30,21 +30,21 @@
     <string name="verification_in_progress">verification in progress...</string>
     <string name="y_profile">Your Profile</string>
     <string name="logout">You have being logout</string>
-    <string name="description">Description</string>
+    <string name="description">Buy or sell products</string>
     <string name="buy">Buy</string>
     <string name="add_funds">Add Funds</string>
-    <string name="description2">Description</string>
+    <string name="description2">Add money to your fuel wallet</string>
     <string name="upload_documents2">Upload Documents</string>
-    <string name="description3">Description</string>
+    <string name="description3">To access premium services</string>
     <string name="account_login">ACCOUNT LOGIN</string>
     <string name="e_mail">E-mail</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
-    <string name="WRONG_CREDENTIALS">WRONG CREDENTIALS!</string>
+    <string name="WRONG_CREDENTIALS">WRONG Username or Password!</string>
     <string name="check_your_connection">check your connection...</string>
     <string name="select_account_type">Select Account Type</string>
     <string name="consumer_account">Consumer Account</string>
-    <string name="transport_account">Transport Account</string>
+    <string name="transport_account">Transporter Account</string>
     <string name="settings">Settings</string>
     <string name="uploadDocuments">Upload Your Documents</string>
     <string name="select_a_document_to_upload">Select a document to upload</string>
@@ -78,6 +78,11 @@
     <string name="r">₹</string>
     <string name="logout_menu">Logout</string>
     <string name="change_language">भाषा बदलें</string>
+    <string name="field_empty">this field cannot be empty</string>
+    <string name="format_invalid">invalid format</string>
+    <string name="pass_empty">password cannot be empty</string>
+    <string name="min_length">Minimum eight characters, at least one letter and one number:</string>
+    <string name="pass_not_same">password doesn\'t match</string>
 
     <string-array name="document_type">
         <item>Select an option...</item>

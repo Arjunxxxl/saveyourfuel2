@@ -30,21 +30,21 @@
     <string name="verification_in_progress">सत्यापन प्रगति में है...</string>
     <string name="y_profile">आपकी रूपरेखा</string>
     <string name="logout">आपके पास लॉगआउट हो रहा है</string>
-    <string name="description">विवरण</string>
+    <string name="description">खरीदें या उत्पाद बेचें</string>
     <string name="buy">खरीदें</string>
     <string name="add_funds">धन जोड़ें</string>
-    <string name="description2">विवरण</string>
+    <string name="description2">अपने ईंधन बटुए में पैसे जोड़ें</string>
     <string name="upload_documents2">दस्तावेज़ अपलोड करें</string>
-    <string name="description3">विवरण</string>
+    <string name="description3">प्रीमियम सेवाएं प्राप्त करने के लिए</string>
     <string name="account_login">खाता प्रवेश</string>
     <string name="e_mail">ईमेल</string>
     <string name="password">पारण शब्द</string>
     <string name="login">लॉग इन करें</string>
-    <string name="WRONG_CREDENTIALS">गलत प्रत्यक्ष पत्र!</string>
+    <string name="WRONG_CREDENTIALS">उपयोगकर्ता का गलत नाम और पासवर्ड!</string>
     <string name="check_your_connection">अपना कनेक्शन जांचें...</string>
     <string name="select_account_type">खाता प्रकार चुनें</string>
     <string name="consumer_account">उपभोक्ता खाता</string>
-    <string name="transport_account">परिवहन खाते</string>
+    <string name="transport_account">ट्रांसपोर्टर खाता</string>
     <string name="settings">सेटिंग्स</string>
     <string name="uploadDocuments">अपने दस्तावेज़ अपलोड करें</string>
     <string name="select_a_document_to_upload">अपलोड करने के लिए कोई दस्तावेज़ चुनें</string>
@@ -79,8 +79,14 @@
     <string name="logout_menu">लोग आउट</string>
     <string name="change_language">Change Language</string>
 
+    <string name="field_empty">यह स्थान खाली नहीं रह सकता</string>
+    <string name="format_invalid">अवैध प्रारूप</string>
+    <string name="pass_empty">पासवर्ड रिक्त नहीं हो सकता</string>
+    <string name="min_length">न्यूनतम आठ अक्षर, कम से कम एक अक्षर और एक नंबर :</string>
+    <string name="pass_not_same">पासवर्ड मैच नहीं करताै</string>
+
     <string-array name="document_type">
-        <item>Sएक विकल्प का चुनाव करें...</item>
+        <item>एक विकल्प का चुनाव करें...</item>
         <item>प्रोफ़ाइल फोटो</item>
         <item>वाहन परमिट</item>
         <item>Insurance card</item>

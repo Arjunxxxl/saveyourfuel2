@@ -178,7 +178,7 @@ public class home extends AppCompatActivity implements View.OnClickListener {
                 } else {
                     changeLang("en");
                 }
-                finish();
+                home.this.finish();
                 Intent i5 = getBaseContext().getPackageManager()
                     .getLaunchIntentForPackage( getBaseContext().getPackageName() );
                 i5.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

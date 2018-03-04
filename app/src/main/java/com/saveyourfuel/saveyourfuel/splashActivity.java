@@ -28,6 +28,7 @@ public class splashActivity extends AppCompatActivity {
     //public  static  String profile_image = "";
     public  static  String name,ph;
     static String LANG_CURRENT = "en";
+    private Intromanager intromanager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,13 +40,25 @@ public class splashActivity extends AppCompatActivity {
              getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                      WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
+
         setContentView(R.layout.activity_splash);
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
 //                final Intent mainIntent = new Intent(splashActivity.this, home.class);
-                checkLogin();
+                intromanager = new Intromanager(getApplicationContext());
+                if(intromanager.Check()){
+                //if(true){
+                    intromanager.setFirst(false);
+                    Intent i = new Intent(splashActivity.this,sliderActivity.class);
+                    i.putExtra("Name", name);
+                    i.putExtra("ph", ph);
+                    startActivity(i);
+                    splashActivity.this.finish();
+                }else {
+                    checkLogin();
+                }
 //                splashActivity.this.startActivity(mainIntent);
 //                splashActivity.this.finish();
             }

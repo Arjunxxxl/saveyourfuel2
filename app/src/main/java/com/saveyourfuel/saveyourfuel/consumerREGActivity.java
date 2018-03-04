@@ -75,12 +75,12 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
     }
 
     void initError() {
-        nameL.setError("This field cannot be empty");
-        dobL.setError("This field cannot be empty");
-        phoneL.setError("This field cannot be empty");
-        emailL.setError("This field cannot be empty");
-        passwordL.setError("This field cannot be empty");
-        repassL.setError("This field cannot be empty");
+        nameL.setError(getString(R.string.field_empty));
+        dobL.setError(getString(R.string.field_empty));
+        phoneL.setError(getString(R.string.field_empty));
+        emailL.setError(getString(R.string.field_empty));
+        passwordL.setError(getString(R.string.field_empty));
+        repassL.setError(getString(R.string.field_empty));
 
 
     }
@@ -150,7 +150,7 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
             @Override
             public void afterTextChanged(Editable s) {
                 if (s.toString().isEmpty()) {
-                    nameL.setError("this field cannot be empty");
+                    nameL.setError(getString(R.string.field_empty));
                     checkName = false;
                 } else {
                     nameL.setErrorEnabled(false);
@@ -174,7 +174,7 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
             @Override
             public void afterTextChanged(Editable s) {
                 if (s.toString().isEmpty()) {
-                    dobL.setError("this field cannot be empty");
+                    dobL.setError("");
 
                     checkDob = false;
                 } else {
@@ -204,7 +204,7 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
 
 
                 if (s.toString().length() != 10) {
-                    phoneL.setError("invalid format");
+                    phoneL.setError(getString(R.string.format_invalid));
                     checkPhone = false;
                 } else {
                     try {
@@ -213,7 +213,7 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
                         checkPhone = true;
 
                     } catch (Exception e) {
-                        phoneL.setError("invalid format");
+                        phoneL.setError(getString(R.string.format_invalid));
                         checkPhone = false;
                     }
 
@@ -236,7 +236,7 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
             public void afterTextChanged(Editable s) {
                 if (s.toString().isEmpty()) {
 
-                    emailL.setError("this field cannot be empty");
+                    emailL.setError(getString(R.string.field_empty));
                     checkEmail = false;
                 }
 
@@ -244,7 +244,7 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
                 java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
                 java.util.regex.Matcher m = p.matcher(s.toString());
                 if (!m.matches()) {
-                    emailL.setError("invalid format");
+                    emailL.setError(getString(R.string.format_invalid));
                     checkEmail = false;
                 } else {
                     emailL.setErrorEnabled(false);
@@ -270,11 +270,11 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
                 java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
                 java.util.regex.Matcher m = p.matcher(s.toString());
                 if (s.toString().isEmpty()) {
-                    passwordL.setError("password cannot be empty");
+                    passwordL.setError(getString(R.string.pass_empty));
                     checkPassword = false;
                 }
                 else if(!m.matches()){
-                    passwordL.setError("Minimum eight characters, at least one letter and one number:");
+                    passwordL.setError(getString(R.string.min_length));
                     checkPassword = false;
 
                 }
@@ -285,7 +285,7 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
 
 
                 if (!s.toString().contentEquals(repass.getText().toString()))
-                    repassL.setError("password doesn't match");
+                    repassL.setError(getString(R.string.pass_not_same));
                 else
                     repassL.setErrorEnabled(false);
             }
@@ -306,7 +306,7 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
 
 
                 if (!s.toString().contentEquals(password.getText().toString()))
-                    repassL.setError("password doesn't match");
+                    repassL.setError(getString(R.string.pass_not_same));
                 else
                     repassL.setErrorEnabled(false);
             }

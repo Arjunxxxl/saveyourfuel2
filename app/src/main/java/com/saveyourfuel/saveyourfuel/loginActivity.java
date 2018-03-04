@@ -50,8 +50,8 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
     Button sound;
     static MediaPlayer play_music;
 
-    public static String FACEBOOK_URL = "https://www.facebook.com/iitp.ac.in/";
-    public static String FACEBOOK_PAGE_ID = "iitp.ac.in";
+    public static String FACEBOOK_URL = "https://www.facebook.com/Syf-166804867448828/?modal=admin_todo_tour";
+    public static String FACEBOOK_PAGE_ID = "https://www.facebook.com/Syf-166804867448828/?modal=admin_todo_tour";
     ImageButton facebookbutton, website;
 
     SharedPreferences sharedPref;
@@ -109,8 +109,9 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
         sound.setOnClickListener(this);
         if (play_music == null) {
             play_music = MediaPlayer.create(getApplicationContext(), R.raw.uprising);
-            play_music.start();
+            onPrepared(play_music);
             play_music.setLooping(true);
+            sound.setBackgroundResource(R.drawable.ic_action_sound);
         }
 
         if(play_music.isPlaying()){
@@ -119,6 +120,11 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
             sound.setBackgroundResource(R.drawable.ic_action_sound);
         }
 
+    }
+
+    public void onPrepared(MediaPlayer player) {
+        player.start();
+        player.pause();
     }
 
     @Override
@@ -168,7 +174,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
                     editor.putString("lang", "en");
                     editor.apply();
                 }
-                finish();
+                loginActivity.this.finish();
                 Intent i5 = getBaseContext().getPackageManager()
                         .getLaunchIntentForPackage( getBaseContext().getPackageName() );
                 i5.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
