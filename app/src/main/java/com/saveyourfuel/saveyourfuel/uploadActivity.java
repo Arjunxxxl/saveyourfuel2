@@ -108,9 +108,9 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
         insurance_datepicker_from = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int date) {
-                indurance_date_from.setText(date+"/"+month+"/"+year);
+
                 String dateS = date+"";
-                String monthS = month+"";
+                String monthS = (month+1)+"";
 
                 if(dateS.length()<2){
                     dateS="0"+dateS;
@@ -120,16 +120,16 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
                 }
 
                 insurance_from = year+ "/"+monthS+ "/"+dateS;
+                indurance_date_from.setText(insurance_from);
             }
         };
 
         insurance_datepicker_till = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int date) {
-                insurance_date_till.setText(date+"/"+month+"/"+year);
-                String dateS = date+"";
-                String monthS = month+"";
 
+                String dateS = date+"";
+                String monthS = (month+1)+"";
                 if(dateS.length()<2){
                     dateS="0"+dateS;
                 }
@@ -138,6 +138,7 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
                 }
 
                 insurance_till = year+ "/"+monthS+ "/"+dateS;
+                insurance_date_till.setText(insurance_till);
 
             }
         };
@@ -145,10 +146,8 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
         permit_datepicker_from = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int date) {
-                permit_date_from.setText(date+"/"+month+"/"+year);
                 String dateS = date+"";
-                String monthS = month+"";
-
+                String monthS = (month+1)+"";
                 if(dateS.length()<2){
                     dateS="0"+dateS;
                 }
@@ -157,6 +156,7 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
                 }
 
                 permit_from = year+ "/"+monthS+ "/"+dateS;
+                permit_date_from.setText(permit_from);
 
             }
         };
@@ -164,10 +164,9 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
         permit_datepicker_till = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int date) {
-                permit_date_till.setText(date+"/"+month+"/"+year);
 
                 String dateS = date+"";
-                String monthS = month+"";
+                String monthS = (month+1)+"";
 
                 if(dateS.length()<2){
                     dateS="0"+dateS;
@@ -177,6 +176,7 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
                 }
 
                 permit_till = year+ "/"+monthS+ "/"+dateS;
+                permit_date_till.setText(permit_till);
 
             }
         };

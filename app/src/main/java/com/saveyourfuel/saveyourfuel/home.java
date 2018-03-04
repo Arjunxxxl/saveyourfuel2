@@ -241,8 +241,9 @@ public class home extends AppCompatActivity implements View.OnClickListener {
                             if (!imageString.isEmpty()) {
                                 byte[] decodedString = Base64.decode(imageString, Base64.DEFAULT);
                                 profileImage = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                                pic.setImageBitmap(profileImage);
                             }
-                            pic.setImageBitmap(profileImage);
+
 
                         } else {
                             Snackbar.make(findViewById(android.R.id.content), R.string.erroroccured_login_logout, Snackbar.LENGTH_SHORT).setAction("Action", null).show();

@@ -40,11 +40,13 @@ import java.util.regex.Pattern;
 public class consumerREGActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button reg;
-    TextInputEditText name, dob, address, phone, email, password, repass;
-    TextInputLayout nameL, dobL, addressL, phoneL, emailL, passwordL, repassL;
+    TextInputEditText name, dob, phone, email, password, repass;
+    TextInputLayout nameL, dobL, phoneL, emailL, passwordL, repassL;
     android.support.v7.widget.Toolbar toolbar;
     private DatePickerDialog.OnDateSetListener  mDateSetListener;
+    LinearLayout dateLayout;
     ImageView datepick;
+    String dateString="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +77,6 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
     void initError() {
         nameL.setError("This field cannot be empty");
         dobL.setError("This field cannot be empty");
-        addressL.setError("This field cannot be empty");
         phoneL.setError("This field cannot be empty");
         emailL.setError("This field cannot be empty");
         passwordL.setError("This field cannot be empty");
@@ -87,36 +88,50 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
     void setView() {
         name = findViewById(R.id.nameReg);
         dob = findViewById(R.id.dobReg);
+        dob.setOnClickListener(this);
 
         datepick = findViewById(R.id.datepicker);
         datepick.setOnClickListener(this);
 
-        address = findViewById(R.id.addressReg);
         phone = findViewById(R.id.phoneReg);
         email = findViewById(R.id.emailReg);
         password = findViewById(R.id.passReg);
         repass = findViewById(R.id.repassReg);
         reg = findViewById(R.id.register);
-
+        dateLayout = findViewById(R.id.reg_date_layout);
+        dateLayout.setOnClickListener(this);
         nameL = findViewById(R.id.nameRegL);
         dobL = findViewById(R.id.dobRegL);
-        addressL = findViewById(R.id.addressRegL);
+
         phoneL = findViewById(R.id.phoneRegL);
         emailL = findViewById(R.id.emailRegL);
         passwordL = findViewById(R.id.passRegL);
         repassL = findViewById(R.id.repassRegL);
 
+
         mDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int date) {
-                      dob.setText(date+"/"+month+"/"+year);
+                String dateS = date+"";
+                String monthS = (month+1)+"";
+
+                if(dateS.length()<2){
+                    dateS="0"+dateS;
+                }
+                if(monthS.length()<2){
+                    monthS="0"+monthS;
+                }
+
+                dateString = year+ "/"+monthS+ "/"+dateS;
+
+                dob.setText(dateString);
             }
         };
     }
 
 
 
-    boolean checkName = false, checkAddress = false, checkDob = false, checkEmail = false, checkPassword = false, checkPhone = false;
+    boolean checkName = false, checkDob = false, checkEmail = false, checkPassword = false, checkPhone = false;
 
     void setListeners() {
         reg.setOnClickListener(this);
@@ -163,55 +178,13 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
 
                     checkDob = false;
                 } else {
-                    String str[] = s.toString().split(Pattern.quote("/"));
-                    int tr = 1;
-                    try {
-                        if (!(Integer.parseInt(str[0]) <= 31))
-                            tr = 0;
-                        else if (!(Integer.parseInt(str[1]) <= 12))
-                            tr = 0;
-                        else if (!(str[2].length() == 4))
-                            tr = 0;
-                        if (tr == 0) {
-                            dobL.setError("invalid format");
-                            checkDob = false;
-                        } else {
-                            dobL.setErrorEnabled(false);
-                            checkDob = true;
-                        }
 
-
-                    } catch (Exception e) {
-                        dobL.setError("invalid format");
-                        checkDob = false;
-                    }
+                    dobL.setErrorEnabled(false);
+                    checkDob = true;
 
 
                 }
 
-            }
-        });
-
-        address.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (s.toString().isEmpty()) {
-                    addressL.setError("this field cannot be empty");
-                    checkAddress = false;
-                } else {
-                    addressL.setErrorEnabled(false);
-                    checkAddress = true;
-                }
             }
         });
 
@@ -349,7 +322,9 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
             case R.id.register:
                 postData();
                 break;
+
             case R.id.datepicker:
+            case R.id.dobReg:
                 Calendar cal = Calendar.getInstance();
                 int Year = cal.get(Calendar.YEAR);
                 int Month = cal.get(Calendar.MONTH);
@@ -360,6 +335,10 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
                 break;
+
+
+
+
         }
     }
 
@@ -373,18 +352,17 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
 
     void postData() {
 
-        final String named, dobd, addressd, phoned, emaild, passwordd, repassd;
+        final String named, dobd, phoned, emaild, passwordd, repassd;
         named = name.getText().toString();
         dobd = dob.getText().toString();
-        addressd = address.getText().toString();
         phoned = phone.getText().toString();
         emaild = email.getText().toString();
         passwordd = password.getText().toString();
         repassd = repass.getText().toString();
 
-        final String dobSubstring[] = dobd.split(Pattern.quote("/"));
 
-        if (repassd.contentEquals(passwordd) && checkAddress && checkEmail && checkName && checkDob && checkPassword && checkPhone) {
+
+        if (repassd.contentEquals(passwordd)  && checkEmail && checkName && checkDob && checkPassword && checkPhone) {
 
             RequestQueue queue = Volley.newRequestQueue(this);
 
@@ -428,8 +406,7 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
                     Map<String, String> params = new HashMap<>();
                     params.put("name", named);
                     params.put("email", emaild);
-                    params.put("dob", dobSubstring[2] + dobSubstring[1] + dobSubstring[0]);
-                    params.put("address", addressd);
+                    params.put("dob", dobd);
                     params.put("phone", phoned);
                     params.put("password", passwordd);
 
