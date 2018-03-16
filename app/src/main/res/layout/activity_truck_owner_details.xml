@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:id="@+id/content_container"
+    android:layout_height="match_parent"
+    tools:context="com.saveyourfuel.saveyourfuel.truckOwnerDetails">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:id="@+id/image_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <android.support.v7.widget.Toolbar
+                    android:layout_width="match_parent"
+                    android:background="@color/colorPrimary"
+                    android:id="@+id/toolbar"
+                    app:titleTextColor="@color/white"
+                    android:translationZ="3dp"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:layout_below="@+id/toolbar"
+                    android:id="@+id/truck_image"
+                    android:layout_width="match_parent"
+                    android:background="#000000"
+                    android:layout_height="250dp" />
+                <ProgressBar
+                    android:id="@+id/progress"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="30dp"
+                    android:progressTint="@color/white"
+                    android:indeterminateTint="@color/white"
+                    android:layout_centerVertical="true"
+
+                    android:layout_height="30dp" />
+
+            </RelativeLayout>
+
+
+            <android.support.design.widget.FloatingActionButton
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="280dp"
+                android:baseline="30dp"
+                android:id="@+id/call_button"
+                app:backgroundTint="#108f28"
+                android:src="@drawable/ic_call_white_24dp"
+
+                app:rippleColor="@color/white" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_below="@+id/image_container"
+                android:layout_height="match_parent">
+                <LinearLayout
+
+                    android:layout_marginTop="40dp"
+                    android:id="@+id/name_container"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textSize="18sp"
+                        android:id="@+id/name_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Owner's name : "/>
+                    <TextView
+                        android:id="@+id/name"
+                        android:textSize="18sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_below="@+id/name_container"
+                    android:id="@+id/contact_container"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textSize="18sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Contact no. : "/>
+                    <TextView
+                        android:textSize="18sp"
+                        android:id="@+id/contact"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""/>
+                </LinearLayout>
+                <View
+
+
+                    android:id="@+id/detail_separator"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/contact_container"
+                    android:layout_width="300dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="15dp"
+
+                    android:background="#d2d2d2" />
+                <LinearLayout
+                    android:layout_below="@+id/detail_separator"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/manufacturer_container"
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textSize="18sp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Manufacturer company"/>
+                    <TextView
+                        android:textSize="18sp"
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/company"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_below="@+id/manufacturer_container"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:textSize="18sp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="wrap_content"
+                        android:textColor="@color/green_light"
+                        android:layout_height="wrap_content"
+                        android:text="Price"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:textSize="18sp"
+                            android:layout_gravity="center_horizontal"
+                            android:textColor="#068706"
+                            android:id="@+id/price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#068706"
+                            android:text="₹"
+                            android:textSize="20sp"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
+
+
+
+</RelativeLayout>

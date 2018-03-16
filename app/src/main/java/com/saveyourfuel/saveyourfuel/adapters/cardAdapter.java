@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.saveyourfuel.saveyourfuel.R;
@@ -43,9 +44,15 @@ public class cardAdapter extends RecyclerView.Adapter<cardAdapter.MyViewHolder>{
     public void onBindViewHolder(cardAdapter.MyViewHolder holder, int position) {
 
         holder.Title.setText(cards.get(position).title);
-        holder.description.setText(cards.get(position).description);
-        holder.imageView.setImageResource(cards.get(position).icon);
+        holder.company.setText(cards.get(position).company);
+        holder.price.setText(cards.get(position).price);
+        holder.imageView.setImageBitmap(cards.get(position).thumbnail);
 
+
+    }
+
+    public void addNewCard(card item){
+        cards.add(item);
     }
 
     @Override
@@ -54,48 +61,38 @@ public class cardAdapter extends RecyclerView.Adapter<cardAdapter.MyViewHolder>{
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView Title, description;
+        public TextView Title, company, price;
         public ImageView imageView;
-        public LinearLayout my_card;
+        public RelativeLayout my_card;
+
         public MyViewHolder(View itemView) {
             super(itemView);
             Title = itemView.findViewById(R.id.title);
-            description = itemView.findViewById(R.id.description);
+            company = itemView.findViewById(R.id.company);
+            price = itemView.findViewById(R.id.price);
             imageView = itemView.findViewById(R.id.icon_for_recycle);
-            my_card = itemView.findViewById(R.id.card1);
+            my_card = itemView.findViewById(R.id.card);
 
             my_card.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     int position = getAdapterPosition();
-                    Snackbar.make(view, "Click detected on item " + position,
-                            Snackbar.LENGTH_SHORT).setAction("Action", null).show();
-                    switch (position)
-                    {
-                        case 0 :
-                            Intent i2 = new Intent("com.saveyourfuel.saveyourfuel.buyActivity");
 
-                            i2.putExtra("Name",home.name);
-                            i2.putExtra("ph",home.ph);
-                            i2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            context.startActivity(i2);
-                            break;
-                        case 1:
-                            Intent i3 = new Intent("com.saveyourfuel.saveyourfuel.balanceActivity");
-                            i3.putExtra("Name",home.name);
-                            i3.putExtra("ph",home.ph);
-                            i3.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            context.startActivity(i3);
-                            break;
-                        case 2:
-                            Intent i4 = new Intent("com.saveyourfuel.saveyourfuel.documentStatus");
-                            i4.putExtra("Name",home.name);
-                            i4.putExtra("ph",home.ph);
-                            i4.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            context.startActivity(i4);
-
-                            break;
-                    }
+//                    Snackbar.make(view, "Click detected on item " + position,
+//                            Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+//                    switch (position)
+//                    {
+//
+//                    }
+                    card tmp = cards.get(position);
+                    Intent i = new Intent("com.saveyourfuel.saveyourfuel.truckOwnerDetails");
+                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    i.putExtra("name",tmp.name);
+                    i.putExtra("phone",tmp.phone);
+                    i.putExtra("company",tmp.company);
+                    i.putExtra("p_id",tmp.p_id);
+                    i.putExtra("price",tmp.price);
+                    context.startActivity(i);
                 }
             });
 

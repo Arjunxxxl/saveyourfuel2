@@ -120,40 +120,51 @@
             android:gravity="center_horizontal"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
             <LinearLayout
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:padding="5dp"
-                android:background="?attr/selectableItemBackground"
-                android:foreground="?attr/selectableItemBackground"
-                android:clickable="true"
                 android:id="@+id/option1"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:foreground="?attr/selectableItemBackground"
                 android:gravity="center_vertical"
-                android:layout_height="wrap_content">
+                android:orientation="horizontal"
+                android:paddingBottom="10dp"
+                android:paddingEnd="5dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingStart="5dp"
+                android:paddingTop="10dp">
+
                 <ImageView
-                    android:padding="5dp"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:scaleType="fitCenter"
                     android:id="@+id/buyIcon"
-                    android:src="@mipmap/buybag"/>
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:padding="5dp"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/buybag" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:orientation="vertical"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_height="wrap_content">
+                    android:orientation="vertical">
+
                     <TextView
-                        android:layout_width="match_parent"
-                        android:textSize="18sp"
                         android:id="@+id/buyTitle"
-                        android:textColor="#383838"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/buy"/>
+                        android:text="@string/buy"
+                        android:textColor="#383838"
+                        android:textSize="18sp" />
+
                     <TextView
-                        android:layout_width="wrap_content"
                         android:id="@+id/buyDescription"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/description"/>
+                        android:text="@string/description" />
 
                 </LinearLayout>
 
@@ -161,46 +172,55 @@
             <View
                 android:layout_width="300dp"
                 android:layout_height="1dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
+
+
 
                 android:background="#d2d2d2"/>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:padding="5dp"
-
-                android:background="?attr/selectableItemBackground"
-                android:foreground="?attr/selectableItemBackground"
-                android:clickable="true"
                 android:id="@+id/option2"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:foreground="?attr/selectableItemBackground"
                 android:gravity="center_vertical"
-                android:layout_height="wrap_content">
+                android:orientation="horizontal"
+                android:paddingBottom="10dp"
+                android:paddingEnd="5dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingStart="5dp"
+                android:paddingTop="10dp">
+
                 <ImageView
-                    android:padding="5dp"
+                    android:id="@+id/fundsIcon"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
+                    android:padding="5dp"
                     android:scaleType="fitCenter"
-                    android:id="@+id/fundsIcon"
-                    android:src="@mipmap/creditcard"/>
+                    android:src="@mipmap/creditcard" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:orientation="vertical"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_height="wrap_content">
+                    android:orientation="vertical">
+
                     <TextView
-                        android:layout_width="match_parent"
-                        android:textSize="18sp"
                         android:id="@+id/fundsTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/add_funds"
                         android:textColor="#383838"
-                        android:layout_height="wrap_content"
-                        android:text="@string/add_funds"/>
+                        android:textSize="18sp" />
+
                     <TextView
-                        android:layout_width="wrap_content"
                         android:id="@+id/fundsDescription"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/description2"/>
+                        android:text="@string/description2" />
 
                 </LinearLayout>
 
@@ -208,46 +228,54 @@
             <View
                 android:layout_width="300dp"
                 android:layout_height="1dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
+
 
                 android:background="#d2d2d2"/>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:padding="5dp"
-                android:background="?attr/selectableItemBackground"
-                android:foreground="?attr/selectableItemBackground"
-                android:clickable="true"
                 android:id="@+id/option3"
-                android:layout_marginBottom="5dp"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:foreground="?attr/selectableItemBackground"
                 android:gravity="center_vertical"
-                android:layout_height="wrap_content">
+                android:orientation="horizontal"
+                android:paddingBottom="10dp"
+                android:paddingEnd="5dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingStart="5dp"
+                android:paddingTop="10dp">
+
                 <ImageView
-                    android:padding="5dp"
+                    android:id="@+id/uploadIcon"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
+                    android:padding="5dp"
                     android:scaleType="fitCenter"
-                    android:id="@+id/uploadIcon"
-                    android:src="@mipmap/uploaddoc"/>
+                    android:src="@mipmap/uploaddoc" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:orientation="vertical"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_height="wrap_content">
+                    android:orientation="vertical">
+
                     <TextView
-                        android:layout_width="match_parent"
-                        android:textSize="18sp"
                         android:id="@+id/uploadTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/upload_documents2"
                         android:textColor="#383838"
-                        android:layout_height="wrap_content"
-                        android:text="@string/upload_documents2"/>
+                        android:textSize="18sp" />
+
                     <TextView
-                        android:layout_width="wrap_content"
                         android:id="@+id/uploadDescription"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/description3"/>
+                        android:text="@string/description3" />
 
                 </LinearLayout>
 

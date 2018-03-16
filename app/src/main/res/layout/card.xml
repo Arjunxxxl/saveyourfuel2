@@ -9,41 +9,97 @@
         android:layout_margin="5dp"
         android:layout_height="wrap_content">
 
-        <LinearLayout
+        <RelativeLayout
+
             android:layout_width="match_parent"
             android:orientation="horizontal"
             android:padding="5dp"
             android:background="#ffffff"
-            android:id="@+id/card1"
+            android:id="@+id/card"
             android:gravity="center_vertical"
             android:layout_height="wrap_content">
-            <ImageView
-                android:padding="5dp"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:scaleType="fitCenter"
-                android:id="@+id/icon_for_recycle"
-                android:src="@mipmap/creditcard"/>
-            <LinearLayout
+
+            <TextView
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:textSize="20dp"
+                android:id="@+id/title"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#363636"
+                android:layout_height="wrap_content"
+                android:text="Title"/>
+
+
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:orientation="vertical"
-                android:layout_marginLeft="10dp"
+                android:layout_below="@+id/title"
                 android:layout_height="wrap_content">
-                <TextView
+                <ImageView
+                    android:padding="5dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerVertical="true"
+                    android:scaleType="fitCenter"
+                    android:id="@+id/icon_for_recycle"
+                    android:src="@mipmap/creditcard"/>
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:textSize="20dp"
-                    android:id="@+id/title"
-                    android:layout_height="wrap_content"
-                    android:text="Title"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:id="@+id/description"
-                    android:layout_height="wrap_content"
-                    android:text="Description"/>
+                    android:layout_toRightOf="@+id/icon_for_recycle"
+                    android:layout_centerVertical="true"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_alignParentStart="true"
+                        android:id="@+id/company_label"
 
-            </LinearLayout>
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginStart="8dp"
+                        android:text="Company : "
+                        android:layout_alignParentLeft="true" />
 
-        </LinearLayout>
+                    <TextView
+                        android:layout_alignParentTop="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@+id/company_label"
+                        android:layout_width="wrap_content"
+                        android:id="@+id/company"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:layout_marginStart="10dp"
+                        android:layout_toEndOf="@+id/company_label" />
+
+                    <TextView
+                        android:id="@+id/price_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/company_label"
+                        android:layout_toLeftOf="@+id/company"
+                        android:layout_toStartOf="@+id/company"
+                        android:text="Price : " />
+
+                    <TextView
+                        android:id="@+id/price"
+                        android:layout_below="@+id/company"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/price_label"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@+id/price_label"
+                        android:text=""
+                        android:layout_marginStart="10dp" />
+
+                </RelativeLayout>
+
+
+
+            </RelativeLayout>
+
+
+
+
+        </RelativeLayout>
 
     </android.support.v7.widget.CardView>
 

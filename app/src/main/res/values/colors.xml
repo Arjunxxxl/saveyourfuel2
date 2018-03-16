@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimary">#004E64</color>
     <color name="colorPrimaryDark">#075E54</color>
     <color name="colorAccent">#FF4081</color>
     <color name="color_upload_info">#075E54</color>
@@ -22,6 +22,8 @@
     <color name="dot_light_screen3">#AB47BC</color>
     <color name="dot_light_screen4">#EC407A</color>
     <color name="dot_light_screen5">#8D6E63</color>
+    <color name="white">#ffffff</color>
+    <color name="green_light">#0cce0c</color>
 
 
     <array name="dor_active">
