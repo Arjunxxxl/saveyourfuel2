@@ -34,6 +34,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -223,7 +224,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
                         play_music.stop();
                         play_music.release();
                         play_music = null;
-
+                        FirebaseMessaging.getInstance().subscribeToTopic("transporter");
                         Intent i = new Intent(loginActivity.this, home.class);
                         i.putExtra("Name", res.getString("name"));
                         i.putExtra("ph", res.getString("phone"));

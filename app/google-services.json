@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "657157059277",
+    "firebase_url": "https://saveyourfuel-1a885.firebaseio.com",
+    "project_id": "saveyourfuel-1a885",
+    "storage_bucket": "saveyourfuel-1a885.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:657157059277:android:ab2b866ad43f5f76",
+        "android_client_info": {
+          "package_name": "com.saveyourfuel.saveyourfuel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "657157059277-6d8j3u8vvbuel5p54034gqfnkp4cqk3j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.saveyourfuel.saveyourfuel",
+            "certificate_hash": "a45c294cc75b52fc8141b5b6402d13df9ee9b585"
+          }
+        },
+        {
+          "client_id": "657157059277-tdamp6lbqtnlg1a0ssela0c8jfjgfroh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAh6fr_Bk4qlGdMQRIIPx7O3F3CWR032ME"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "657157059277-tdamp6lbqtnlg1a0ssela0c8jfjgfroh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

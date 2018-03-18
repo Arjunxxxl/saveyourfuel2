@@ -4,6 +4,7 @@
     package="com.saveyourfuel.saveyourfuel">
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -11,6 +12,7 @@
     <application
         android:allowBackup="true"
         android:hardwareAccelerated="true"
+        android:minSdkVersion="15"
         android:icon="@drawable/syflogo"
         android:label="@string/app_name"
         android:largeHeap="true"
@@ -71,13 +73,29 @@
         <activity android:name=".sliderActivity" />
         <activity android:name=".sellTruckForm" />
         <activity android:name=".truckOwnerDetails">
-
             <intent-filter>
                 <action android:name="com.saveyourfuel.saveyourfuel.truckOwnerDetails" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
+        <service android:name=".services.instanceIdService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".services.messagingService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
