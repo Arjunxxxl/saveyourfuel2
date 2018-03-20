@@ -4,6 +4,7 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
@@ -32,15 +33,7 @@ public class contactusActivity extends AppCompatActivity implements View.OnClick
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = this.getWindow();
-// clear FLAG_TRANSLUCENT_STATUS flag:
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-// add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-// finally change the color
-            window.setStatusBarColor(Color.parseColor("#003240"));
-        }
+
         setContentView(R.layout.activity_contactus);
 
 
@@ -52,9 +45,11 @@ public class contactusActivity extends AppCompatActivity implements View.OnClick
         toolbar.setBackgroundColor(Color.parseColor("#004E64"));
         toolbar.setSubtitleTextColor(Color.parseColor("#ffffff"));
 
-        Intent i = getIntent();
-        name = i.getExtras().getString("Name", "");
-        ph = i.getExtras().getString("ph", "");
+
+        SharedPreferences sharedPref = getSharedPreferences("data", Context.MODE_PRIVATE);
+        name = sharedPref.getString("Name","");
+        ph = sharedPref.getString("ph","");
+
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -63,8 +58,6 @@ public class contactusActivity extends AppCompatActivity implements View.OnClick
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(contactusActivity.this,home.class);
-                i.putExtra("Name",name);
-                i.putExtra("ph",ph);
                 startActivity(i);
                 contactusActivity.this.finish();
             }
@@ -84,8 +77,6 @@ public class contactusActivity extends AppCompatActivity implements View.OnClick
     public void onBackPressed() {
         super.onBackPressed();
         Intent i = new Intent(contactusActivity.this,home.class);
-        i.putExtra("Name",name);
-        i.putExtra("ph",ph);
         startActivity(i);
         contactusActivity.this.finish();
     }

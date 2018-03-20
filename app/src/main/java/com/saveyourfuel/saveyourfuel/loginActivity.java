@@ -225,10 +225,12 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
                         play_music.release();
                         play_music = null;
                         FirebaseMessaging.getInstance().subscribeToTopic("transporter");
+
+                        SharedPreferences sharedPreferences = getSharedPreferences("data",Context.MODE_PRIVATE);
+                        sharedPreferences.edit().putString("Name",res.getString("name")).apply();
+                        sharedPreferences.edit().putString("ph",res.getString("phone")).apply();
+
                         Intent i = new Intent(loginActivity.this, home.class);
-                        i.putExtra("Name", res.getString("name"));
-                        i.putExtra("ph", res.getString("phone"));
-                        //splashActivity.profile_image = res.getString("profile");
                         startActivity(i);
 
                         loginActivity.this.finish();

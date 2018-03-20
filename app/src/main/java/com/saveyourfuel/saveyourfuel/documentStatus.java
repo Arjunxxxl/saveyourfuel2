@@ -41,15 +41,6 @@ public class documentStatus extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = this.getWindow();
-// clear FLAG_TRANSLUCENT_STATUS flag:
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-// add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-// finally change the color
-            window.setStatusBarColor(Color.parseColor("#003240"));
-        }
         setContentView(R.layout.activity_document_status);
 
 
@@ -61,9 +52,10 @@ public class documentStatus extends AppCompatActivity implements View.OnClickLis
         setView();
         getStatusFromServer();
 
-        Intent i = getIntent();
-        name = i.getExtras().getString("Name", "");
-        ph = i.getExtras().getString("ph", "");
+        SharedPreferences sharedPref = getSharedPreferences("data", Context.MODE_PRIVATE);
+        name = sharedPref.getString("Name","");
+        ph = sharedPref.getString("ph","");
+
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -72,8 +64,6 @@ public class documentStatus extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(documentStatus.this, home.class);
-                i.putExtra("Name", name);
-                i.putExtra("ph", ph);
                 startActivity(i);
                 documentStatus.this.finish();
             }
@@ -106,8 +96,6 @@ public class documentStatus extends AppCompatActivity implements View.OnClickLis
     public void onBackPressed() {
         super.onBackPressed();
         Intent i = new Intent(documentStatus.this, home.class);
-        i.putExtra("Name", home.name);
-        i.putExtra("ph", home.ph);
         startActivity(i);
         documentStatus.this.finish();
     }
@@ -248,9 +236,7 @@ public class documentStatus extends AppCompatActivity implements View.OnClickLis
         switch (v.getId()){
             case R.id.upload_doc_cardview:
                 Intent i = new Intent("com.saveyourfuel.saveyourfuel.uploadActivity");
-                i.putExtra("Name",home.name);
                 Log.d("debugger","cardview clicked");
-                i.putExtra("ph",home.ph);
                 startActivity(i);
                 this.finish();
                 break;

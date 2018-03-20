@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -40,6 +41,7 @@ public class sellTruckForm extends AppCompatActivity implements View.OnClickList
     EditText name,phone,price,company;
     ProgressDialog progressDialog;
     RelativeLayout container;
+    FloatingActionButton truckList;
     private static final int Pick_image1 = 100,Pick_image2=200;
     Uri photo1_uri,rc_uri;
 
@@ -53,9 +55,12 @@ public class sellTruckForm extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sell_truck_form);
-        Intent i = getIntent();
-        nm = i.getExtras().getString("Name", "");
-        ph = i.getExtras().getString("ph", "");
+
+
+        SharedPreferences sharedPref = getSharedPreferences("data", Context.MODE_PRIVATE);
+        nm = sharedPref.getString("Name","");
+        ph = sharedPref.getString("ph","");
+
         setView();
 
     }
@@ -101,6 +106,8 @@ public class sellTruckForm extends AppCompatActivity implements View.OnClickList
             }
         });
 
+        truckList = findViewById(R.id.truck_list);
+        truckList.setOnClickListener(this);
 
 
 
@@ -154,6 +161,10 @@ public class sellTruckForm extends AppCompatActivity implements View.OnClickList
             case R.id.rc:
                 i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
                 startActivityForResult(i, Pick_image2);
+                break;
+            case R.id.truck_list:
+                i = new Intent(sellTruckForm.this,truckList.class);
+                startActivity(i);
                 break;
 
 

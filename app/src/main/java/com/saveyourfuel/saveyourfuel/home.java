@@ -4,31 +4,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.media.Image;
-import android.os.Build;
-import android.preference.PreferenceManager;
+import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -40,13 +28,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.saveyourfuel.saveyourfuel.adapters.cardAdapter;
-import com.saveyourfuel.saveyourfuel.models.card;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.Locale;
 
 public class home extends AppCompatActivity implements View.OnClickListener {
@@ -67,7 +52,8 @@ public class home extends AppCompatActivity implements View.OnClickListener {
 
 
         SharedPreferences sharedPref = getSharedPreferences("data", Context.MODE_PRIVATE);
-
+        name = sharedPref.getString("Name","");
+        ph = sharedPref.getString("ph","");
 
         String languageToLoad  = sharedPref.getString("lang","en");
         Locale locale = new Locale(languageToLoad);
@@ -87,17 +73,8 @@ public class home extends AppCompatActivity implements View.OnClickListener {
         toolbar = findViewById(R.id.toolbar);
 
 
-        Intent i = getIntent();
-        name = i.getExtras().getString("Name", "");
-        ph = i.getExtras().getString("ph", "");
-
         setImage();
 
-//        String imageString = profile_image;
-//        if (!imageString.isEmpty()) {
-//            byte[] decodedString = Base64.decode(imageString, Base64.DEFAULT);
-//            profileImage = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-//        }
 
         toolbar.setTitle(R.string.name);
         setSupportActionBar(toolbar);
@@ -137,36 +114,18 @@ public class home extends AppCompatActivity implements View.OnClickListener {
         switch (item.getItemId()) {
             case R.id.aboutus:
                 Intent i = new Intent(home.this, aboutusActivity.class);
-                i.putExtra("Name", name);
-                i.putExtra("ph", ph);
                 startActivity(i);
                 break;
-//            case R.id.setting:
-//                Intent i1 = new Intent(home.this, settingsActivity.class);
-//                i1.putExtra("Name", name);
-//                i1.putExtra("ph", ph);
-//                startActivity(i1);
-//                break;
             case R.id.money:
                 Intent i2 = new Intent(home.this, balanceActivity.class);
-                i2.putExtra("Name", name);
-                i2.putExtra("ph", ph);
                 startActivity(i2);
                 break;
 
             case R.id.contactsyf:
                 Intent i3 = new Intent(home.this, contactusActivity.class);
-                i3.putExtra("Name", name);
-                i3.putExtra("ph", ph);
                 startActivity(i3);
                 break;
 
-//            case R.id.upload:
-//                Intent i4 = new Intent(home.this, documentStatus.class);
-//                i4.putExtra("Name", name);
-//                i4.putExtra("ph", ph);
-//                startActivity(i4);
-//                break;
 
             case R.id.language:
 
@@ -277,22 +236,16 @@ public class home extends AppCompatActivity implements View.OnClickListener {
             case R.id.option1:
 
                 Intent i2 = new Intent(home.this,buyActivity.class);
-                i2.putExtra("Name", home.name);
-                i2.putExtra("ph", home.ph);
                 startActivity(i2);
                 break;
             case R.id.option2:
                 Intent i3 = new Intent("com.saveyourfuel.saveyourfuel.balanceActivity");
-                i3.putExtra("Name", home.name);
-                i3.putExtra("ph", home.ph);
                 startActivity(i3);
 
                 break;
             case R.id.option3:
 
                 Intent i4 = new Intent("com.saveyourfuel.saveyourfuel.documentStatus");
-                i4.putExtra("Name", home.name);
-                i4.putExtra("ph", home.ph);
                 startActivity(i4);
                 break;
 

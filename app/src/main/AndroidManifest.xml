@@ -12,10 +12,10 @@
     <application
         android:allowBackup="true"
         android:hardwareAccelerated="true"
-        android:minSdkVersion="15"
         android:icon="@drawable/syflogo"
         android:label="@string/app_name"
         android:largeHeap="true"
+        android:minSdkVersion="15"
         android:roundIcon="@drawable/syflogo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -80,7 +80,8 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".services.instanceIdService"
+        <service
+            android:name=".services.instanceIdService"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
@@ -92,10 +93,12 @@
             android:enabled="true"
             android:exported="true">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
             </intent-filter>
         </service>
+
+        <activity android:name=".truckList"></activity>
     </application>
 
 </manifest>

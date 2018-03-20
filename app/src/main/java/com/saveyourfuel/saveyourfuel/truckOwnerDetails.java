@@ -64,9 +64,6 @@ public class truckOwnerDetails extends AppCompatActivity implements View.OnClick
         price.setText(i.getExtras().getString("price", ""));
         company.setText(i.getExtras().getString("company", ""));
         p_id = i.getExtras().getString("p_id", "");
-//        nm = i.getExtras().getString("Name","");
-//        ph = i.getExtras().getString("ph","");
-
 
         toolbar.setTitle("Truck owner Details");
         setSupportActionBar(toolbar);
@@ -78,10 +75,6 @@ public class truckOwnerDetails extends AppCompatActivity implements View.OnClick
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent i = new Intent(truckOwnerDetails.this,buyActivity.class);
-//                i.putExtra("Name",nm);
-//                i.putExtra("ph",ph);
-//                startActivity(i);
                 truckOwnerDetails.this.finish();
             }
         });

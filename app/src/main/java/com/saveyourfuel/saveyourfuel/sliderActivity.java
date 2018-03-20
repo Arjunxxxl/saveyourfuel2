@@ -26,7 +26,6 @@ public class sliderActivity extends AppCompatActivity {
     private LinearLayout dotlayout;
     Button next,skip;
     ViewPagerAdapter viewPagerAdapter;
-    String name,ph;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,16 +51,11 @@ public class sliderActivity extends AppCompatActivity {
         viewPager.setAdapter(viewPagerAdapter);
         viewPager.addOnPageChangeListener(viewListener);
 
-        Intent i = getIntent();
-        name = i.getExtras().getString("Name", "");
-        ph = i.getExtras().getString("ph", "");
 
         skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(sliderActivity.this,loginActivity.class);
-                i.putExtra("Name", name);
-                i.putExtra("ph", ph);
                 startActivity(i);
                 sliderActivity.this.finish();
             }
@@ -75,8 +69,6 @@ public class sliderActivity extends AppCompatActivity {
                     viewPager.setCurrentItem(current);
                 }else{
                     Intent i = new Intent(sliderActivity.this,loginActivity.class);
-                    i.putExtra("Name", name);
-                    i.putExtra("ph", ph);
                     startActivity(i);
                     sliderActivity.this.finish();
                 }

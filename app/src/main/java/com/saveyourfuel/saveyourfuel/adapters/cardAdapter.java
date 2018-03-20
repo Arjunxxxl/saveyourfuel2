@@ -2,20 +2,16 @@ package com.saveyourfuel.saveyourfuel.adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.saveyourfuel.saveyourfuel.R;
-import com.saveyourfuel.saveyourfuel.home;
 import com.saveyourfuel.saveyourfuel.models.card;
-import com.saveyourfuel.saveyourfuel.uploadActivity;
 
 import java.util.ArrayList;
 

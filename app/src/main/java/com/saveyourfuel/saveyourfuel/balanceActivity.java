@@ -1,6 +1,8 @@
 package com.saveyourfuel.saveyourfuel;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.design.widget.Snackbar;
@@ -28,24 +30,17 @@ public class balanceActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = this.getWindow();
-// clear FLAG_TRANSLUCENT_STATUS flag:
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-// add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-// finally change the color
-            window.setStatusBarColor(Color.parseColor("#003240"));
-        }
         setContentView(R.layout.activity_balance);
 
         toolbar = findViewById(R.id.toolbarkok);
         toolbar.setTitle(R.string.balance);
         setSupportActionBar(toolbar);
         toolbar.setSubtitle(R.string.name);
-        Intent i = getIntent();
-        name = i.getExtras().getString("Name", "");
-        ph = i.getExtras().getString("ph", "");
+
+        SharedPreferences sharedPref = getSharedPreferences("data", Context.MODE_PRIVATE);
+        name = sharedPref.getString("Name","");
+        ph = sharedPref.getString("ph","");
+
 
         toolbar.setTitleTextColor(Color.parseColor("#ffffff"));
         toolbar.setBackgroundColor(Color.parseColor("#004E64"));
@@ -57,8 +52,6 @@ public class balanceActivity extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(balanceActivity.this,home.class);
-                i.putExtra("Name",name);
-                i.putExtra("ph",ph);
                 startActivity(i);
                 balanceActivity.this.finish();
             }
@@ -93,8 +86,6 @@ public class balanceActivity extends AppCompatActivity implements View.OnClickLi
     public void onBackPressed() {
         super.onBackPressed();
         Intent i = new Intent(balanceActivity.this,home.class);
-        i.putExtra("Name",name);
-        i.putExtra("ph",ph);
         startActivity(i);
         balanceActivity.this.finish();
     }
@@ -105,8 +96,6 @@ public class balanceActivity extends AppCompatActivity implements View.OnClickLi
         {
             case R.id.button_back :
                 Intent i4 = new Intent(balanceActivity.this,home.class);
-                i4.putExtra("Name", home.name);
-                i4.putExtra("ph", home.ph);
                 startActivity(i4);
                 balanceActivity.this.finish();
                 break;

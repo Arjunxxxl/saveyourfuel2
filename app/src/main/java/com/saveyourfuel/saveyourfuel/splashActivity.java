@@ -25,7 +25,6 @@ import org.json.JSONObject;
 
 public class splashActivity extends AppCompatActivity {
 
-    //public  static  String profile_image = "";
     public  static  String name,ph;
     static String LANG_CURRENT = "en";
     private Intromanager intromanager;
@@ -52,8 +51,6 @@ public class splashActivity extends AppCompatActivity {
                 //if(true){
                     intromanager.setFirst(false);
                     Intent i = new Intent(splashActivity.this,sliderActivity.class);
-                    i.putExtra("Name", name);
-                    i.putExtra("ph", ph);
                     startActivity(i);
                     splashActivity.this.finish();
                 }else {
@@ -98,10 +95,10 @@ public class splashActivity extends AppCompatActivity {
 
 
                             Intent i = new Intent(splashActivity.this, home.class);
-                            i.putExtra("Name", res.getString("name"));
-                            i.putExtra("ph", res.getString("phone"));
-                            //profile_image = res.getString("profile");
-                            //i.putExtra("image",profile_image);
+                            SharedPreferences sharedPreferences = getSharedPreferences("data",Context.MODE_PRIVATE);
+                            sharedPreferences.edit().putString("Name",res.getString("name")).apply();
+                            sharedPreferences.edit().putString("ph",res.getString("phone")).apply();
+
                             startActivity(i);
                             splashActivity.this.finish();
                         } else {
