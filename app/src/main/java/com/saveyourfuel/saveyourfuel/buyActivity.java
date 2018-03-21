@@ -95,6 +95,9 @@ public class buyActivity extends AppCompatActivity implements  View.OnClickListe
         truckSell = findViewById(R.id.truck_sell_button);
         truckSell.setOnClickListener(this);
 
+        spare = findViewById(R.id.spare_parts);
+        spare.setOnClickListener(this);
+
         itemViewHolder = findViewById(R.id.item_viewholder);
         itemViewHolder.setLayoutManager(new LinearLayoutManager(this, LinearLayout.VERTICAL,false));
         adapter = new cardAdapter(cards,this);
@@ -145,12 +148,26 @@ public class buyActivity extends AppCompatActivity implements  View.OnClickListe
                 loadTruckDetails();
                 break;
 
+            case R.id.spare_parts:
+                loadSparePartsDetails();
+                break;
+
+
+
 
 
         }
     }
 
+
+    void loadSparePartsDetails(){
+        getSupportActionBar().setTitle("Buy spare parts");
+        cards.clear();
+        adapter.notifyDataSetChanged();
+
+    }
     void loadTruckDetails(){
+        getSupportActionBar().setTitle("Buy trucks");
         cards.clear();
         adapter.notifyDataSetChanged();
         swipeRefreshLayout.setRefreshing(true);

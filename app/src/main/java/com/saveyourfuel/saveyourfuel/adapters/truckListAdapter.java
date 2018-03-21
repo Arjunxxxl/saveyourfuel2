@@ -3,14 +3,8 @@ package com.saveyourfuel.saveyourfuel.adapters;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
-import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,7 +23,6 @@ import com.android.volley.toolbox.Volley;
 import com.saveyourfuel.saveyourfuel.R;
 import com.saveyourfuel.saveyourfuel.models.card;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
