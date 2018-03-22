@@ -64,24 +64,41 @@
                 android:inputType="phone"
                 android:layout_marginRight="30dp"
                 android:layout_height="wrap_content" />
+
             <TextView
-                android:layout_below="@+id/phone"
-                android:layout_width="wrap_content"
-                android:layout_marginLeft="30dp"
                 android:id="@+id/company_label"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Manufacturer Company"/>
+                android:layout_alignLeft="@+id/phone"
+                android:layout_alignStart="@+id/phone"
+                android:layout_below="@+id/phone"
+                android:text="Spare item name" />
             <EditText
                 android:layout_below="@+id/company_label"
                 android:layout_width="match_parent"
-                android:hint="e.g. Mahindra"
-
+                android:hint="e.g. Water Pump Assembly"
                 android:id="@+id/company"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="35dp"
                 android:layout_height="wrap_content" />
             <TextView
+                android:id="@+id/company_labe2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/phone"
+                android:layout_alignStart="@+id/phone"
                 android:layout_below="@+id/company"
+                android:text="Spare item name" />
+            <EditText
+                android:layout_below="@+id/company_labe2"
+                android:layout_width="match_parent"
+                android:hint="e.g. Water Pump Assembly"
+                android:id="@+id/company2"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="35dp"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_below="@+id/company2"
                 android:layout_width="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:id="@+id/price_label"
