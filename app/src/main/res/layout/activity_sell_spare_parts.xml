@@ -88,11 +88,11 @@
                 android:layout_alignLeft="@+id/phone"
                 android:layout_alignStart="@+id/phone"
                 android:layout_below="@+id/company"
-                android:text="Spare item name" />
+                android:text="Item description" />
             <EditText
                 android:layout_below="@+id/company_labe2"
                 android:layout_width="match_parent"
-                android:hint="e.g. Water Pump Assembly"
+                android:hint="e.g. Brand: Bharat, Power: Hydraulic, Material : Cast Iron "
                 android:id="@+id/company2"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="35dp"
