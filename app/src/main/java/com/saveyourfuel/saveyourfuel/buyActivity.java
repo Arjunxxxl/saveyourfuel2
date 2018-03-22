@@ -45,11 +45,14 @@ public class buyActivity extends AppCompatActivity implements  View.OnClickListe
     Toolbar toolbar;
     String name,ph;
     SwipeRefreshLayout swipeRefreshLayout;
-    FloatingActionButton spare, load,truckSell;
+    FloatingActionButton spare, fuel,truckSell;
     cardAdapter adapter;
 
     ArrayList<card> cards = new ArrayList<>();
     RecyclerView itemViewHolder;
+
+    Context contex;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +66,7 @@ public class buyActivity extends AppCompatActivity implements  View.OnClickListe
         name = sharedPref.getString("Name","");
         ph = sharedPref.getString("ph","");
 
-
+        contex = getApplicationContext();
 
         setView();
         loadTruckDetails();
@@ -81,6 +84,16 @@ public class buyActivity extends AppCompatActivity implements  View.OnClickListe
                 startActivity(i);
                 buyActivity.this.finish();
                 break;
+
+            case R.id.sell_spare:
+
+                Intent i1 = new Intent(buyActivity.this, sell_spare_partsActivity.class);
+
+                startActivity(i1);
+                buyActivity.this.finish();
+                break;
+
+
         }
         return super.onOptionsItemSelected(item);
     }
@@ -97,6 +110,9 @@ public class buyActivity extends AppCompatActivity implements  View.OnClickListe
 
         spare = findViewById(R.id.spare_parts);
         spare.setOnClickListener(this);
+
+        fuel = findViewById(R.id.fuel_button);
+        fuel.setOnClickListener(this);
 
         itemViewHolder = findViewById(R.id.item_viewholder);
         itemViewHolder.setLayoutManager(new LinearLayoutManager(this, LinearLayout.VERTICAL,false));
@@ -152,10 +168,9 @@ public class buyActivity extends AppCompatActivity implements  View.OnClickListe
                 loadSparePartsDetails();
                 break;
 
-
-
-
-
+            case R.id.fuel_button:
+                Snackbar.make(view,R.string.coming_soon,Snackbar.LENGTH_LONG).show();
+                break;
         }
     }
 
@@ -167,7 +182,7 @@ public class buyActivity extends AppCompatActivity implements  View.OnClickListe
 
     }
     void loadTruckDetails(){
-        getSupportActionBar().setTitle("Buy trucks");
+        getSupportActionBar().setTitle(R.string.banss);
         cards.clear();
         adapter.notifyDataSetChanged();
         swipeRefreshLayout.setRefreshing(true);

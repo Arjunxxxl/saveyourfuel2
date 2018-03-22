@@ -7,11 +7,11 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.util.Log;
@@ -19,7 +19,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -35,8 +34,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class sellTruckForm extends AppCompatActivity implements View.OnClickListener {
-
+public class sell_spare_partsActivity extends AppCompatActivity implements  View.OnClickListener{
 
     static String url = "http://139.59.29.124:3000/truck-sell";
     EditText name,phone,price,company;
@@ -51,20 +49,16 @@ public class sellTruckForm extends AppCompatActivity implements View.OnClickList
     TextView photo1,uploadButton,rc;
     String nameValue,phoneValue;
     String ph,nm;
-    Context contex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sell_truck_form);
-
-
+        setContentView(R.layout.activity_sell_spare_parts);
         SharedPreferences sharedPref = getSharedPreferences("data", Context.MODE_PRIVATE);
         nm = sharedPref.getString("Name","");
         ph = sharedPref.getString("ph","");
 
         setView();
-        contex = this;
 
     }
 
@@ -76,11 +70,10 @@ public class sellTruckForm extends AppCompatActivity implements View.OnClickList
         photo1 = findViewById(R.id.photo1);
         photo1.setOnClickListener(this);
 
-        rc = findViewById(R.id.rc);
-        rc.setOnClickListener(this);
 
 
-        toolbar.setTitle("Sell a truck");
+
+        toolbar.setTitle("Sell spare items");
         setSupportActionBar(toolbar);
 
         name = findViewById(R.id.name);
@@ -101,11 +94,11 @@ public class sellTruckForm extends AppCompatActivity implements View.OnClickList
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(sellTruckForm.this,buyActivity.class);
+                Intent i = new Intent(sell_spare_partsActivity.this,buyActivity.class);
                 i.putExtra("Name",nm);
                 i.putExtra("ph",ph);
                 startActivity(i);
-                sellTruckForm.this.finish();
+                sell_spare_partsActivity.this.finish();
             }
         });
 
@@ -155,13 +148,7 @@ public class sellTruckForm extends AppCompatActivity implements View.OnClickList
         Intent i;
         switch (v.getId()){
             case R.id.upload_document_button:
-                int p = Integer.parseInt(price.getText().toString());
-                if(p>10000000) {
-                    Toast.makeText(getApplicationContext(), R.string.priceless,Toast.LENGTH_LONG)
-                            .show();
-                }else {
-                    setupRequest();
-                }
+                setupRequest();
                 break;
             case R.id.photo1:
                 i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
@@ -172,7 +159,7 @@ public class sellTruckForm extends AppCompatActivity implements View.OnClickList
                 startActivityForResult(i, Pick_image2);
                 break;
             case R.id.truck_list:
-                i = new Intent(sellTruckForm.this,truckList.class);
+                i = new Intent(sell_spare_partsActivity.this,truckList.class);
                 startActivity(i);
                 break;
 
@@ -195,11 +182,11 @@ public class sellTruckForm extends AppCompatActivity implements View.OnClickList
         queue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<String>() {
             @Override
             public void onRequestFinished(Request<String> request) {
-                Intent i = new Intent(sellTruckForm.this, buyActivity.class);
+                Intent i = new Intent(sell_spare_partsActivity.this, buyActivity.class);
                 i.putExtra("Name", nm);
                 i.putExtra("ph", ph);
                 startActivity(i);
-                sellTruckForm.this.finish();
+                sell_spare_partsActivity.this.finish();
             }
         });
 
@@ -290,3 +277,4 @@ public class sellTruckForm extends AppCompatActivity implements View.OnClickList
 
     }
 }
+

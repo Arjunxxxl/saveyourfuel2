@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">अपना ईंधन बचाओ</string>
-    <string name="name">अपना ईंधन बचाओ</string>
+    <string name="app_name">SYF TRANSRUN</string>
+    <string name="name">SYF TRANSRUN</string>
     <string name="register"><u>यहाँ नये, <b>अभी पंजीकरण करें!</b></u></string>
     <string name="about_us">हमारे बारे में</string>
     <string name="upload_disclaimer">पहले से सत्यापित दस्तावेज अपलोड करने से सत्यापन प्रक्रिया दोबारा शुरू हो जाएगी</string>
@@ -31,7 +31,7 @@
     <string name="y_profile">आपकी रूपरेखा</string>
     <string name="logout">आपके पास लॉगआउट हो रहा है</string>
     <string name="description">खरीदें या उत्पाद बेचें</string>
-    <string name="buy">खरीदें</string>
+    <string name="buy">खरीदें या बेचें</string>
     <string name="add_funds">धन जोड़ें</string>
     <string name="description2">अपने ईंधन बटुए में पैसे जोड़ें</string>
     <string name="upload_documents2">दस्तावेज़ अपलोड करें</string>
@@ -84,6 +84,9 @@
     <string name="pass_empty">पासवर्ड रिक्त नहीं हो सकता</string>
     <string name="min_length">न्यूनतम आठ अक्षर, कम से कम एक अक्षर और एक नंबर :</string>
     <string name="pass_not_same">पासवर्ड मैच नहीं करताै</string>
+
+    <string name="priceless">कीमत 1 करोड़ से कम होनी चाहिए</string>
+    <string name="banss">खरीदो और बेचो</string>
 
     <string-array name="document_type">
         <item>एक विकल्प का चुनाव करें...</item>

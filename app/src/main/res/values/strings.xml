@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">Save Your Fuel</string>
-    <string name="name">Save Your Fuel</string>
+    <string name="app_name">SYF TRANSRUN</string>
+    <string name="name">SYF TRANSRUN</string>
     <string name="register"><u>New here, <b>Register Now!</b></u></string>
     <string name="about_us">About us</string>
     <string name="upload_disclaimer">Uploading already verified documents will initiate the verification process again</string>
@@ -31,7 +31,7 @@
     <string name="y_profile">Your Profile</string>
     <string name="logout">You have being logout</string>
     <string name="description">Buy or sell products</string>
-    <string name="buy">Buy</string>
+    <string name="buy">Buy or sell</string>
     <string name="add_funds">Add Funds</string>
     <string name="description2">Add money to your fuel wallet</string>
     <string name="upload_documents2">Upload Documents</string>
@@ -83,6 +83,8 @@
     <string name="pass_empty">password cannot be empty</string>
     <string name="min_length">Minimum eight characters, at least one letter and one number:</string>
     <string name="pass_not_same">password doesn\'t match</string>
+    <string name="priceless">Price should be less than 1 crore INR</string>
+    <string name="banss">Buy and sell</string>
 
     <string-array name="document_type">
         <item>Select an option...</item>
