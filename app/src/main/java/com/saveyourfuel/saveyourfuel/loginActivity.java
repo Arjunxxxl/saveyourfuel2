@@ -224,7 +224,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
                         play_music.stop();
                         play_music.release();
                         play_music = null;
-                        FirebaseMessaging.getInstance().subscribeToTopic("transporter");
+
 
                         SharedPreferences sharedPreferences = getSharedPreferences("data",Context.MODE_PRIVATE);
                         sharedPreferences.edit().putString("Name",res.getString("name")).apply();

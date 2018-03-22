@@ -11,43 +11,44 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.saveyourfuel.saveyourfuel.R;
-import com.saveyourfuel.saveyourfuel.models.card;
+import com.saveyourfuel.saveyourfuel.models.spareCard;
 
 import java.util.ArrayList;
 
-/**.
- * Created by root on 11/2/18.
+/**
+ * Created by root on 22/3/18.
  */
 
-public class cardAdapter extends RecyclerView.Adapter<cardAdapter.MyViewHolder>{
-    private ArrayList<card> cards;
+public class spareAdapter extends RecyclerView.Adapter<spareAdapter.MyViewHolder>{
+
+    private ArrayList<spareCard> cards;
     Context context;
 
 
-    public cardAdapter(ArrayList<card> cards,Context context){
+    public spareAdapter(ArrayList<spareCard> cards, Context context){
         this.cards = cards;
         this.context=context;
     }
 
     @Override
-    public cardAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public spareAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.card,parent,false);
-        return new MyViewHolder(itemView);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.spare_card,parent,false);
+        return new spareAdapter.MyViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(cardAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(spareAdapter.MyViewHolder holder, int position) {
 
         holder.Title.setText(cards.get(position).title);
-        holder.company.setText(cards.get(position).company);
+        holder.description.setText(cards.get(position).description);
         holder.price.setText(cards.get(position).price);
         holder.imageView.setImageBitmap(cards.get(position).thumbnail);
 
 
     }
 
-    public void addNewCard(card item){
+    public void addNewCard(spareCard item){
         cards.add(item);
     }
 
@@ -57,14 +58,14 @@ public class cardAdapter extends RecyclerView.Adapter<cardAdapter.MyViewHolder>{
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView Title, company, price;
+        public TextView Title, description, price;
         public ImageView imageView;
         public RelativeLayout my_card;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             Title = itemView.findViewById(R.id.title);
-            company = itemView.findViewById(R.id.spare_part_name);
+            description = itemView.findViewById(R.id.description);
             price = itemView.findViewById(R.id.price);
             imageView = itemView.findViewById(R.id.icon_for_recycle);
             my_card = itemView.findViewById(R.id.card);
@@ -73,19 +74,13 @@ public class cardAdapter extends RecyclerView.Adapter<cardAdapter.MyViewHolder>{
                 @Override
                 public void onClick(View view) {
                     int position = getAdapterPosition();
-
-//                    Snackbar.make(view, "Click detected on item " + position,
-//                            Snackbar.LENGTH_SHORT).setAction("Action", null).show();
-//                    switch (position)
-//                    {
-//
-//                    }
-                    card tmp = cards.get(position);
-                    Intent i = new Intent("com.saveyourfuel.saveyourfuel.truckOwnerDetails");
+                    spareCard tmp = cards.get(position);
+                    Intent i = new Intent("com.saveyourfuel.saveyourfuel.spareOwnerDetails");
                     i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     i.putExtra("name",tmp.name);
                     i.putExtra("phone",tmp.phone);
-                    i.putExtra("company",tmp.company);
+                    i.putExtra("spare_name",tmp.sparePartName);
+                    i.putExtra("description",tmp.description);
                     i.putExtra("p_id",tmp.p_id);
                     i.putExtra("price",tmp.price);
                     context.startActivity(i);

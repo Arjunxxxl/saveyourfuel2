@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.os.Build;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -21,9 +20,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.android.volley.Request;
@@ -33,7 +29,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.saveyourfuel.saveyourfuel.adapters.cardAdapter;
+import com.saveyourfuel.saveyourfuel.adapters.spareAdapter;
 import com.saveyourfuel.saveyourfuel.models.card;
+import com.saveyourfuel.saveyourfuel.models.spareCard;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -46,12 +44,17 @@ public class buyActivity extends AppCompatActivity implements  View.OnClickListe
     String name,ph;
     SwipeRefreshLayout swipeRefreshLayout;
     FloatingActionButton spare, fuel,truckSell;
-    cardAdapter adapter;
+    cardAdapter truckAdapter;
+    spareAdapter sparePartsAdapter;
 
-    ArrayList<card> cards = new ArrayList<>();
+    ArrayList<card> truckCards = new ArrayList<>();
+    ArrayList<spareCard> spareCards = new ArrayList<>();
     RecyclerView itemViewHolder;
 
-    Context contex;
+    Context context;
+
+    int whichActive =1;
+    //1 for trucks 2 for spare
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +69,7 @@ public class buyActivity extends AppCompatActivity implements  View.OnClickListe
         name = sharedPref.getString("Name","");
         ph = sharedPref.getString("ph","");
 
-        contex = getApplicationContext();
+        context = getApplicationContext();
 
         setView();
         loadTruckDetails();
@@ -116,8 +119,10 @@ public class buyActivity extends AppCompatActivity implements  View.OnClickListe
 
         itemViewHolder = findViewById(R.id.item_viewholder);
         itemViewHolder.setLayoutManager(new LinearLayoutManager(this, LinearLayout.VERTICAL,false));
-        adapter = new cardAdapter(cards,this);
-        itemViewHolder.setAdapter(adapter);
+        truckAdapter = new cardAdapter(truckCards,this);
+        itemViewHolder.setAdapter(truckAdapter);
+
+        sparePartsAdapter = new spareAdapter(spareCards,context);
 
         swipeRefreshLayout=findViewById(R.id.swipe_refresh);
         swipeRefreshLayout.setOnRefreshListener(this);
@@ -176,17 +181,69 @@ public class buyActivity extends AppCompatActivity implements  View.OnClickListe
 
 
     void loadSparePartsDetails(){
+        itemViewHolder.setAdapter(sparePartsAdapter);
+        whichActive=2;
         getSupportActionBar().setTitle("Buy spare parts");
-        cards.clear();
-        adapter.notifyDataSetChanged();
+        spareCards.clear();
+        sparePartsAdapter.notifyDataSetChanged();
+        swipeRefreshLayout.setRefreshing(true);
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+
+        String url = "http://139.59.29.124:3000/all-spare?limit=" + 10 + "&offset=" + 0;
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONArray jsonArray = new JSONArray(response);
+
+                    for( int i=0;i<jsonArray.length();i++){
+                        JSONObject tmp = jsonArray.getJSONObject(i);
+                        String imageString = tmp.getString("image");
+                        Bitmap spareImage=null;
+                        if (!imageString.isEmpty()) {
+                            byte[] decodedString = Base64.decode(imageString, Base64.DEFAULT);
+                            spareImage = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+
+                        }
+                        Log.d("response",tmp.toString());
+
+                        spareCards.add(new spareCard("On Sale", tmp.getString("description"),tmp.getString("price"),spareImage,
+                                tmp.getString("p_id"),
+                                tmp.getString("seller_name"),
+                                tmp.getString("phone"),
+                                tmp.getString("spare_part")));
+
+                    }
+                    sparePartsAdapter.notifyDataSetChanged();
+                    swipeRefreshLayout.setRefreshing(false);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    swipeRefreshLayout.setRefreshing(false);
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("error", error.toString());
+                Snackbar.make(findViewById(android.R.id.content), R.string.check_your_connection, Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+
+            }
+        });
+        queue.add(stringRequest);
+
 
     }
     void loadTruckDetails(){
+        itemViewHolder.setAdapter(truckAdapter);
+        whichActive = 1;
         getSupportActionBar().setTitle(R.string.banss);
-        cards.clear();
-        adapter.notifyDataSetChanged();
+        truckCards.clear();
+        truckAdapter.notifyDataSetChanged();
         swipeRefreshLayout.setRefreshing(true);
-        //cards.clear();
+        //truckCards.clear();
         RequestQueue queue = Volley.newRequestQueue(this);
 
 
@@ -207,16 +264,17 @@ public class buyActivity extends AppCompatActivity implements  View.OnClickListe
 
                         }
 
-                        cards.add(new card("On Sale", tmp.getString("company"),tmp.getString("price"),truckImage,
+                        truckCards.add(new card("On Sale", tmp.getString("company"),tmp.getString("price"),truckImage,
                                 tmp.getString("p_id"),
                                 tmp.getString("name"),
                                 tmp.getString("phone")));
                     }
-                    adapter.notifyDataSetChanged();
+                    truckAdapter.notifyDataSetChanged();
                     swipeRefreshLayout.setRefreshing(false);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    swipeRefreshLayout.setRefreshing(false);
                 }
 
             }
@@ -233,6 +291,14 @@ public class buyActivity extends AppCompatActivity implements  View.OnClickListe
 
     @Override
     public void onRefresh() {
-        loadTruckDetails();
+        switch (whichActive){
+            case 1:
+                loadTruckDetails();
+                break;
+            case 2:
+                loadSparePartsDetails();
+                break;
+        }
+
     }
 }

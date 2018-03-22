@@ -85,7 +85,7 @@ public class sellTruckForm extends AppCompatActivity implements View.OnClickList
 
         name = findViewById(R.id.name);
         price = findViewById(R.id.price);
-        company = findViewById(R.id.company);
+        company = findViewById(R.id.spare_part_name);
         phone = findViewById(R.id.phone);
         name.setText(nm);
         phone.setText(ph);

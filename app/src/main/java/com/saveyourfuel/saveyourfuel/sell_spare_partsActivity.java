@@ -36,17 +36,17 @@ import java.util.Map;
 
 public class sell_spare_partsActivity extends AppCompatActivity implements  View.OnClickListener{
 
-    static String url = "http://139.59.29.124:3000/truck-sell";
-    EditText name,phone,price,company;
+    static String url = "http://139.59.29.124:3000/spare-sell";
+    EditText name,phone,price,description,spareName;
     ProgressDialog progressDialog;
     RelativeLayout container;
     FloatingActionButton truckList;
     private static final int Pick_image1 = 100,Pick_image2=200;
-    Uri photo1_uri,rc_uri;
+    Uri photo1_uri;
 
     Toolbar toolbar;
-    String priceValue, companyValue;
-    TextView photo1,uploadButton,rc;
+    String priceValue, descriptionValue,spareNameValue;
+    TextView photo1,uploadButton;
     String nameValue,phoneValue;
     String ph,nm;
 
@@ -78,7 +78,8 @@ public class sell_spare_partsActivity extends AppCompatActivity implements  View
 
         name = findViewById(R.id.name);
         price = findViewById(R.id.price);
-        company = findViewById(R.id.company);
+        description = findViewById(R.id.description);
+        spareName = findViewById(R.id.spare_part_name);
         phone = findViewById(R.id.phone);
         name.setText(nm);
         phone.setText(ph);
@@ -120,12 +121,7 @@ public class sell_spare_partsActivity extends AppCompatActivity implements  View
             photo1.setText(path);
 
         }
-        if (resultCode == RESULT_OK && requestCode == Pick_image2) {
-            String path = getRealPathFromURI(data.getData());
-            rc_uri = data.getData();
-            rc.setText(path);
 
-        }
 
     }
 
@@ -159,7 +155,7 @@ public class sell_spare_partsActivity extends AppCompatActivity implements  View
                 startActivityForResult(i, Pick_image2);
                 break;
             case R.id.truck_list:
-                i = new Intent(sell_spare_partsActivity.this,truckList.class);
+                i = new Intent(sell_spare_partsActivity.this,spareList.class);
                 startActivity(i);
                 break;
 
@@ -171,7 +167,8 @@ public class sell_spare_partsActivity extends AppCompatActivity implements  View
         nameValue = name.getText().toString();
         phoneValue = phone.getText().toString();
         priceValue = price.getText().toString();
-        companyValue = company.getText().toString();
+        descriptionValue = description.getText().toString();
+        spareNameValue = spareName.getText().toString();
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Uploading documents!!");
@@ -241,23 +238,18 @@ public class sell_spare_partsActivity extends AppCompatActivity implements  View
                     byte[] imageBytes = baos.toByteArray();
                     final String photo1String = Base64.encodeToString(imageBytes, Base64.DEFAULT);
 
-                    image = MediaStore.Images.Media.getBitmap(getContentResolver(), rc_uri);
-                    baos = new ByteArrayOutputStream();
-                    image.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                    image.recycle();
-                    imageBytes = baos.toByteArray();
-                    final String rcString = Base64.encodeToString(imageBytes, Base64.DEFAULT);
 
                     Log.d("size", imageBytes.length + "");
 
                     SharedPreferences preferences = getSharedPreferences("data", Context.MODE_PRIVATE);
 
                     params.put("photo1", photo1String);
-                    params.put("rc", rcString);
+
                     params.put("name", nameValue);
                     params.put("phone", phoneValue);
                     params.put("price", priceValue);
-                    params.put("company", companyValue);
+                    params.put("spare_part",spareNameValue);
+                    params.put("description", descriptionValue);
 
                     params.put("id", preferences.getString("id", ""));
                     Log.d("debug","finished setting parameters");

@@ -75,12 +75,12 @@
                 android:layout_width="match_parent"
                 android:hint="e.g. Mahindra"
 
-                android:id="@+id/company"
+                android:id="@+id/spare_part_name"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="35dp"
                 android:layout_height="wrap_content" />
             <TextView
-                android:layout_below="@+id/company"
+                android:layout_below="@+id/spare_part_name"
                 android:layout_width="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:id="@+id/price_label"

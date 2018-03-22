@@ -99,7 +99,15 @@
         </service>
 
         <activity android:name=".truckList" />
-        <activity android:name=".sell_spare_partsActivity"></activity>
+        <activity android:name=".sell_spare_partsActivity" />
+        <activity android:name=".spareOwnerDetails">
+            <intent-filter>
+                <action android:name="com.saveyourfuel.saveyourfuel.spareOwnerDetails" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".spareList"></activity>
     </application>
 
 </manifest>

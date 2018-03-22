@@ -22,6 +22,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.saveyourfuel.saveyourfuel.R;
 import com.saveyourfuel.saveyourfuel.models.card;
+import com.saveyourfuel.saveyourfuel.models.spareCard;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,32 +30,33 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 /**
- * Created by root on 20/3/18.
+ * Created by root on 22/3/18.
  */
 
-public class truckListAdapter extends RecyclerView.Adapter<truckListAdapter.MyViewHolder>{
-    private ArrayList<card> cards;
+public class spareListAdapter extends RecyclerView.Adapter<spareListAdapter.MyViewHolder> {
+    private ArrayList<spareCard> cards;
     Context context;
 
 
 
-    public truckListAdapter(ArrayList<card> cards,Context context){
+    public spareListAdapter(ArrayList<spareCard> cards,Context context){
         this.cards = cards;
         this.context=context;
     }
 
     @Override
-    public truckListAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public spareListAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.card,parent,false);
-        return new truckListAdapter.MyViewHolder(itemView);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.spare_card,parent,false);
+        return new spareListAdapter.MyViewHolder(itemView);
     }
 
+
     @Override
-    public void onBindViewHolder(truckListAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(spareListAdapter.MyViewHolder holder, int position) {
 
         holder.Title.setText("Your truck for sale!!");
-        holder.company.setText(cards.get(position).company);
+        holder.description.setText(cards.get(position).description);
         holder.price.setText(cards.get(position).price);
         holder.imageView.setImageBitmap(cards.get(position).thumbnail);
 
@@ -68,14 +70,14 @@ public class truckListAdapter extends RecyclerView.Adapter<truckListAdapter.MyVi
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
-         TextView Title, company, price;
-         ImageView imageView;
-         RelativeLayout my_card;
+        TextView Title, description, price;
+        ImageView imageView;
+        RelativeLayout my_card;
 
-         MyViewHolder(View itemView) {
+        MyViewHolder(View itemView) {
             super(itemView);
             Title = itemView.findViewById(R.id.title);
-            company = itemView.findViewById(R.id.spare_part_name);
+            description = itemView.findViewById(R.id.description);
             price = itemView.findViewById(R.id.price);
             imageView = itemView.findViewById(R.id.icon_for_recycle);
             my_card = itemView.findViewById(R.id.card);
@@ -84,7 +86,7 @@ public class truckListAdapter extends RecyclerView.Adapter<truckListAdapter.MyVi
                 @Override
                 public void onClick(View view) {
                     final int position = getAdapterPosition();
-                    final card tmp = cards.get(position);
+                    final spareCard tmp = cards.get(position);
                     AlertDialog.Builder builder = new AlertDialog.Builder(context);
                     builder.setMessage("Do you really want to delete the post!!");
                     builder.setTitle("Remove sale post");
@@ -123,7 +125,7 @@ public class truckListAdapter extends RecyclerView.Adapter<truckListAdapter.MyVi
             RequestQueue queue = Volley.newRequestQueue(context);
 
 
-            String url = "http://139.59.29.124:3000/delete-product?p_id="+p_id;
+            String url = "http://139.59.29.124:3000/delete-spare?p_id="+p_id;
             StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
@@ -159,7 +161,6 @@ public class truckListAdapter extends RecyclerView.Adapter<truckListAdapter.MyVi
             queue.add(stringRequest);
         }
     }
-
 
 
 

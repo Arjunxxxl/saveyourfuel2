@@ -1,16 +1,15 @@
 package com.saveyourfuel.saveyourfuel;
 
-import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.util.Log;
@@ -29,10 +28,10 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class truckOwnerDetails extends AppCompatActivity implements View.OnClickListener {
+public class spareOwnerDetails extends AppCompatActivity implements View.OnClickListener {
 
-    ImageView truckImage;
-    TextView name, contact, company, price;
+    ImageView spareImage;
+    TextView name, contact, description, price, spareName;
     String p_id;
     Toolbar toolbar;
     FloatingActionButton fab;
@@ -42,7 +41,7 @@ public class truckOwnerDetails extends AppCompatActivity implements View.OnClick
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_truck_owner_details);
+        setContentView(R.layout.activity_spare_owner_details);
         setView();
         getImage();
     }
@@ -50,9 +49,10 @@ public class truckOwnerDetails extends AppCompatActivity implements View.OnClick
     void setView() {
         name = findViewById(R.id.name);
         contact = findViewById(R.id.contact);
-        company = findViewById(R.id.spare_part_name);
+        description = findViewById(R.id.description);
+        spareName = findViewById(R.id.spare_part_name);
         price = findViewById(R.id.price);
-        truckImage = findViewById(R.id.truck_image);
+        spareImage = findViewById(R.id.truck_image);
         toolbar = findViewById(R.id.toolbar);
         progressBar = findViewById(R.id.progress);
         fab = findViewById(R.id.call_button);
@@ -62,7 +62,8 @@ public class truckOwnerDetails extends AppCompatActivity implements View.OnClick
         name.setText(i.getExtras().getString("name", ""));
         contact.setText(i.getExtras().getString("phone", ""));
         price.setText(i.getExtras().getString("price", ""));
-        company.setText(i.getExtras().getString("company", ""));
+        spareName.setText(i.getExtras().getString("spare_name", ""));
+        description.setText(i.getExtras().getString("description", ""));
         p_id = i.getExtras().getString("p_id", "");
 
         toolbar.setTitle("Truck owner Details");
@@ -75,7 +76,7 @@ public class truckOwnerDetails extends AppCompatActivity implements View.OnClick
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                truckOwnerDetails.this.finish();
+                spareOwnerDetails.this.finish();
             }
         });
 
@@ -87,7 +88,7 @@ public class truckOwnerDetails extends AppCompatActivity implements View.OnClick
         progressBar.setVisibility(View.VISIBLE);
         RequestQueue queue = Volley.newRequestQueue(this);
 
-        String url = "http://139.59.29.124:3000/truck-image?p_id=" + p_id;
+        String url = "http://139.59.29.124:3000/spare-image?p_id=" + p_id;
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -100,7 +101,7 @@ public class truckOwnerDetails extends AppCompatActivity implements View.OnClick
                         if (!imageString.isEmpty()) {
                             byte[] decodedString = Base64.decode(imageString, Base64.DEFAULT);
                             truck = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-                            truckImage.setImageBitmap(truck);
+                            spareImage.setImageBitmap(truck);
                             progressBar.setVisibility(View.GONE);
 
                         }
@@ -131,9 +132,9 @@ public class truckOwnerDetails extends AppCompatActivity implements View.OnClick
         switch (v.getId()) {
             case R.id.call_button:
                 Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + contact.getText().toString()));
-                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    if (ActivityCompat.shouldShowRequestPermissionRationale(truckOwnerDetails.this,
-                            Manifest.permission.CALL_PHONE)) {
+                if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    if (ActivityCompat.shouldShowRequestPermissionRationale(spareOwnerDetails.this,
+                            android.Manifest.permission.CALL_PHONE)) {
 
                         // Show an explanation to the user *asynchronously* -- don't block
                         // this thread waiting for the user's response! After the user
@@ -142,8 +143,8 @@ public class truckOwnerDetails extends AppCompatActivity implements View.OnClick
                     } else {
 
                         // No explanation needed; request the permission
-                        ActivityCompat.requestPermissions(truckOwnerDetails.this,
-                                new String[]{Manifest.permission.CALL_PHONE},100);
+                        ActivityCompat.requestPermissions(spareOwnerDetails.this,
+                                new String[]{android.Manifest.permission.CALL_PHONE},100);
 
                         // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
                         // app-defined int constant. The callback method gets the

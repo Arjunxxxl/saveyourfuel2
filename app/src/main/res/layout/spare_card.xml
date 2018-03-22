@@ -54,8 +54,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
+                        android:ellipsize="end"
+                        android:lines="1"
                         android:layout_marginStart="8dp"
-                        android:text="Company : "
+                        android:text="Description : "
                         android:layout_alignParentLeft="true" />
 
                     <TextView
@@ -64,7 +66,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_toRightOf="@+id/company_label"
                         android:layout_width="wrap_content"
-                        android:id="@+id/spare_part_name"
+                        android:id="@+id/description"
                         android:layout_height="wrap_content"
                         android:text=""
                         android:layout_marginStart="10dp"
@@ -75,13 +77,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/company_label"
-                        android:layout_toLeftOf="@+id/spare_part_name"
-                        android:layout_toStartOf="@+id/spare_part_name"
+                        android:layout_toLeftOf="@+id/description"
+                        android:layout_toStartOf="@+id/description"
                         android:text="Price : " />
 
                     <TextView
                         android:id="@+id/price"
-                        android:layout_below="@+id/spare_part_name"
+                        android:layout_below="@+id/description"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_toEndOf="@+id/price_label"
