@@ -107,7 +107,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".spareList"></activity>
+        <activity android:name=".spareList" />
+        <activity android:name=".otpHandle"></activity>
     </application>
 
 </manifest>

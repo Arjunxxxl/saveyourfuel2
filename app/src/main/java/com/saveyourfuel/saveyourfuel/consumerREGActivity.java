@@ -360,7 +360,7 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
                             try {
                                 int code = Integer.parseInt(response);
                                 if (code == 1062) {
-                                    Snackbar.make(findViewById(android.R.id.content), "email or phone already exist", Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+                                    Toast.makeText(getApplicationContext(), "email or phone already exist", Toast.LENGTH_SHORT).show();
                                     email.setText("");
                                     phone.setText("");
                                 }
@@ -377,6 +377,7 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
                                 }
                             } catch (Exception e) {
                                 Snackbar.make(findViewById(android.R.id.content), "An error occurred. Please try again ", Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+
                             }
                         }
                     }, new Response.ErrorListener() {

@@ -94,12 +94,21 @@ public class splashActivity extends AppCompatActivity {
                         if (res.getString("code").contentEquals("800")) {
 
 
-                            Intent i = new Intent(splashActivity.this, home.class);
+
                             SharedPreferences sharedPreferences = getSharedPreferences("data",Context.MODE_PRIVATE);
                             sharedPreferences.edit().putString("Name",res.getString("name")).apply();
                             sharedPreferences.edit().putString("ph",res.getString("phone")).apply();
 
-                            startActivity(i);
+                            if(res.getInt("verified")==0){
+                                Intent i = new Intent(splashActivity.this, otpHandle.class);
+                                i.putExtra("id",res.getString("id"));
+                                startActivity(i);
+                            }
+                            else{
+                                Intent i = new Intent(splashActivity.this, home.class);
+                                startActivity(i);
+                            }
+
                             splashActivity.this.finish();
                         } else {
                             Snackbar.make(findViewById(R.id.splash_container), "Login Please!", Snackbar.LENGTH_SHORT).setAction("Action", null).show();

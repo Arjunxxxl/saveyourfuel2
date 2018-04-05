@@ -82,7 +82,7 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
 
-                    android:hint="@string/e_mail"
+                    android:hint="@string/phone"
                     android:inputType="textEmailAddress" />
             </android.support.design.widget.TextInputLayout>
 

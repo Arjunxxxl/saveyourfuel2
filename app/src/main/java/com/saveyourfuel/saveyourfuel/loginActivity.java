@@ -230,8 +230,16 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
                         sharedPreferences.edit().putString("Name",res.getString("name")).apply();
                         sharedPreferences.edit().putString("ph",res.getString("phone")).apply();
 
-                        Intent i = new Intent(loginActivity.this, home.class);
-                        startActivity(i);
+                        if(res.getInt("verified")==0){
+                            Intent i = new Intent(loginActivity.this, otpHandle.class);
+                            i.putExtra("id",res.getString("id"));
+                            startActivity(i);
+                        }
+                        else{
+                            Intent i = new Intent(loginActivity.this, home.class);
+                            startActivity(i);
+                        }
+
 
                         loginActivity.this.finish();
                     } else {

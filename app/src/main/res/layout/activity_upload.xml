@@ -81,6 +81,7 @@
                             <Spinner
                                 android:id="@+id/upload_document_selector"
                                 android:layout_width="match_parent"
+                                android:visibility="visible"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 android:layout_gravity="center"
@@ -88,6 +89,18 @@
                                 android:background="@android:color/transparent"
                                 android:gravity="center"
                                 android:spinnerMode="dropdown" />
+                            <EditText
+                                android:visibility="gone"
+                                android:hint="Specify the other file ..."
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="40dp"
+                                android:background="@android:color/transparent"
+                                android:gravity="center"/>
+
 
                             <ImageView
                                 android:layout_width="40dp"
