@@ -80,7 +80,8 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
         datepick.setOnClickListener(this);
 
         phone = findViewById(R.id.phoneReg);
-        email = findViewById(R.id.emailReg);
+        //
+        // email = findViewById(R.id.emailReg);
         password = findViewById(R.id.passReg);
         repass = findViewById(R.id.repassReg);
         reg = findViewById(R.id.register);
@@ -207,37 +208,38 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
             }
         });
 
-        email.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (s.toString().isEmpty()) {
-
-                    emailL.setError(getString(R.string.field_empty));
-                    checkEmail = false;
-                }
-
-                String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
-                java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
-                java.util.regex.Matcher m = p.matcher(s.toString());
-                if (!m.matches()) {
-                    emailL.setError(getString(R.string.format_invalid));
-                    checkEmail = false;
-                } else {
-                    emailL.setErrorEnabled(false);
-                    checkEmail = true;
-                }
-            }
-        });
+//        email.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//                if (s.toString().isEmpty()) {
+//
+//                    emailL.setError(getString(R.string.field_empty));
+//                    checkEmail = false;
+//                }
+//
+/*                String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
+*/
+//                java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
+//                java.util.regex.Matcher m = p.matcher(s.toString());
+//                if (!m.matches()) {
+//                    emailL.setError(getString(R.string.format_invalid));
+//                    checkEmail = false;
+//                } else {
+//                    emailL.setErrorEnabled(false);
+//                    checkEmail = true;
+//                }
+//            }
+//        });
 
         password.addTextChangedListener(new TextWatcher() {
             @Override
@@ -342,13 +344,13 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
         named = name.getText().toString();
         dobd = dob.getText().toString();
         phoned = phone.getText().toString();
-        emaild = email.getText().toString();
+        //emaild = email.getText().toString();
         passwordd = password.getText().toString();
         repassd = repass.getText().toString();
 
 
 
-        if (repassd.contentEquals(passwordd)  && checkEmail && checkName && checkDob && checkPassword && checkPhone) {
+        if (repassd.contentEquals(passwordd)  && checkName && checkDob && checkPassword && checkPhone) {
 
             RequestQueue queue = Volley.newRequestQueue(this);
 
@@ -360,8 +362,8 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
                             try {
                                 int code = Integer.parseInt(response);
                                 if (code == 1062) {
-                                    Toast.makeText(getApplicationContext(), "email or phone already exist", Toast.LENGTH_SHORT).show();
-                                    email.setText("");
+                                    Toast.makeText(getApplicationContext(), "phone no already exist", Toast.LENGTH_SHORT).show();
+                                    //email.setText("");
                                     phone.setText("");
                                 }
                                 if (code == 900) {
@@ -370,20 +372,23 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
                                     consumerREGActivity.this.startActivity(i);
                                     consumerREGActivity.this.finish();
                                 } else {
-                                    Snackbar.make(findViewById(android.R.id.content), "An error occurred. Please try again ", Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+                                    Toast.makeText(getBaseContext(), "An error occurred. Please try again ", Toast.LENGTH_SHORT).show();
+                                    //Toast.make(findViewById(android.R.id.content), "An error occurred. Please try again ", Snackbar.LENGTH_SHORT).setAction("Action", null).show();
                                     Intent i = new Intent(consumerREGActivity.this, loginActivity.class);
                                     consumerREGActivity.this.startActivity(i);
                                     consumerREGActivity.this.finish();
                                 }
-                            } catch (Exception e) {
-                                Snackbar.make(findViewById(android.R.id.content), "An error occurred. Please try again ", Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+
+                                Toast.makeText(getBaseContext(), "An error occurred. Please try again ", Toast.LENGTH_SHORT).show();                                                                                 } catch (Exception e) {
+                                //Snackbar.make(findViewById(android.R.id.content), "An error occurred. Please try again ", Snackbar.LENGTH_SHORT).setAction("Action", null).show();
 
                             }
                         }
                     }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Snackbar.make(findViewById(android.R.id.content), R.string.check_your_connection, Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+                    Toast.makeText(getBaseContext(), R.string.check_your_connection, Toast.LENGTH_SHORT).show();
+                    //Snackbar.make(findViewById(android.R.id.content), R.string.check_your_connection, Snackbar.LENGTH_SHORT).setAction("Action", null).show();
                 }
 
             }) {
@@ -392,7 +397,7 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
                 protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<>();
                     params.put("name", named);
-                    params.put("email", emaild);
+                    //params.put("email", emaild);
                     params.put("dob", dobd);
                     params.put("phone", phoned);
                     params.put("password", passwordd);

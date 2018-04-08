@@ -215,20 +215,13 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
                         login.setEnabled(true);
 
                         sharedPref = getSharedPreferences("data", Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedPref.edit();
-                        editor.putString("username", emailText);
-                        editor.putString("password", passwordText);
-                        editor.putString("id", res.getString("id"));
-                        editor.apply();
+
 
                         play_music.stop();
                         play_music.release();
                         play_music = null;
 
 
-                        SharedPreferences sharedPreferences = getSharedPreferences("data",Context.MODE_PRIVATE);
-                        sharedPreferences.edit().putString("Name",res.getString("name")).apply();
-                        sharedPreferences.edit().putString("ph",res.getString("phone")).apply();
 
                         if(res.getInt("verified")==0){
                             Intent i = new Intent(loginActivity.this, otpHandle.class);
@@ -236,6 +229,16 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
                             startActivity(i);
                         }
                         else{
+                            SharedPreferences.Editor editor = sharedPref.edit();
+                            editor.putString("username", emailText);
+                            editor.putString("password", passwordText);
+                            editor.putString("id", res.getString("id"));
+                            editor.apply();
+
+
+                            SharedPreferences sharedPreferences = getSharedPreferences("data",Context.MODE_PRIVATE);
+                            sharedPreferences.edit().putString("Name",res.getString("name")).apply();
+                            sharedPreferences.edit().putString("ph",res.getString("phone")).apply();
                             Intent i = new Intent(loginActivity.this, home.class);
                             startActivity(i);
                         }
