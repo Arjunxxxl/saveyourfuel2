@@ -111,7 +111,10 @@ public class truckList extends AppCompatActivity implements SwipeRefreshLayout.O
                         cards.add(new card("On Sale", tmp.getString("company"),tmp.getString("price"),truckImage,
                                 tmp.getString("p_id"),
                                 tmp.getString("name"),
-                                tmp.getString("phone")));
+                                tmp.getString("phone"),
+                                tmp.getString("model"),
+                                tmp.getString("distance"),
+                                tmp.getString("condition")));
                     }
                     adapter.notifyDataSetChanged();
                     swipeRefreshLayout.setRefreshing(false);

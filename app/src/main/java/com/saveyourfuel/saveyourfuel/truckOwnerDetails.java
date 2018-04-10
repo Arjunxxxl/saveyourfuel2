@@ -32,7 +32,7 @@ import org.json.JSONObject;
 public class truckOwnerDetails extends AppCompatActivity implements View.OnClickListener {
 
     ImageView truckImage;
-    TextView name, contact, company, price;
+    TextView name, contact, company, price, model, distance, condition;
     String p_id;
     Toolbar toolbar;
     FloatingActionButton fab;
@@ -52,6 +52,10 @@ public class truckOwnerDetails extends AppCompatActivity implements View.OnClick
         contact = findViewById(R.id.contact);
         company = findViewById(R.id.spare_part_name);
         price = findViewById(R.id.price);
+        model = findViewById(R.id.model);
+        distance = findViewById(R.id.distance);
+        condition = findViewById(R.id.condition);
+
         truckImage = findViewById(R.id.truck_image);
         toolbar = findViewById(R.id.toolbar);
         progressBar = findViewById(R.id.progress);
@@ -60,6 +64,9 @@ public class truckOwnerDetails extends AppCompatActivity implements View.OnClick
 
         Intent i = getIntent();
         name.setText(i.getExtras().getString("name", ""));
+        distance.setText(i.getExtras().getString("distance", ""));
+        condition.setText(i.getExtras().getString("condition", ""));
+        model.setText(i.getExtras().getString("model", ""));
         contact.setText(i.getExtras().getString("phone", ""));
         price.setText(i.getExtras().getString("price", ""));
         company.setText(i.getExtras().getString("company", ""));

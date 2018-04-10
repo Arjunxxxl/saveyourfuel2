@@ -96,7 +96,6 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="35dp"
                 android:layout_height="wrap_content" />
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -107,12 +106,80 @@
                 android:layout_alignRight="@+id/price"
                 android:text="₹" />
 
+
+            <TextView
+                android:layout_below="@+id/price"
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:id="@+id/model_label"
+                android:layout_height="wrap_content"
+                android:text="Model No."/>
+            <EditText
+                android:layout_below="@+id/model_label"
+                android:layout_width="match_parent"
+                android:inputType="text"
+                android:hint="e.g. Mahindra Bolero ZLX"
+
+                android:id="@+id/model"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="35dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_below="@+id/model"
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:id="@+id/condition_label"
+                android:layout_height="wrap_content"
+                android:text="condition level"/>
+            <EditText
+                android:layout_below="@+id/condition_label"
+                android:layout_width="match_parent"
+                android:inputType="text"
+                android:hint="e.g. 8 out of 10"
+
+                android:id="@+id/condition"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="35dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_below="@+id/condition"
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:id="@+id/km_label"
+                android:layout_height="wrap_content"
+                android:text="Distance ran (K.M.)"/>
+            <EditText
+                android:layout_below="@+id/km_label"
+                android:layout_width="match_parent"
+                android:inputType="numberDecimal"
+                android:hint="e.g. 900"
+
+                android:id="@+id/km"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="35dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/km"
+                android:layout_alignBottom="@+id/km"
+                android:layout_alignEnd="@+id/km"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_alignRight="@+id/price"
+                android:text="K.M." />
+
+
+
             <View
 
 
                 android:id="@+id/phone_separator"
                 android:layout_centerHorizontal="true"
-                android:layout_below="@+id/price"
+                android:layout_below="@+id/km"
                 android:layout_width="300dp"
                 android:layout_height="1dp"
                 android:layout_marginTop="15dp"

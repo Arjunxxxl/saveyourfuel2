@@ -39,7 +39,7 @@ public class sellTruckForm extends AppCompatActivity implements View.OnClickList
 
 
     static String url = "http://139.59.29.124:3000/truck-sell";
-    EditText name,phone,price,company;
+    EditText name,phone,price,company, model, distance, condition;
     ProgressDialog progressDialog;
     RelativeLayout container;
     FloatingActionButton truckList;
@@ -49,9 +49,9 @@ public class sellTruckForm extends AppCompatActivity implements View.OnClickList
     Toolbar toolbar;
     String priceValue, companyValue;
     TextView photo1,uploadButton,rc;
-    String nameValue,phoneValue;
+    String nameValue,phoneValue, modelValue, distanceValue, conditionValue;
     String ph,nm;
-    Context contex;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +64,7 @@ public class sellTruckForm extends AppCompatActivity implements View.OnClickList
         ph = sharedPref.getString("ph","");
 
         setView();
-        contex = this;
+        context = this;
 
     }
 
@@ -87,6 +87,9 @@ public class sellTruckForm extends AppCompatActivity implements View.OnClickList
         price = findViewById(R.id.price);
         company = findViewById(R.id.spare_part_name);
         phone = findViewById(R.id.phone);
+        model = findViewById(R.id.model);
+        distance = findViewById(R.id.km);
+        condition = findViewById(R.id.condition);
         name.setText(nm);
         phone.setText(ph);
 
@@ -185,6 +188,10 @@ public class sellTruckForm extends AppCompatActivity implements View.OnClickList
         phoneValue = phone.getText().toString();
         priceValue = price.getText().toString();
         companyValue = company.getText().toString();
+        modelValue = model.getText().toString();
+        distanceValue = distance.getText().toString();
+        conditionValue = condition.getText().toString();
+
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Uploading documents!!");
@@ -271,6 +278,9 @@ public class sellTruckForm extends AppCompatActivity implements View.OnClickList
                     params.put("phone", phoneValue);
                     params.put("price", priceValue);
                     params.put("company", companyValue);
+                    params.put("model", modelValue);
+                    params.put("distance", distanceValue);
+                    params.put("condition", conditionValue);
 
                     params.put("id", preferences.getString("id", ""));
                     Log.d("debug","finished setting parameters");

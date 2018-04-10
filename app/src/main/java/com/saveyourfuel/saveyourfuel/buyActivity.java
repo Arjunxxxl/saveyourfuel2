@@ -267,7 +267,10 @@ public class buyActivity extends AppCompatActivity implements  View.OnClickListe
                         truckCards.add(new card("On Sale", tmp.getString("company"),tmp.getString("price"),truckImage,
                                 tmp.getString("p_id"),
                                 tmp.getString("name"),
-                                tmp.getString("phone")));
+                                tmp.getString("phone"),
+                                tmp.getString("model"),
+                                tmp.getString("distance"),
+                                tmp.getString("condition")));
                     }
                     truckAdapter.notifyDataSetChanged();
                     swipeRefreshLayout.setRefreshing(false);

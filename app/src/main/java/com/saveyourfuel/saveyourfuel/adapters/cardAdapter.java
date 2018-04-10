@@ -88,6 +88,9 @@ public class cardAdapter extends RecyclerView.Adapter<cardAdapter.MyViewHolder>{
                     i.putExtra("company",tmp.company);
                     i.putExtra("p_id",tmp.p_id);
                     i.putExtra("price",tmp.price);
+                    i.putExtra("distance",tmp.distance);
+                    i.putExtra("model",tmp.model);
+                    i.putExtra("condition",tmp.condition);
                     context.startActivity(i);
                 }
             });
