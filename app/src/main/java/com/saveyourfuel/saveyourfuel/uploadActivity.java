@@ -23,8 +23,10 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -48,6 +50,9 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
 
     Toolbar toolbar;
     TextView showFile, upload_document_button;
+    EditText other;
+    ImageView dropButton;
+    RelativeLayout otherLayout;
 
     private static final int Pick_image1 = 100;
     String insurance_till,insurance_from,permit_till,permit_from;
@@ -90,7 +95,7 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(uploadActivity.this, documentStatus.class);
+                Intent i = new Intent(uploadActivity.this, home.class);
                 startActivity(i);
                 uploadActivity.this.finish();
             }
@@ -211,6 +216,7 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
         showFile = findViewById(R.id.upload_filename);
         showFile.setOnClickListener(this);
 
+
         container = findViewById(R.id.upload_container);
 
         upload_document_button = findViewById(R.id.upload_document_button);
@@ -222,6 +228,10 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
         permit_date_from = findViewById(R.id.date_permit_from);
         permit_date_till = findViewById(R.id.date_permit_till);
 
+        other = findViewById(R.id.otherEdit);
+        otherLayout = findViewById(R.id.other_layout);
+
+
         select_indurance_till=findViewById(R.id.select_till);
         select_insurance_from = findViewById(R.id.select_from);
         select_indurance_till.setOnClickListener(this);
@@ -231,13 +241,16 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
         permit_till_layout = findViewById(R.id.permit_till);
         permit_from_layout.setOnClickListener(this);
         permit_till_layout.setOnClickListener(this);
+
+        dropButton = findViewById(R.id.drop_button);
+        dropButton.setOnClickListener(this);
     }
 
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent i = new Intent(uploadActivity.this, documentStatus.class);
+        Intent i = new Intent(uploadActivity.this, home.class);
         startActivity(i);
         uploadActivity.this.finish();
     }
@@ -313,6 +326,7 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
                 dialog2.show();
                 break;
 
+
             case R.id.permit_from:
                 Calendar cal3 = Calendar.getInstance();
                 int Year3 = cal3.get(Calendar.YEAR);
@@ -376,7 +390,7 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
         queue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<String>() {
             @Override
             public void onRequestFinished(Request<String> request) {
-                Intent i = new Intent(uploadActivity.this, documentStatus.class);
+                Intent i = new Intent(uploadActivity.this, home.class);
 
                 startActivity(i);
                 uploadActivity.this.finish();
@@ -385,7 +399,7 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
 
         setRequest();
 
-        boolean check_company = (insurance_layout.getVisibility()==View.VISIBLE && !documentTypeText.isEmpty()) || (insurance_layout.getVisibility() ==View.GONE);
+        boolean check_company = (insurance_layout.getVisibility()==View.VISIBLE && !documentTypeText.isEmpty()) || (insurance_layout.getVisibility() ==View.GONE) ;
 
         if (!imagename.isEmpty() && !showFile.getText().toString().contains("File") && check_company ) {
             queue.add(documentReq);
@@ -398,6 +412,7 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
             Snackbar.make(container, R.string.select_doc_type, Snackbar.LENGTH_SHORT).setAction("Action", null).show();
             progressDialog.dismiss();
         }
+
         else{
             Snackbar.make(container, R.string.select_doc_type, Snackbar.LENGTH_SHORT).setAction("Action", null).show();
             progressDialog.dismiss();
@@ -467,6 +482,10 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
                         params.put("valid_till",permit_till);
                         params.put("permit_type",documentTypeText);
                     }
+                    else if(imagename.contentEquals("other")){
+                        imagename = other.getText().toString();
+
+                    }
                     params.put("imageName", imagename);
                     SharedPreferences preferences = getSharedPreferences("data", Context.MODE_PRIVATE);
                     params.put("id", preferences.getString("id", ""));
@@ -504,37 +523,53 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
                         insurance_layout.setVisibility(View.GONE);
                         date_insurance.setVisibility(View.GONE);
                         date_permit.setVisibility(View.GONE);
+                        otherLayout.setVisibility(View.GONE);
                         break;
                     case 1:
                         imagename = "profile";
                         insurance_layout.setVisibility(View.GONE);
                         date_insurance.setVisibility(View.GONE);
                         date_permit.setVisibility(View.GONE);
+                        otherLayout.setVisibility(View.GONE);
                         break;
                     case 2:
                         imagename = "vehicle";
                         insurance_layout.setVisibility(View.GONE);
                         date_insurance.setVisibility(View.GONE);
                         date_permit.setVisibility(View.VISIBLE);
+                        otherLayout.setVisibility(View.GONE);
                         break;
                     case 3:
                         imagename = "insurance";
                         insurance_layout.setVisibility(View.VISIBLE);
                         date_insurance.setVisibility(View.VISIBLE);
                         date_permit.setVisibility(View.GONE);
+                        otherLayout.setVisibility(View.GONE);
                         break;
                     case 4:
                         imagename = "license";
                         insurance_layout.setVisibility(View.GONE);
                         date_insurance.setVisibility(View.GONE);
                         date_permit.setVisibility(View.GONE);
+                        otherLayout.setVisibility(View.GONE);
                         break;
                     case 5:
                         imagename = "rc";
                         insurance_layout.setVisibility(View.GONE);
                         date_insurance.setVisibility(View.GONE);
                         date_permit.setVisibility(View.GONE);
+                        otherLayout.setVisibility(View.GONE);
                         break;
+
+                    case 6:
+                        imagename = "other";
+                        //upload_choice.setVisibility(View.GONE);
+                        insurance_layout.setVisibility(View.GONE);
+                        date_insurance.setVisibility(View.GONE);
+                        date_permit.setVisibility(View.GONE);
+                        otherLayout.setVisibility(View.VISIBLE);
+                        break;
+
 
                 }
                 break;

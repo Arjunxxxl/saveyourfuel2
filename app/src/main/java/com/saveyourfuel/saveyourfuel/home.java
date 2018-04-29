@@ -245,7 +245,7 @@ public class home extends AppCompatActivity implements View.OnClickListener {
                 break;
             case R.id.option3:
 
-                Intent i4 = new Intent("com.saveyourfuel.saveyourfuel.documentStatus");
+                Intent i4 = new Intent(home.this, uploadActivity.class);
                 startActivity(i4);
                 break;
 

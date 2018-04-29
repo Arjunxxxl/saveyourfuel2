@@ -93,6 +93,7 @@
         <item>Insurance card</item>
         <item>License card</item>
         <item>RC card</item>
+        <item>Other</item>
 
     </string-array>
 

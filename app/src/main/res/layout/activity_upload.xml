@@ -89,28 +89,49 @@
                                 android:background="@android:color/transparent"
                                 android:gravity="center"
                                 android:spinnerMode="dropdown" />
-                            <EditText
-                                android:visibility="gone"
-                                android:hint="Specify the other file ..."
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:layout_gravity="center"
-                                android:layout_marginLeft="5dp"
-                                android:layout_marginRight="40dp"
-                                android:background="@android:color/transparent"
-                                android:gravity="center"/>
 
 
                             <ImageView
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
+                                android:id="@+id/drop_button"
                                 android:layout_alignParentRight="true"
                                 android:layout_centerVertical="true"
                                 android:layout_gravity="center"
                                 android:src="@mipmap/drop" />
 
                         </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/other_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginRight="30dp"
+
+                            android:layout_marginTop="20dp"
+                            android:layout_weight=".28"
+
+                            android:background="@drawable/spinner_bg"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:visibility="visible"
+                                android:hint="Specify the other file name"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="2dp"
+                                android:height="40dp"
+                                android:id="@+id/otherEdit"
+                                android:layout_gravity="center"
+                                android:paddingLeft="20dp"
+                                android:background="@color/white"
+                                android:paddingStart="20dp" />
+                        </RelativeLayout>
+
+
 
 
                         <RelativeLayout
@@ -186,6 +207,7 @@
                                     android:layout_weight="1"
                                     android:background="@drawable/ic_action_name" />
                             </LinearLayout>
+
 
                             <LinearLayout
                                 android:id="@+id/select_till"
