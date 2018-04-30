@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".personalTruckInfo">
+
+    <include
+        android:id="@+id/toolbarU"
+        layout="@layout/toolbar_main" />
+
+
+    <RelativeLayout
+        android:layout_below="@id/toolbarU"
+        android:id="@+id/truck_list_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_weight=".28"
+        android:background="@drawable/spinner_bg"
+        android:orientation="horizontal"
+        >
+
+        <Spinner
+            android:id="@+id/truck_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:spinnerMode="dropdown" />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:src="@mipmap/drop" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/details_container"
+        android:layout_below="@+id/truck_list_container">
+
+        <RelativeLayout
+            android:id="@+id/permit_container"
+            android:layout_centerHorizontal="true"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+
+                android:id="@+id/permit_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Permit Type : " />
+
+            <TextView
+                android:id="@+id/permit_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/permit_label"
+                android:layout_toRightOf="@+id/permit_label"
+                android:text="" />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_below="@+id/permit_container"
+            android:id="@+id/validfrom_container"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/permit_validfrom_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Valid from : "/>
+            <TextView
+                android:id="@+id/permit_valid_from"
+                android:layout_alignBottom="@+id/permit_validfrom_label"
+                android:layout_toRightOf="@+id/permit_validfrom_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_below="@+id/validfrom_container"
+            android:id="@+id/validtill_container"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/permit_validtill_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Valid till : "/>
+            <TextView
+                android:id="@+id/permit_valid_till"
+                android:layout_alignBottom="@+id/permit_validtill_label"
+                android:layout_toRightOf="@+id/permit_validtill_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""/>
+        </RelativeLayout>
+
+        <View
+            android:layout_centerHorizontal="true"
+            android:id="@+id/saparator1"
+            android:layout_below="@id/validtill_container"
+            android:layout_width="300dp"
+            android:layout_height="1dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="#d2d2d2"/>
+
+        <RelativeLayout
+            android:layout_below="@+id/saparator1"
+            android:id="@+id/insurance_container"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/insurance_company_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Insurance company : "/>
+            <TextView
+                android:id="@+id/insurance_company"
+                android:layout_toRightOf="@+id/insurance_company_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_below="@+id/insurance_container"
+            android:id="@+id/insurance_amount_container"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/insurance_amount_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Insurance amount : "/>
+            <TextView
+                android:id="@+id/insurance_amount"
+                android:layout_toRightOf="@+id/insurance_amount_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_below="@+id/insurance_amount_container"
+            android:id="@+id/insurance_validfrom_container"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/insurance_validfrom_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Valid from : "/>
+            <TextView
+                android:id="@+id/insurance_validfrom"
+                android:layout_toRightOf="@+id/insurance_validfrom_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_below="@+id/insurance_validfrom_container"
+            android:id="@+id/insurance_validtill_container"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/insurance_validtill_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Valid till : "/>
+            <TextView
+                android:id="@+id/insurance_validtill"
+                android:layout_toRightOf="@+id/insurance_validtill_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""/>
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/updatebutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:layout_above="@+id/addbutton"
+        android:layout_alignParentRight="true"/>
+
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/addbutton"
+        android:layout_margin="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"/>
+</RelativeLayout>

@@ -108,7 +108,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".spareList" />
-        <activity android:name=".otpHandle"></activity>
+        <activity android:name=".otpHandle" />
+        <activity android:name=".personalTruckInfo"></activity>
     </application>
 
 </manifest>
