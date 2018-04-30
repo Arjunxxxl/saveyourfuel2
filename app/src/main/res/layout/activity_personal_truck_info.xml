@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+
     android:layout_height="match_parent"
     tools:context=".personalTruckInfo">
 
@@ -63,12 +64,14 @@
             <TextView
 
                 android:id="@+id/permit_label"
+                android:textSize="16sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Permit Type : " />
 
             <TextView
                 android:id="@+id/permit_type"
+                android:textSize="16sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/permit_label"
@@ -85,10 +88,12 @@
             <TextView
                 android:id="@+id/permit_validfrom_label"
                 android:layout_width="wrap_content"
+                android:textSize="16sp"
                 android:layout_height="wrap_content"
                 android:text="Valid from : "/>
             <TextView
                 android:id="@+id/permit_valid_from"
+                android:textSize="16sp"
                 android:layout_alignBottom="@+id/permit_validfrom_label"
                 android:layout_toRightOf="@+id/permit_validfrom_label"
                 android:layout_width="wrap_content"
@@ -106,9 +111,11 @@
                 android:id="@+id/permit_validtill_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="16sp"
                 android:text="Valid till : "/>
             <TextView
                 android:id="@+id/permit_valid_till"
+                android:textSize="16sp"
                 android:layout_alignBottom="@+id/permit_validtill_label"
                 android:layout_toRightOf="@+id/permit_validtill_label"
                 android:layout_width="wrap_content"
@@ -136,11 +143,13 @@
                 android:id="@+id/insurance_company_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="16sp"
                 android:text="Insurance company : "/>
             <TextView
                 android:id="@+id/insurance_company"
                 android:layout_toRightOf="@+id/insurance_company_label"
                 android:layout_width="wrap_content"
+                android:textSize="16sp"
                 android:layout_height="wrap_content"
                 android:text=""/>
         </RelativeLayout>
@@ -154,14 +163,23 @@
             <TextView
                 android:id="@+id/insurance_amount_label"
                 android:layout_width="wrap_content"
+                android:textSize="16sp"
                 android:layout_height="wrap_content"
                 android:text="Insurance amount : "/>
             <TextView
                 android:id="@+id/insurance_amount"
                 android:layout_toRightOf="@+id/insurance_amount_label"
+                android:textSize="16sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""/>
+            <TextView
+                android:layout_toRightOf="@+id/insurance_amount"
+                android:textSize="16sp"
+                android:layout_marginLeft="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/r"/>
         </RelativeLayout>
 
         <RelativeLayout
@@ -173,12 +191,14 @@
             <TextView
                 android:id="@+id/insurance_validfrom_label"
                 android:layout_width="wrap_content"
+                android:textSize="16sp"
                 android:layout_height="wrap_content"
                 android:text="Valid from : "/>
             <TextView
                 android:id="@+id/insurance_validfrom"
                 android:layout_toRightOf="@+id/insurance_validfrom_label"
                 android:layout_width="wrap_content"
+                android:textSize="16sp"
                 android:layout_height="wrap_content"
                 android:text=""/>
         </RelativeLayout>
@@ -193,33 +213,48 @@
                 android:id="@+id/insurance_validtill_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="16sp"
                 android:text="Valid till : "/>
             <TextView
                 android:id="@+id/insurance_validtill"
                 android:layout_toRightOf="@+id/insurance_validtill_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="16sp"
                 android:text=""/>
         </RelativeLayout>
 
+        <ImageView
+
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/insurance_validtill_container"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/uploadbutton"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_action_upload"/>
 
     </RelativeLayout>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/updatebutton"
+        android:id="@+id/addbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="10dp"
-        android:layout_above="@+id/addbutton"
+        android:src="@drawable/ic_add_white_24dp"
+        android:layout_above="@+id/deletebutton"
         android:layout_alignParentRight="true"/>
-
-
 
     <android.support.design.widget.FloatingActionButton
+        android:id="@+id/deletebutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/addbutton"
         android:layout_margin="10dp"
+        android:src="@drawable/ic_delete_white_24dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"/>
+
+
+
+
 </RelativeLayout>

@@ -53,6 +53,7 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
     EditText other;
     ImageView dropButton;
     RelativeLayout otherLayout;
+    String truckNo;
 
     private static final int Pick_image1 = 100;
     String insurance_till,insurance_from,permit_till,permit_from;
@@ -68,6 +69,8 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        truckNo = getIntent().getExtras().getString("truck_no");
 
         setContentView(R.layout.activity_upload);
         setView();
@@ -95,7 +98,7 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(uploadActivity.this, home.class);
+                Intent i = new Intent(uploadActivity.this, personalTruckInfo.class);
                 startActivity(i);
                 uploadActivity.this.finish();
             }
@@ -250,7 +253,7 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent i = new Intent(uploadActivity.this, home.class);
+        Intent i = new Intent(uploadActivity.this, personalTruckInfo.class);
         startActivity(i);
         uploadActivity.this.finish();
     }
@@ -376,7 +379,7 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
     }
 
 
-    String url = "http://139.59.29.124:3000/upload_documents";
+    String url = "http://139.59.29.124:3000/upload_truck_documents";
 
     void uploadFilesToServer() {
         progressDialog = new ProgressDialog(uploadActivity.this);
@@ -468,6 +471,7 @@ public class uploadActivity extends AppCompatActivity implements View.OnClickLis
 
                     Log.d("size", imageBytes.length + "");
                     params.put("image", imageString);
+                    params.put("truck_no", truckNo);
 
                     if(imagename.contentEquals("insurance")){
 
