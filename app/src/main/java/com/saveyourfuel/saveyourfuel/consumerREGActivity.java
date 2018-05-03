@@ -48,6 +48,8 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
     ImageView datepick;
     String dateString="";
 
+    boolean checkName = false, checkDob = false, checkEmail = false, checkPassword = false, checkPhone = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -118,7 +120,6 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
 
 
 
-    boolean checkName = false, checkDob = false, checkEmail = false, checkPassword = false, checkPhone = false;
 
     void setListeners() {
         reg.setOnClickListener(this);
@@ -161,7 +162,7 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
             @Override
             public void afterTextChanged(Editable s) {
                 if (s.toString().isEmpty()) {
-                    dobL.setError("");
+                    dobL.setError(getString(R.string.field_empty));
 
                     checkDob = false;
                 } else {
@@ -189,6 +190,17 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
             @Override
             public void afterTextChanged(Editable s) {
 
+                if (s.toString().isEmpty()) {
+                    phoneL.setError(getString(R.string.field_empty));
+
+                    checkPhone = false;
+                } else {
+
+                    phoneL.setErrorEnabled(false);
+                    checkPhone = true;
+
+
+                }
 
                 if (s.toString().length() != 10) {
                     phoneL.setError(getString(R.string.format_invalid));
@@ -292,11 +304,23 @@ public class consumerREGActivity extends AppCompatActivity implements View.OnCli
             @Override
             public void afterTextChanged(Editable s) {
 
+                if (s.toString().isEmpty()) {
+                    phoneL.setError(getString(R.string.field_empty));
 
-                if (!s.toString().contentEquals(password.getText().toString()))
-                    repassL.setError(getString(R.string.pass_not_same));
-                else
-                    repassL.setErrorEnabled(false);
+                    checkPhone = false;
+                } else {
+
+                    phoneL.setErrorEnabled(false);
+                    checkPhone = true;
+
+                    if (!s.toString().contentEquals(password.getText().toString()))
+                        repassL.setError(getString(R.string.pass_not_same));
+                    else
+                        repassL.setErrorEnabled(false);
+
+                }
+
+
             }
         });
 

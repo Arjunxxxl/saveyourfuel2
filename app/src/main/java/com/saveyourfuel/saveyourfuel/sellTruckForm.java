@@ -53,6 +53,8 @@ public class sellTruckForm extends AppCompatActivity implements View.OnClickList
     String ph,nm;
     Context context;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -192,8 +194,12 @@ public class sellTruckForm extends AppCompatActivity implements View.OnClickList
         distanceValue = distance.getText().toString();
         conditionValue = condition.getText().toString();
 
+        if (nameValue.isEmpty() && phoneValue.isEmpty() && priceValue.isEmpty() && companyValue.isEmpty() && modelValue.isEmpty()
+                && distanceValue.isEmpty() && conditionValue.isEmpty()) {
+            Toast.makeText(getApplicationContext(), R.string.field_empty, Toast.LENGTH_LONG).show();
+        } else{
 
-        progressDialog = new ProgressDialog(this);
+            progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Uploading documents!!");
         progressDialog.show();
 
@@ -215,24 +221,23 @@ public class sellTruckForm extends AppCompatActivity implements View.OnClickList
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.d("debug","in response listner");
+                        Log.d("debug", "in response listner");
                         JSONObject jsonObject;
                         try {
                             jsonObject = new JSONObject(response);
                             String code = jsonObject.getString("code");
-                            Log.d("response code",code);
-                            if(code.contentEquals("900")){
+                            Log.d("response code", code);
+                            if (code.contentEquals("900")) {
                                 progressDialog.dismiss();
-                                Snackbar.make(container, R.string.upload_succedd,Snackbar.LENGTH_LONG).show();
-                            }
-                            else{
+                                Snackbar.make(container, R.string.upload_succedd, Snackbar.LENGTH_LONG).show();
+                            } else {
                                 progressDialog.dismiss();
-                                Snackbar.make(container,"Some error occurred!",Snackbar.LENGTH_LONG).show();
+                                Snackbar.make(container, "Some error occurred!", Snackbar.LENGTH_LONG).show();
                             }
 
                         } catch (Exception e) {
                             progressDialog.dismiss();
-                            Snackbar.make(container, R.string.upload_error,Snackbar.LENGTH_LONG).show();
+                            Snackbar.make(container, R.string.upload_error, Snackbar.LENGTH_LONG).show();
 
                         }
 
@@ -283,7 +288,7 @@ public class sellTruckForm extends AppCompatActivity implements View.OnClickList
                     params.put("condition", conditionValue);
 
                     params.put("id", preferences.getString("id", ""));
-                    Log.d("debug","finished setting parameters");
+                    Log.d("debug", "finished setting parameters");
 
 
                 } catch (IOException e) {
@@ -296,7 +301,7 @@ public class sellTruckForm extends AppCompatActivity implements View.OnClickList
         };
 
         queue.add(documentReq);
-
+    }
 
     }
 }

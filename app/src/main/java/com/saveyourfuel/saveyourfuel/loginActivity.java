@@ -52,6 +52,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
     static MediaPlayer play_music;
 
     public static String FACEBOOK_URL = "https://www.facebook.com/Syf-166804867448828/?modal=admin_todo_tour";
+    public static String Website_url = "http://www.syfonline.in/";
     public static String FACEBOOK_PAGE_ID = "https://www.facebook.com/Syf-166804867448828/?modal=admin_todo_tour";
     ImageButton facebookbutton, website;
 
@@ -148,7 +149,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
                 break;
 
             case R.id.imageButton:
-                Uri uri = Uri.parse(FACEBOOK_URL); // missing 'http://' will cause crashed
+                Uri uri = Uri.parse(Website_url); // missing 'http://' will cause crashed
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);
                 break;

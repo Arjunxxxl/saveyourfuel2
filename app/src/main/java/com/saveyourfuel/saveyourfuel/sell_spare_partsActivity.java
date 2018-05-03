@@ -34,43 +34,43 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class sell_spare_partsActivity extends AppCompatActivity implements  View.OnClickListener{
+public class sell_spare_partsActivity extends AppCompatActivity implements  View.OnClickListener {
 
     static String url = "http://139.59.29.124:3000/spare-sell";
-    EditText name,phone,price,description,spareName;
+    EditText name, phone, price, description, spareName;
     ProgressDialog progressDialog;
     RelativeLayout container;
     FloatingActionButton truckList;
-    private static final int Pick_image1 = 100,Pick_image2=200;
+    private static final int Pick_image1 = 100, Pick_image2 = 200;
     Uri photo1_uri;
 
+    boolean nameb, phoneb, priceb, descriptionb, spareNameb;
+
     Toolbar toolbar;
-    String priceValue, descriptionValue,spareNameValue;
-    TextView photo1,uploadButton;
-    String nameValue,phoneValue;
-    String ph,nm;
+    String priceValue, descriptionValue, spareNameValue;
+    TextView photo1, uploadButton;
+    String nameValue, phoneValue;
+    String ph, nm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sell_spare_parts);
         SharedPreferences sharedPref = getSharedPreferences("data", Context.MODE_PRIVATE);
-        nm = sharedPref.getString("Name","");
-        ph = sharedPref.getString("ph","");
+        nm = sharedPref.getString("Name", "");
+        ph = sharedPref.getString("ph", "");
 
         setView();
 
     }
 
-    void setView(){
+    void setView() {
         container = findViewById(R.id.container);
 
         toolbar = findViewById(R.id.toolbar);
 
         photo1 = findViewById(R.id.photo1);
         photo1.setOnClickListener(this);
-
-
 
 
         toolbar.setTitle("Sell spare items");
@@ -95,9 +95,9 @@ public class sell_spare_partsActivity extends AppCompatActivity implements  View
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(sell_spare_partsActivity.this,buyActivity.class);
-                i.putExtra("Name",nm);
-                i.putExtra("ph",ph);
+                Intent i = new Intent(sell_spare_partsActivity.this, buyActivity.class);
+                i.putExtra("Name", nm);
+                i.putExtra("ph", ph);
                 startActivity(i);
                 sell_spare_partsActivity.this.finish();
             }
@@ -107,7 +107,35 @@ public class sell_spare_partsActivity extends AppCompatActivity implements  View
         truckList.setOnClickListener(this);
 
 
+        if (name.getText().toString().isEmpty()) {
+            nameb = false;
+        } else {
+            nameb = true;
+        }
 
+        if (phone.getText().toString().isEmpty()) {
+            phoneb = false;
+        } else {
+            phoneb = true;
+        }
+
+        if (price.getText().toString().isEmpty()) {
+            priceb = false;
+        } else {
+            priceb = true;
+        }
+
+        if (description.getText().toString().isEmpty()) {
+            descriptionb = false;
+        } else {
+            descriptionb = true;
+        }
+
+        if (spareName.getText().toString().isEmpty()) {
+            spareNameb = false;
+        } else {
+            spareNameb = true;
+        }
 
     }
 
@@ -142,7 +170,7 @@ public class sell_spare_partsActivity extends AppCompatActivity implements  View
     @Override
     public void onClick(View v) {
         Intent i;
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.upload_document_button:
                 setupRequest();
                 break;
@@ -155,7 +183,7 @@ public class sell_spare_partsActivity extends AppCompatActivity implements  View
                 startActivityForResult(i, Pick_image2);
                 break;
             case R.id.truck_list:
-                i = new Intent(sell_spare_partsActivity.this,spareList.class);
+                i = new Intent(sell_spare_partsActivity.this, spareList.class);
                 startActivity(i);
                 break;
 
@@ -164,7 +192,10 @@ public class sell_spare_partsActivity extends AppCompatActivity implements  View
     }
 
     private void setupRequest() {
-        nameValue = name.getText().toString();
+
+        if (nameb && priceb && phoneb && descriptionb && spareNameb){
+
+            nameValue = name.getText().toString();
         phoneValue = phone.getText().toString();
         priceValue = price.getText().toString();
         descriptionValue = description.getText().toString();
@@ -192,24 +223,23 @@ public class sell_spare_partsActivity extends AppCompatActivity implements  View
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.d("debug","in response listner");
+                        Log.d("debug", "in response listner");
                         JSONObject jsonObject;
                         try {
                             jsonObject = new JSONObject(response);
                             String code = jsonObject.getString("code");
-                            Log.d("response code",code);
-                            if(code.contentEquals("900")){
+                            Log.d("response code", code);
+                            if (code.contentEquals("900")) {
                                 progressDialog.dismiss();
-                                Snackbar.make(container, R.string.upload_succedd,Snackbar.LENGTH_LONG).show();
-                            }
-                            else{
+                                Snackbar.make(container, R.string.upload_succedd, Snackbar.LENGTH_LONG).show();
+                            } else {
                                 progressDialog.dismiss();
-                                Snackbar.make(container,"Some error occurred!",Snackbar.LENGTH_LONG).show();
+                                Snackbar.make(container, "Some error occurred!", Snackbar.LENGTH_LONG).show();
                             }
 
                         } catch (Exception e) {
                             progressDialog.dismiss();
-                            Snackbar.make(container, R.string.upload_error,Snackbar.LENGTH_LONG).show();
+                            Snackbar.make(container, R.string.upload_error, Snackbar.LENGTH_LONG).show();
 
                         }
 
@@ -248,11 +278,11 @@ public class sell_spare_partsActivity extends AppCompatActivity implements  View
                     params.put("name", nameValue);
                     params.put("phone", phoneValue);
                     params.put("price", priceValue);
-                    params.put("spare_part",spareNameValue);
+                    params.put("spare_part", spareNameValue);
                     params.put("description", descriptionValue);
 
                     params.put("id", preferences.getString("id", ""));
-                    Log.d("debug","finished setting parameters");
+                    Log.d("debug", "finished setting parameters");
 
 
                 } catch (IOException e) {
@@ -267,6 +297,11 @@ public class sell_spare_partsActivity extends AppCompatActivity implements  View
         queue.add(documentReq);
 
 
-    }
+    }else{
+            Snackbar.make(findViewById(android.R.id.content), R.string.field_empty, Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+
+        }
+}
+
 }
 
